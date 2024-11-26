@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="mt-5">Selamat Datang di Sistem Peminjaman Auditorium</h1>
+    <h1 class="mt-5">wkwkwk Datang di Sistem Peminjaman Auditorium</h1>
     <p class="lead">Sistem ini memungkinkan Anda untuk meminjam auditorium di UPNVJ dengan mudah dan cepat.</p>
     
     <h3>Fitur Utama:</h3>
