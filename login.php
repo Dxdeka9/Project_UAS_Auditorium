@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM pengguna WHERE email='$email'";
-    $result = $conn->query($sql);
+    $result = $conn->query($sql);   
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();

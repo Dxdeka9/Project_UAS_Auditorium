@@ -1,31 +1,52 @@
-<<!DOCTYPE html> 
+<?php
+include 'includes/db.php';
+
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM pengguna WHERE email='$email'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role'] = $user['role'];
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            echo "Password salah!";
+        }
+    } else {
+        echo "Email tidak terdaftar!";
+    }
+}
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Peminjaman Auditorium</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Login - SmartGuard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-    <h1 class="mt-5">wkwkwk Datang di Sistem Peminjaman Auditorium</h1>
-    <p class="lead">Sistem ini memungkinkan Anda untuk meminjam auditorium di UPNVJ dengan mudah dan cepat.</p>
-    
-    <h3>Fitur Utama:</h3>
-    <ul>
-        <li>Registrasi pengguna baru</li>
-        <li>Login untuk pengguna yang sudah terdaftar</li>
-        <li>Ajukan peminjaman auditorium</li>
-        <li>Melihat riwayat peminjaman</li>
-    </ul>
-
-    <div class="mt-4">
-        <a href="register.php" class="btn btn-primary">Daftar Sekarang</a>
-        <a href="login.php" class="btn btn-secondary">Login</a>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form method="POST" action="">
+            <input type="text" name="email" placeholder="Username or Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <a href="register.php">Create an Account</a>
     </div>
-</div>
 </body>
 </html>
+
 
 
 
