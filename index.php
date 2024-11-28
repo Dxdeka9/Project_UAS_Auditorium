@@ -39,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
 </head>
-<body>
+<body style="background-image: url('upnvj_bg-1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="login-container">
         <h1>Login</h1>
         <form method="POST" action="">
