@@ -1,0 +1,132 @@
+body {
+    background: linear-gradient(135deg, #d8f3dc, #b7e4c7); /* Gradasi hijau */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+    animation: fadeIn 0.8s ease;
+}
+
+h2 {
+    color: #40916c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 15px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 96%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+/* Atur ulang tombol Ajukan */
+.btn-primary {
+    margin: 20px 0; /* Pusatkan tombol secara horizontal */
+    padding: 15px 40px; /* Tambah padding untuk memperbesar tombol */
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    width: 60%; /* Perlebar tombol hingga 60% dari lebar container */
+    background: #52b788;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #40916c;
+}
+
+/* Gaya untuk tombol Kembali */
+.btn-secondary {
+    margin: 20px 0px 20px 20px; /* Pusatkan tombol secara horizontal */
+    padding: 15px 40px; /* Tambah padding untuk memperbesar tombol */
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    width: 35%; /* Lebarkan tombol hingga 60% dari lebar container */
+    background: #d4f1d4; /* Warna latar belakang yang lebih terang */
+    ;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #52b788; /* Ubah warna latar belakang saat hover */
+    transform: translateY(-5px); /* Efek sedikit mengangkat tombol saat hover */
+}
+
+
+.alert {
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert-success {
+    background: #e6f4ea;
+    color: #40916c;
+}
+
+.alert-danger {
+    background: #fcebea;
+    color: #d90429;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#id_auditorium {
+    width: 100%; /* Mengurangi lebar select */
+    padding: 8px; /* Menyesuaikan padding agar tidak terlalu besar */
+    font-size: 14px; /* Mengecilkan ukuran font */
+}
+
+
+
