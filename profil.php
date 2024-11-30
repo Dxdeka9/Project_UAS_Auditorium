@@ -41,10 +41,10 @@ $result = $stmt->get_result();
                         <a href="#" class="nav-link active">Profil</a>
                     </li>
                     <li class="nav-item mb-3">
-                        <a href="dashboard.php" class="nav-link text-dark">Ruang Auditorium</a>
+                        <a href="dashboard.php" class="nav-link text-dark">Daftar Peminjaman</a>
                     </li>
                     <li class="nav-item mb-3">
-                        <a href="#" class="nav-link text-dark">Daftar Peminjaman</a>
+                        <a href="daftar_ruang.php" class="nav-link text-dark">Daftar Ruang Auditorium</a>
                     </li>
                 </ul>
                 <a href="peminjaman.php" class="btn btn-primary w-100 mt-auto mb-3">Ajukan Peminjaman</a>
