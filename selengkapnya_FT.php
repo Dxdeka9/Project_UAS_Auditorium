@@ -32,7 +32,7 @@ $result = $stmt->get_result();
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 bg-light sidebar p-4">
+           <div class="col-md-3 bg-light sidebar p-4">
                 <div class="text-center mb-4">
                     <div class="profile-picture bg-secondary rounded-circle mb-3" style="width: 100px; height: 100px;"></div>
                     <h5>Contoh Nama</h5>
@@ -40,10 +40,10 @@ $result = $stmt->get_result();
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
-                        <a href="#" class="nav-link text-dark">Profil</a>
+                        <a href="profil.php" class="nav-link text-dark">Profil</a>
                     </li>
                     <li class="nav-item mb-3">
-                        <a href="#" class="nav-link active">Ruang Auditorium</a>
+                        <a href="dashboard.php" class="nav-link active">Ruang Auditorium</a>
                     </li>
                     <li class="nav-item mb-3">
                         <a href="#" class="nav-link text-dark">Daftar Peminjaman</a>
@@ -58,7 +58,7 @@ $result = $stmt->get_result();
                 <div class="container py-4">
                     <h2>Auditorium Fakultas Teknik</h2>
                     <div style="width: 500px; margin: 0 auto;">
-                        <img src="auditorium 1.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded">
+                        <img src="auditorium 1.jpg" alt="Auditorium FT" class="img-fluid rounded">
                     </div>
                     <div class="details text-left mb-4">
                         <p><strong><br>Lokasi:</strong> Gedung Rektorat, lantai 4</p>

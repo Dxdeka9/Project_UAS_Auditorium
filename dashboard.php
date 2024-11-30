@@ -72,7 +72,7 @@ $result = $stmt->get_result();
                     <div class="col-md-3 mb-3">
                         <div class="card">
                             <div class="card-body text-center">
-                                <h5>Auditorium Bhineka Tungal Ika</h5>
+                                <h5>Auditorium Bhineka Tunggal Ika</h5>
                                 <p class="text-muted">UPN Pondok Labu</p>
                                 <a href="selengkapnya_BTI.php">Lihat Selengkapnya</a>
                             </div>

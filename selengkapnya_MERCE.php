@@ -40,10 +40,10 @@ $result = $stmt->get_result();
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
-                        <a href="#" class="nav-link text-dark">Profil</a>
+                        <a href="profil.php" class="nav-link text-dark">Profil</a>
                     </li>
                     <li class="nav-item mb-3">
-                        <a href="#" class="nav-link active">Ruang Auditorium</a>
+                        <a href="dashboard.php" class="nav-link active">Ruang Auditorium</a>
                     </li>
                     <li class="nav-item mb-3">
                         <a href="#" class="nav-link text-dark">Daftar Peminjaman</a>
@@ -58,10 +58,11 @@ $result = $stmt->get_result();
                 <div class="container py-4">
                     <h2>Auditorium MERCE Kedokteran</h2>
                     <div style="width: 500px; margin: 0 auto;">
-                        <img src="auditorium 1.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded">
+                        <img src="" alt="Auditorium MERCE FK" class="img-fluid rounded">
                     </div>
                     <div class="details text-left mb-4">
                         <p><strong><br>Lokasi:</strong> Gedung Rektorat, lantai 4</p>
+                        <p><strong>Kapasitas:</strong> 88 Orang</p>
                         <p><strong>Jam Operasional:</strong> 07.00 WIB - 16.00 WIB</p>
                     </div>
                     <div style="text-align:justify">
