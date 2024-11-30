@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
+<!-- cek komen update -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
