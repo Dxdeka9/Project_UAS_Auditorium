@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT p.id, a.nama as nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai 
-        FROM peminjaman p 
+        FROM peminjaman
         INNER JOIN auditorium a ON p.id_auditorium = a.id 
         WHERE p.id_pengguna = ?
         ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
@@ -70,11 +70,14 @@ $result = $stmt->get_result();
     </div>
 </div>
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
 
 <!--  
 <!DOCTYPE html>
