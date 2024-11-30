@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="register.css">
 </head>
-<body style="background-image: url('upnvj_bg-1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+<body style="background-image: url('upnvj_bg-1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">>
 <div class="register-container">
     <h1><b>Registrasi Pengguna baru</b></h1>
     <form method="POST">
@@ -47,3 +47,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 </body>
 </html>
+
