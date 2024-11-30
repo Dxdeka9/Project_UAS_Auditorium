@@ -1,26 +1,21 @@
-
 <?php
 include 'includes/db.php';
 session_start();
-
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT p.id, a.nama as nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai 
-        FROM peminjaman
+        FROM peminjaman p 
         INNER JOIN auditorium a ON p.id_auditorium = a.id 
         WHERE p.id_pengguna = ?
         ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
-
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,22 +58,16 @@ $result = $stmt->get_result();
             Belum ada riwayat peminjaman.
         </div>
     <?php endif; ?>
-
     <div class="mt-4">
         <a href="peminjaman.php" class="btn btn-primary">Ajukan Peminjaman Baru</a>
         <a href="logout.php" class="btn btn-danger">Logout</a>
     </div>
 </div>
-
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
 <!--  
 <!DOCTYPE html>
 <html lang="en">
@@ -128,4 +117,3 @@ $result = $stmt->get_result();
 </nav>
 </body>
 </html>
--->
