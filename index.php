@@ -46,13 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Slideshow Background -->
     <div class="slideshow-container">
         <div class="mySlides fade">
-            <img src="assets/upnvj_bg-1.jpg" style="width:100%; height:100vh; object-fit:cover;">
+            <img src="assets\upnvj_bg-1.jpg" style="width:100%; height:100vh; object-fit:cover;">
         </div>
         <div class="mySlides fade">
-            <img src="assets/DSC04787.JPG" style="width:100%; height:100vh; object-fit:cover;">
+            <img src="assets\S__37576708_0.jpg" style="width:100%; height:100vh; object-fit:cover;">
         </div>
         <div class="mySlides fade">
-            <img src="assets/DSC00861.jpg" style="width:100%; height:100vh; object-fit:cover;">
+            <img src="assets\DSC00861.jpg" style="width:100%; height:100vh; object-fit:cover;">
         </div>
     </div>
 
