@@ -73,7 +73,7 @@ $result = $stmt->get_result();
                      <div class="col-md-3 mb-3">
                         <div class="card">
                             <div class="card-body text-center">
-                                <h5>Audiorium MERCE Kedokteran</h5>
+                                <h5>Auditorium MERCE Kedokteran</h5>
                                 <p class="text-muted">UPN Limo</p>
                                 <a href="selengkapnya_MERCE.php">Lihat Selengkapnya</a>
                             </div>

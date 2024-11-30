@@ -40,7 +40,7 @@ $result = $stmt->get_result();
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
-                        <a href="#" class="nav-link text-dark">Profil</a>
+                        <a href="profil.php" class="nav-link text-dark">Profil</a>
                     </li>
                     <li class="nav-item mb-3">
                         <a href="#" class="nav-link active">Ruang Auditorium</a>
@@ -58,7 +58,7 @@ $result = $stmt->get_result();
                 <div class="container py-4">
                     <h2>Auditorium Fakultas Ilmu Sosial dan Politik</h2>
                     <div style="width: 500px; margin: 0 auto;">
-                        <img src="auditorium 1.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded">
+                        <img src="auditorium 1.jpg" alt="Auditorium FISIP" class="img-fluid rounded">
                     </div>
                     <div class="details text-left mb-4">
                         <p><strong><br>Lokasi:</strong> Gedung Rektorat, lantai 4</p>
