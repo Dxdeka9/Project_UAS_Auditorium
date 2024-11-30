@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body style="background-image: url('upnvj_bg-1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">>
 <div class="register-container">
-    <h1><b>Registrasi Pengguna baru</b></h1>
+    <h1><b>Registrasi Pengguna Baru</b></h1>
     <form method="POST">
         <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>
