@@ -2,16 +2,16 @@
 include 'includes/db.php';
 session_start();
 
-// Cek apakah pengguna sudah login
+// untuk cek login user
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
-// Ambil ID pengguna dari session
+// untuk mengambil id user
 $user_id = $_SESSION['user_id'];
 
-// Query untuk mengambil data riwayat peminjaman
+// query data peminjaman
 $sql = "SELECT p.id, a.nama as nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai 
         FROM peminjaman p 
         INNER JOIN auditorium a ON p.id_auditorium = a.id 
