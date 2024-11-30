@@ -38,7 +38,7 @@ $result = $stmt->get_result();
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
-                        <a href="#" class="nav-link text-dark">Profil</a>
+                        <a href="profil.php" class="nav-link text-dark">Profil</a>
                     </li>
                     <li class="nav-item mb-3">
                         <a href="#" class="nav-link active">Ruang Auditorium</a>
