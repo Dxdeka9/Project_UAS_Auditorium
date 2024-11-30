@@ -1,16 +1,12 @@
-/* Slideshow container */
+/* Slideshow Background */
 .slideshow-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -1; /* Di belakang kontainer login */
     overflow: hidden;
-    background: transparent !important; /* Pastikan background transparan */
-    display: flex; /* Membuat gambar mengisi seluruh kontainer */
-    justify-content: center;
-    align-items: center;
 }
 
 .mySlides {
@@ -48,7 +44,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #fff; /* Pastikan background body putih */
 }
 
 .login-container {
