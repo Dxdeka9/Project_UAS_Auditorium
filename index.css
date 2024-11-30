@@ -1,69 +1,104 @@
-/* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #4caf50, #81c784);
-    height: 100vh;
-    display: flex;
+/* Slideshow container */
+.slideshow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: transparent !important; /* Pastikan background transparan */
+    display: flex; /* Membuat gambar mengisi seluruh kontainer */
     justify-content: center;
     align-items: center;
 }
 
-/* Login Container */
+.mySlides {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mySlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Gambar menyesuaikan ukuran layar */
+}
+
+/* Animasi Fade */
+@keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+/* Gaya Kontainer Login */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff; /* Pastikan background body putih */
+}
+
 .login-container {
-    background: white;
-    padding: 30px 40px; /* Tambah padding untuk memberi ruang lebih */
+    position: relative;
+    z-index: 1; /* Di atas slideshow */
+    background: rgba(255, 255, 255, 0.9); /* Transparansi */
+    padding: 30px 40px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Lebih tegas untuk visual */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
     text-align: center;
 }
 
 .login-container h1 {
-    margin-bottom: 25px;
-    color: #4caf50;
+    margin-bottom: 20px;
     font-size: 24px;
+    color: #4caf50;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+.login-container input {
     width: 100%;
     padding: 12px;
-    margin: 15px 0;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
 }
 
 .login-container button {
-    background: #4caf50;
+    width: 100%;
+    padding: 12px;
+    background-color: #4caf50;
     color: white;
     border: none;
-    padding: 12px;
-    width: 100%;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease;
-    margin-top: 10px;
 }
 
 .login-container button:hover {
-    background: #388e3c;
+    background-color: #388e3c;
 }
 
 .login-container a {
+    margin-top: 10px;
     display: block;
-    margin-top: 20px;
-    color: #0077BE;
+    color: #0077be;
     text-decoration: none;
-    font-size: 14px;
 }
 
 .login-container a:hover {
     text-decoration: underline;
 }
-

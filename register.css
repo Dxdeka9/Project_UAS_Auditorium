@@ -7,24 +7,27 @@ body {
     align-items: center;
     font-family: Arial, sans-serif;
     margin: 0;
+    position: relative; /* Mengatur posisi relatif agar elemen lain bisa berada di atas slideshow */
 }
 
 /* Register Container */
 .register-container {
-    background: white;
+    position: absolute;
+    z-index: 1; /* Agar form register berada di atas slideshow */
+    background: rgba(255, 255, 255, 0.9);
     padding: 30px 40px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
-    text-align: left; /* Default rata kiri untuk elemen lainnya */
+    text-align: left;
 }
 
 .register-container h1 {
     color: #4caf50;
     margin-bottom: 25px;
     font-size: 24px;
-    text-align: center; /* Memusatkan teks heading */
+    text-align: center; 
 }
 
 /* Form Input Styles */
@@ -34,7 +37,7 @@ body {
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 15px;
-    text-align: left; /* Input tetap rata kiri */
+    text-align: left;
 }
 
 .form-label {
@@ -59,7 +62,7 @@ body {
     color: #0077BE;
     text-decoration: none;
     font-size: 14px;
-    text-align: center; /* Memusatkan teks link */
+    text-align: center; 
 }
 
 .register-container a:hover {

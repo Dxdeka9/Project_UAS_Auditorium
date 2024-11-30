@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<!-- cek komen update -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,27 +23,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Registrasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="slideshow.css"> <!-- Tambahkan file CSS slideshow -->
 </head>
-<body style="background-image: url('upnvj_bg-1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">>
-<div class="register-container">
-    <h1><b>Registrasi</b></h1>
-    <form method="POST">
-        <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama Anda" required>
+<body>
+    <!-- Slideshow Background -->
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="upnvj_bg-1.jpg" style="width:100%; height:100vh; object-fit:cover;">
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan email Anda" required>
+        <div class="mySlides fade">
+            <img src="DSC04787.JPG" style="width:100%; height:100vh; object-fit:cover;">
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan password" required>
+        <div class="mySlides fade">
+            <img src="DSC00861.jpg" style="width:100%; height:100vh; object-fit:cover;">
         </div>
-        <button type="submit" class="btn btn-primary w-100">Daftar</button>
-    </form>
-    <a href="index.php">Sudah punya akun? Login di sini</a>
-</div>
+    </div>
+
+    <!-- Register Form -->
+    <div class="register-container">
+        <h1><b>Registrasi</b></h1>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama Anda" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan email Anda" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Daftar</button>
+        </form>
+        <a href="index.php">Sudah punya akun? Login di sini</a>
+    </div>
+
+    <script src="slideshow.js"></script> <!-- Tambahkan file JavaScript slideshow -->
 </body>
 </html>
 
