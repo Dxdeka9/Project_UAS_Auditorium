@@ -60,48 +60,22 @@ $result = $stmt->get_result();
                 <!-- Tabs -->
                 <ul class="nav nav-pills mb-3">
                     <li class="nav-item">
-                        <a href="dashboard.php" class="nav-link active">Semua</a>
+                        <a href="dashboard.php" class="nav-link">Semua</a>
                     </li>
                     <li class="nav-item">
                         <a href="pondok_labu.php" class="nav-link">UPN Pondok Labu</a>
                     <li class="nav-item">
-                        <a href="limo.php" class="nav-link">UPN Limo</a>
+                        <a href="limo.php" class="nav-link active">UPN Limo</a>
                 </ul>
                 <!-- Room List -->
                 <div class="row">
-                    <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5>Auditorium Bhineka Tungal Ika</h5>
-                                <p class="text-muted">UPN Pondok Labu</p>
-                                <a href="selengkapnya_BTI.php">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5>Auditorium Fakultas Kedokteran</h5>
-                                <p class="text-muted">UPN Pondok Labu</p>
-                                <a href="selengkapnya_FK.php">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Tambahkan ruangan lainnya sesuai kebutuhan -->
                      <div class="col-md-3 mb-3">
                         <div class="card">
                             <div class="card-body text-center">
                                 <h5>Audiorium MERCE Kedokteran</h5>
                                 <p class="text-muted">UPN Limo</p>
                                 <a href="selengkapnya_MERCE.php">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5>Auditorium Fakultas Ilmu Sosial & Politik</h5>
-                                <p class="text-muted">UPN Pondok Labu</p>
-                                <a href="selengkapnya_FISIP.php">Lihat Selengkapnya</a>
                             </div>
                         </div>
                     </div>
