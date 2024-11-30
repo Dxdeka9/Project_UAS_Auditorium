@@ -37,6 +37,10 @@ body {
     text-align: left; /* Input tetap rata kiri */
 }
 
+.form-label {
+    color: #151515;
+}
+
 /* Button Styles */
 .register-container .btn-primary {
     background-color: #4caf50;
