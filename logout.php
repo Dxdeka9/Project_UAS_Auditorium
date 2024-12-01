@@ -1,8 +1,6 @@
 <?php
     session_start();
     session_destroy();
-    header("Location: index.php");
-    exit();
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie</title>
+    <title>Cookie logout</title>
 </head>
 <body>
     <script src="cookie.js"></script>
