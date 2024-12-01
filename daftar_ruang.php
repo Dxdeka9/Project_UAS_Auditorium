@@ -87,7 +87,7 @@ $result = $stmt->get_result();
                 <!-- Tabs -->
                 <ul class="nav nav-pills mb-3">
                     <li class="nav-item">
-                        <a href="dashboard.php" class="nav-link active">Semua</a>
+                        <a href="#" class="nav-link active">Semua</a>
                     </li>
                     <li class="nav-item">
                         <a href="pondok_labu.php" class="nav-link">UPN Pondok Labu</a>
