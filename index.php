@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "SELECT * FROM pengguna WHERE email='$email'";
     $result = $conn->query($sql);
 
+    $error = ""; // Variabel untuk pesan error
+
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
@@ -20,23 +22,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
-            
-            // Set cookie
-            echo "<script>
-                setCookie('user_email', '$email', 30);
-                setCookie('user_id', '{$user['id']}', 30);
-                </script>";
+
+            if (isset($_POST['remember_me'])) {
+                setcookie('username', $email, time() + (86400 * 30), "/"); // Cookie username disimpan selama 30 hari
+                setcookie('password', base64_encode($password), time() + (86400 * 30), "/"); // Cookie password disimpan selama 30 hari
+            }
 
             // Redirect ke dashboard
             header("Location: dashboard.php");
             exit();
         } else {
-            echo "<p style='color: red;'>Password salah!</p>";
+            $error = "Password salah!";
         }
     } else {
-        echo "<p style='color: red;'>Email tidak terdaftar!</p>";
+        $error = "Email tidak terdaftar!";
     }
 }
+
+$username_cookie = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
+$password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['password']) : '';
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +51,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Login</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="slideshow.css">
-    
+    <style>
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .form-check {
+            text-align: left;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <!-- Slideshow container -->
@@ -65,15 +79,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <div class="login-container">
             <h1>Login</h1>
+
+            <!-- Tampilkan notifikasi error jika ada -->
+            <?php if (!empty($error)): ?>
+                <div class="error-message"><?php echo $error; ?></div>
+            <?php endif; ?>
+
             <form method="POST" action="">
-                <input type="text" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
+                <input type="text" name="email" placeholder="Email" required value="<?php echo htmlspecialchars($username_cookie); ?>">
+                <input type="password" name="password" placeholder="Password" required value="<?php echo htmlspecialchars($password_cookie); ?>">
+                <button type="submit" style="background-color: green; color: white;">Login</button>
+                
+                <!-- Checkbox "Ingat Saya" dipindahkan ke bawah tombol Login -->
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="remember_me" id="remember_me" <?php echo isset($_COOKIE['username']) ? 'checked' : ''; ?>>
+                    <label class="form-check-label" for="remember_me">Ingat saya</label>
+                </div>
             </form>
             <a href="register.php">Create an Account</a>
         </div>
     </div>
     <script src="slideshow.js"></script>
-    <script src="cookie.js"></script>
 </body>
 </html>
