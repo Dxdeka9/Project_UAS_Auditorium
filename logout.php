@@ -16,7 +16,7 @@
         deleteCookie('user_email');
         deleteCookie('user_id');
         alert('Kamu berhasil logout.');
-        window.location.href = 'index.php';
+        window.location='index.php';
     </script>
 </body>
-</html>
+</html> 
