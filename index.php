@@ -20,6 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
+            
+            // Set cookie
+            echo "<script>
+                setCookie('user_email', '$email', 30);
+                setCookie('user_id', '{$user['id']}', 30);
+                </script>";
 
             // Redirect ke dashboard
             header("Location: dashboard.php");
@@ -41,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Login</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="slideshow.css">
+    
 </head>
 <body>
     <!-- Slideshow container -->
@@ -67,5 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <script src="slideshow.js"></script>
+    <script src="cookie.js"></script>
 </body>
 </html>

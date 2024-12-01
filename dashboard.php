@@ -116,6 +116,20 @@ $result = $stmt->get_result();
         </div>
     </div>
 
+    <script src="cookie.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () =>{
+            const userEmail = getCookie('user_email');
+            const userId = getCookie('user_Id');
+            if (userEmail && userId){
+                document.getElementById('userGreeting').innerText = `Selamat Datang ${userEmail}! ID kamu adalah ${userId}.`;
+            } else {
+                alert('User tidak login!. Kembali ke halaman login.');
+                window.location.href = 'index.php';
+            }
+        });
+    </script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
