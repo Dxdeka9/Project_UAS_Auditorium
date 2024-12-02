@@ -68,6 +68,15 @@ body {
     text-decoration: underline;
 }
 
+.slideshow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Agar form berada di atas slideshow */
+}
+
 .mySlides img {
     width: 100%;
     height: 100%;
