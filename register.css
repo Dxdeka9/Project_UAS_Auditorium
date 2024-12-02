@@ -1,6 +1,5 @@
 /* Global Styles */
 body {
-    background: linear-gradient(135deg, #4caf50, #81c784);
     min-height: 100vh;
     display: flex;
     justify-content: center;
