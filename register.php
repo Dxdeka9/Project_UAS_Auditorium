@@ -8,7 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $sql = "INSERT INTO pengguna (nama, email, password) VALUES ('$nama', '$email', '$password')";
     if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Registrasi berhasil!'); window.location='index.php';</script>";
+        echo "<script>
+            alert('Registrasi berhasil!');
+            window.location => 'index.php';
+            </script>";
     } else {
         echo "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
     }
