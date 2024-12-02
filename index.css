@@ -106,3 +106,13 @@ body {
         opacity: 1;
     }
 }
+
+.error-message {
+    color: red;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.form-check {
+    text-align: left;
+    margin-top: 10px;
+}

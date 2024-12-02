@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$username_cookie = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
-$password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['password']) : '';
+    $username_cookie = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
+    $password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['password']) : '';
 ?>
 
 <!DOCTYPE html>
@@ -51,17 +51,6 @@ $password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['passwor
     <title>Login</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="slideshow.css">
-    <style>
-        .error-message {
-            color: red;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .form-check {
-            text-align: left;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
     <!-- Slideshow container -->
