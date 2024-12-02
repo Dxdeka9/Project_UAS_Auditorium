@@ -79,6 +79,19 @@ body {
     text-decoration: underline;
 }
 
+/* Error Message */
+.error-message {
+    color: red;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Checkbox Styling */
+.form-check {
+    text-align: left;
+    margin-top: 10px;
+}
+
 /* Slideshow container */
 .slideshow-container {
     position: fixed;
@@ -105,14 +118,4 @@ body {
     to {
         opacity: 1;
     }
-}
-
-.error-message {
-    color: red;
-    margin-bottom: 15px;
-    text-align: center;
-}
-.form-check {
-    text-align: left;
-    margin-top: 10px;
 }

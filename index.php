@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form method="POST" action="">
                 <input type="text" name="email" placeholder="Email" required value="<?php echo htmlspecialchars($username_cookie); ?>">
                 <input type="password" name="password" placeholder="Password" required value="<?php echo htmlspecialchars($password_cookie); ?>">
-                <button type="submit" style="background-color: green; color: white;">Login</button>
+                <button type="submit">Login</button>
                 
                 <!-- Checkbox "Ingat Saya" dipindahkan ke bawah tombol Login -->
                 <div class="form-check">
