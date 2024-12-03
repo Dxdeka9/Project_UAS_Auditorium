@@ -28,8 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 setcookie('password', base64_encode($password), time() + (86400 * 30), "/"); // Cookie password disimpan selama 30 hari
             }
 
-            // Redirect ke dashboard
-            header("Location: dashboard.php");
+            // Redirect ke dashboard sesuai role
+            if ($user['role'] == 'admin') {
+                header("Location: dashboard_admin.php");
+            } else {
+                header("Location: dashboard.php");
+            }
             exit();
         } else {
             $error = "Password salah!";

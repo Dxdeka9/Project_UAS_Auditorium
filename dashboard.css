@@ -1,8 +1,16 @@
+body {
+    display: flex;
+    min-height: 100vh;
+}
+
 .sidebar {
     height: 100vh;
 }
 
 .profile-picture {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
     display: inline-block;
 }
 
@@ -33,4 +41,12 @@
 
 .deskripsi-content {
     text-align: justify;
+}
+
+.table-container {
+    padding: 2rem;
+}
+
+.alert {
+    text-align: center;
 }
