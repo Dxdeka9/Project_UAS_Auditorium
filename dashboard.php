@@ -1,12 +1,16 @@
 <?php
 include 'includes/db.php';
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+
+// Cek apakah user sudah login dan memiliki peran mahasiswa
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'mahasiswa') {
+    header("Location: index.php");
     exit();
 }
+
+// Ambil data peminjaman untuk mahasiswa yang sedang login
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT p.id, a.nama as nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai 
+$sql = "SELECT p.id, a.nama AS nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai 
         FROM peminjaman p 
         INNER JOIN auditorium a ON p.id_auditorium = a.id 
         WHERE p.id_pengguna = ?
@@ -22,32 +26,9 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Pengguna</title>
+    <title>Dashboard Mahasiswa</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-        }
-        .sidebar {
-            height: 100vh;
-        }
-        .profile-picture {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto;
-        }
-        .btn {
-            display: block;
-            width: 100%;
-        }
-        .table-container {
-            padding: 2rem;
-        }
-        .alert {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -56,8 +37,8 @@ $result = $stmt->get_result();
             <div class="col-md-3 bg-light sidebar p-4">
                 <div class="text-center mb-4">
                     <div class="profile-picture bg-secondary rounded-circle mb-3" style="width: 100px; height: 100px;"></div>
-                    <h5>Contoh Nama</h5>
-                    <p>Mahasiswa</p>
+                    <h5>Mahasiswa</h5>
+                    <p><?php echo htmlspecialchars($_SESSION['user_id']); ?></p>
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
@@ -74,9 +55,8 @@ $result = $stmt->get_result();
                 <a href="logout.php" class="btn btn-danger w-100 mt-auto">Log out</a>
             </div>
 
-        <!-- Main Content -->
-        <div class="col-9">
-            <div class="table-container">
+            <!-- Main Content -->
+            <div class="col-md-9 p-4">
                 <h3>Riwayat Peminjaman</h3>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover mt-3">
@@ -94,15 +74,15 @@ $result = $stmt->get_result();
                             $i = 1;
                             while ($row = $result->fetch_assoc()): ?>
                                 <tr>
-                                    <td><?php echo $i ?></td>
+                                    <td><?php echo $i; ?></td>
                                     <td><?php echo htmlspecialchars($row['nama_auditorium']); ?></td>
                                     <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
                                     <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
                                     <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
                                 </tr>
                             <?php 
-                        $i++;
-                        endwhile; ?>
+                            $i++;
+                            endwhile; ?>
                         </tbody>
                     </table>
                 </div>
@@ -115,23 +95,9 @@ $result = $stmt->get_result();
             </div>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-<!-- 
-<script src="cookie.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () =>{
-            const userEmail = getCookie('user_email');
-            const userPassword = getCookie('user_Password');
-            if (userEmail && userPassword){
-                document.getElementById('userGreeting').innerText = `Selamat Datang ${userEmail}! ID kamu adalah ${userPassword}.`;
-            } else {
-                alert('User tidak login!. Kembali ke halaman login.');
-                window.location.href = 'index.php';
-            }
-        });
-    </script>
--->
