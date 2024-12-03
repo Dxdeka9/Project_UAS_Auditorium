@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
     $username_cookie = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
-    $password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['password']) : '';
+    $password_cookie = '';
 ?>
 
 <!DOCTYPE html>
