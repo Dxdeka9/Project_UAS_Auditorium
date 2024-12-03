@@ -1,23 +1,24 @@
-function setCookie(nama, value, hari = 30){ // menyimpan cookie
+// Fungsi untuk menyimpan cookie
+function setCookie(nama, value, hari = 30) {
     const date = new Date();
-    date.setTime(date.getTime() + ( hari*24*60*60*1000));
+    date.setTime(date.getTime() + hari * 24 * 60 * 60 * 1000);
     const expires = "expires=" + date.toUTCString();
     document.cookie = `${nama}=${value}; ${expires}; path=/`;
 }
 
-// membaca cookie
+// Fungsi untuk membaca cookie
 function getCookie(nama) {
     const cookies = document.cookie.split(';');
-    for (let i = 0; i<cookies.length; i++){
+    for (let i = 0; i < cookies.length; i++) {
         const c = cookies[i].trim();
-        if (c.indexOf(nama + "=") === 0){
+        if (c.indexOf(nama + "=") === 0) {
             return c.substring((nama + "=").length, c.length);
         }
     }
     return null;
 }
 
-// menghapus cookie
+// Fungsi untuk menghapus cookie
 function deleteCookie(nama) {
     document.cookie = `${nama}=; expires=Sun, 01 Dec 2024 00:00:00 UTC; path=/;`;
 }
