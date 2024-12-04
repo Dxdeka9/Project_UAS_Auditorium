@@ -1,20 +1,17 @@
 <?php
-    include 'db.php';
+    include 'includes/db.php';
     session_start();
     // if (!isset($_SESSION['user_id'])) {
     //     header("Location: login.php");
     //     exit();
     // }
-    $user_id = $_SESSION['user_id'];
-    $sql = "SELECT p.id, a.nama as nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai 
-            FROM peminjaman p 
-            INNER JOIN auditorium a ON p.id_auditorium = a.id 
-            WHERE p.id_pengguna = ?
-            ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // Query data yang hanya relevan untuk admin
+    $sql = "SELECT p.id, a.nama as nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai, u.nama as nama_pengguna 
+    FROM peminjaman p 
+    INNER JOIN auditorium a ON p.id_auditorium = a.id
+    INNER JOIN pengguna u ON p.id_pengguna = u.id
+    ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
+    $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +22,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="dashboard_admin.css">
+    <link rel="stylesheet" href="admin_dashboard.css">
     <title>Peminjaman Auditorium UPNVJ</title>
 </head>
 <body>

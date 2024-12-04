@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirect ke dashboard sesuai role
             if ($user['role'] == 'admin') {
-                header("Location: dashboard_admin.php");
+                header("Location: admin_dashboard.php");
             } else {
                 header("Location: dashboard.php");
             }
