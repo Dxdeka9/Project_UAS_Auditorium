@@ -37,22 +37,21 @@ $result = $stmt->get_result();
             <div class="col-md-3 bg-light sidebar p-4">
                 <div class="text-center mb-4">
                     <div class="profile-picture bg-secondary rounded-circle mb-3" style="width: 100px; height: 100px;"></div>
-                    <h5>Mahasiswa</h5>
-                    <p><?php echo htmlspecialchars($_SESSION['user_id']); ?></p>
+                    <h5>Mahasiswa</h5> 
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
                         <a href="profil.php" class="nav-link text-dark">Profil</a>
                     </li>
                     <li class="nav-item mb-3">
-                        <a href="dashboard.php" class="nav-link active">Daftar Peminjaman</a>
+                        <a href="dashboard.php" class="nav-link">Daftar Peminjaman</a>
                     </li>
                     <li class="nav-item mb-3">
                         <a href="daftar_ruang.php" class="nav-link text-dark">Daftar Ruang Auditorium</a>
                     </li>
                 </ul>
-                <a href="peminjaman.php" class="btn btn-primary w-100 mt-auto mb-3">Ajukan Peminjaman</a>
-                <a href="logout.php" class="btn btn-danger w-100 mt-auto">Log out</a>
+                <a href="peminjaman.php" class="btn btn-primary w-100 mb-3">Ajukan Peminjaman</a>
+                <a href="logout.php" class="btn btn-danger w-100">Log out</a>
             </div>
 
             <!-- Main Content -->

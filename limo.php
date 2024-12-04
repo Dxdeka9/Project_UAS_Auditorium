@@ -23,7 +23,7 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
@@ -33,8 +33,7 @@ $result = $stmt->get_result();
             <div class="col-md-3 bg-light sidebar p-4">
                 <div class="text-center mb-4">
                     <div class="profile-picture bg-secondary rounded-circle mb-3" style="width: 100px; height: 100px;"></div>
-                    <h5>Contoh Nama</h5>
-                    <p>Mahasiswa</p>
+                    <h5>Mahasiswa</h5> 
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
@@ -60,7 +59,7 @@ $result = $stmt->get_result();
                 <!-- Tabs -->
                 <ul class="nav nav-pills mb-3">
                     <li class="nav-item">
-                        <a href="dashboard.php" class="nav-link">Semua</a>
+                        <a href="daftar_ruang.php" class="nav-link">Semua</a>
                     </li>
                     <li class="nav-item">
                         <a href="pondok_labu.php" class="nav-link">UPN Pondok Labu</a>
