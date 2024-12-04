@@ -22,16 +22,31 @@
     <title>Peminjaman Auditorium UPNVJ</title>
 </head>
 <body>
+    <header class="custom-header d-flex justify-content-between align-items-center">
+        <!-- Logo dan Tulisan Admin -->
+        <div class="d-flex align-items-center">
+            <img src="logo_upnvj.jpg" alt="Logo UPNVJ">
+            <div>
+                <h6 class="mb-0">ADMIN</h6>
+                <small>UPN "Veteran" Jakarta</small>
+            </div>
+        </div>
+
+        <!-- Judul Halaman di Tengah -->
+        <h5 class="text-center flex-grow-1 mb-0" style="font-size: 16px; color: #333;">Auditorium UPNVJ</h5>
+
+        <!-- Info Tambahan -->
+        <div class="d-flex align-items-center">
+            <span class="me-3"><?= date('d-m-Y'); ?></span>
+            <i class="fas fa-bell"></i>
+        </div>
+    </header>
+
+
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 custom-sidebar text-white d-flex flex-column min-vh-100 p-3">
-                <div class="text-center mb-4">
-                    <img src="logo_upnvj.jpg" alt="Logo UPNVJ" class="img-fluid rounded-circle mb-2" width="80">
-                    <h5>ADMIN</h5>
-                    <small>UPN "Veteran" Jakarta</small>
-                </div>
-                <hr>
+            <div class="col-md-2 custom-sidebar text-white d-flex flex-column min-vh-100 p-3">
                 <div class="text-center mb-4">
                     <img src="profil.png" alt="Profile" class="img-fluid rounded-circle mb-2" width="100">
                     <h6>Samsuri</h6>
@@ -47,15 +62,6 @@
 
             <!-- Main Content -->
             <div class="col-md-9 p-4">
-                <header class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="text-primary">Sistem Informasi Peminjaman Auditorium</h3>
-                    <div>
-                        <span class="me-3">Today: <?= date('d-m-Y'); ?></span>
-                        <i class="fas fa-bell fs-4"></i>
-                    </div>
-                </header>
-                
-                <!-- Table Section -->
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <thead class="table-dark">
@@ -90,8 +96,10 @@
             </div>
         </div>
     </div>
-    <footer class="text-center py-3 bg-warning mt-4">
-        <p>&copy; Universitas Pembangunan Nasional "Veteran" Jakarta 2024 | All Rights Reserved</p>
+    <footer>
+        <div class="footer-text">
+            <p>&copy; Universitas Pembangunan Nasional "Veteran" Jakarta 2024 | All Rights Reserved</p>
+        </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
