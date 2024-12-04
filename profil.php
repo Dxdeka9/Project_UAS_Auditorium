@@ -34,7 +34,6 @@ $result = $stmt->get_result();
                 <div class="text-center mb-4">
                     <div class="profile-picture bg-secondary rounded-circle mb-3" style="width: 100px; height: 100px;"></div>
                     <h5>Contoh Nama</h5>
-                    <p>Mahasiswa</p>
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
@@ -47,7 +46,7 @@ $result = $stmt->get_result();
                         <a href="daftar_ruang.php" class="nav-link text-dark">Daftar Ruang Auditorium</a>
                     </li>
                 </ul>
-                <a href="peminjaman.php" class="btn btn-primary w-100 mt-auto mb-3">Ajukan Peminjaman</a>
+                <a href="peminjaman.php" class="btn btn-primary w-100 mb-3">Ajukan Peminjaman</a>
                 <a href="logout.php" class="btn btn-danger w-100 mt-auto">Log out</a>
             </div>
             <!-- Main Content -->

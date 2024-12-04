@@ -25,32 +25,9 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Pengguna</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-        }
-        .sidebar {
-            height: 100vh;
-        }
-        .profile-picture {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto;
-        }
-        .btn {
-            display: block;
-            width: 100%;
-        }
-        .table-container {
-            padding: 2rem;
-        }
-        .alert {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -59,8 +36,7 @@ $result = $stmt->get_result();
             <div class="col-md-3 bg-light sidebar p-4">
                 <div class="text-center mb-4">
                     <div class="profile-picture bg-secondary rounded-circle mb-3" style="width: 100px; height: 100px;"></div>
-                    <h5>Contoh Nama</h5>
-                    <p>Mahasiswa</p>
+                    <h5>Mahasiswa</h5> 
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
@@ -70,11 +46,11 @@ $result = $stmt->get_result();
                         <a href="dashboard.php" class="nav-link text-dark">Daftar Peminjaman</a>
                     </li>
                     <li class="nav-item mb-3">
-                        <a href="daftar_ruang.php" class="nav-link active">Daftar Ruang Auditorium</a>
+                        <a href="daftar_ruang.php" class="nav-link">Daftar Ruang Auditorium</a>
                     </li>
                 </ul>
-                <a href="peminjaman.php" class="btn btn-primary w-100 mt-auto mb-3">Ajukan Peminjaman</a>
-                <a href="logout.php" class="btn btn-danger w-100 mt-auto">Log out</a>
+                <a href="peminjaman.php" class="btn btn-primary w-100  mb-3">Ajukan Peminjaman</a>
+                <a href="logout.php" class="btn btn-danger w-100 ">Log out</a>
             </div>
 
         <!-- Main Content -->
