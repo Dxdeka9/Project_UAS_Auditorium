@@ -60,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Slideshow container -->
     <div class="slideshow-container">
         <div class="mySlides fade">
-            <img src="upnvj_bg-1.jpg" style="width:100%">
+            <img src="page1.jpg" style="width:100%">
         </div>
         <div class="mySlides fade">
-            <img src="DSC04787.JPG" style="width:100%">
+            <img src="page2.jpg" style="width:100%">
         </div>
         <div class="mySlides fade">
-            <img src="DSC00861.jpg" style="width:100%">
+            <img src="page3.jpg" style="width:100%">
         </div>
     </div>
     <div class="container">
