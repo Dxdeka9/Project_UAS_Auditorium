@@ -38,15 +38,15 @@ $result = $stmt->get_result();
                     <h5>Contoh Nama</h5>
                     <p>Mahasiswa</p>
                 </div>
-                <ul class="nav flex-column">
+               <ul class="nav flex-column">
                     <li class="nav-item mb-3">
                         <a href="profil.php" class="nav-link text-dark">Profil</a>
                     </li>
                     <li class="nav-item mb-3">
-                        <a href="dashboard.php" class="nav-link active">Daftar Peminjaman</a>
+                        <a href="dashboard.php" class="nav-link text-dark">Daftar Peminjaman</a>
                     </li>
                     <li class="nav-item mb-3">
-                        <a href="daftar_ruang.php" class="nav-link text-dark">Daftar Ruang Auditorium</a>
+                        <a href="daftar_ruang.php" class="nav-link">Daftar Ruang Auditorium</a>
                     </li>
                 </ul>
                 <a href="peminjaman.php" class="btn btn-primary w-100 mt-auto mb-3">Ajukan Peminjaman</a>
