@@ -20,5 +20,5 @@ function getCookie(nama) {
 
 // Fungsi untuk menghapus cookie
 function deleteCookie(nama) {
-    document.cookie = `${nama}=; expires=Sun, 01 Dec 2024 00:00:00 UTC; path=/;`;
+    document.cookie = `${nama}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
