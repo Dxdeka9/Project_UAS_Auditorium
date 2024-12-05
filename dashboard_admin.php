@@ -59,8 +59,8 @@ $result = $conn->query($sql);
                     <small>ADMIN</small>
                 </div>
                 <ul class="nav flex-column mb-auto">
-                    <li class="nav-item"><a href="#" class="nav-link text-white">Dashboard</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-white">Daftar Auditorium</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li>
+                    <li class="nav-item"><a href="daftar_admin.php" class="nav-link text-white">Daftar Auditorium</a></li>
                     <li class="nav-item"><a href="riwayat_peminjaman.php" class="nav-link text-white">Riwayat Peminjaman</a></li>
                 </ul>
                 <a href="logout.php" class="btn btn-danger w-100 mt-auto">Log out</a>
