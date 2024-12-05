@@ -59,16 +59,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <!-- Slideshow container -->
     <div class="slideshow-container">
-        <div class="mySlides fade">
-            <img src="page1.jpg" style="width:100%">
+        <div class="mySlides active">
+            <img src="page1.jpg" alt="Page 1">
         </div>
-        <div class="mySlides fade">
-            <img src="page2.jpg" style="width:100%">
+        <div class="mySlides">
+            <img src="page2.jpg" alt="Page 2">
         </div>
-        <div class="mySlides fade">
-            <img src="page3.jpg" style="width:100%">
+        <div class="mySlides">
+            <img src="page3.jpg" alt="Page 3">
         </div>
     </div>
+
     <div class="container">
         <div class="login-container">
             <h1>Login</h1>
@@ -95,4 +96,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="slideshow.js"></script>
 </body>
 </html>
-
