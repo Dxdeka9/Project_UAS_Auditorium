@@ -1,13 +1,19 @@
 <?php
-    include 'includes/db.php';
-    session_start();
-   
-    $sql = "SELECT p.id, a.nama as nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai, u.nama as nama_pengguna 
-    FROM peminjaman p 
-    INNER JOIN auditorium a ON p.id_auditorium = a.id
-    INNER JOIN pengguna u ON p.id_pengguna = u.id
-    ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
-    $result = $conn->query($sql);
+include 'includes/db.php';
+session_start();
+
+// Cek apakah user sudah login dan memiliki peran admin
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: index.php");
+    exit();
+}
+
+// Ambil semua data peminjaman
+$sql = "SELECT p.id, a.nama AS nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai, p.id_pengguna, p.status 
+        FROM peminjaman p
+        INNER JOIN auditorium a ON p.id_auditorium = a.id
+        ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -63,33 +69,49 @@
             <!-- Main Content -->
             <div class="col-md-9 p-4">
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-striped table-hover">
                         <thead class="table-dark">
                             <tr>
-                                <th>No</th>
-                                <th>Nama Auditorium</th>
+                                <th>No.</th>
+                                <th>Auditorium</th>
                                 <th>Tanggal</th>
-                                <th>Waktu Mulai</th>
-                                <th>Waktu Selesai</th>
+                                <th>Jam Mulai</th>
+                                <th>Jam Selesai</th>
+                                <th>Peminjam</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if ($result->num_rows > 0): ?>
-                                <?php $no = 1; ?>
-                                <?php while ($row = $result->fetch_assoc()): ?>
-                                    <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td><?= htmlspecialchars($row['nama_auditorium']); ?></td>
-                                        <td><?= htmlspecialchars($row['tanggal']); ?></td>
-                                        <td><?= htmlspecialchars($row['waktu_mulai']); ?></td>
-                                        <td><?= htmlspecialchars($row['waktu_selesai']); ?></td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            <?php else: ?>
+                            <?php 
+                            $i = 1;
+                            while ($row = $result->fetch_assoc()): ?>
                                 <tr>
-                                    <td colspan="5" class="text-center">Belum ada data peminjaman.</td>
+                                    <td><?php echo $i; ?></td>
+                                    <td><?php echo htmlspecialchars($row['nama_auditorium']); ?></td>
+                                    <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
+                                    <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
+                                    <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
+                                    <td><?php echo $row['id_pengguna']; ?></td>
+                                    <td>
+                                        <?php
+                                        if ($row['status'] == 'pending') {
+                                            echo 'Pending';
+                                        } elseif ($row['status'] == 'approved') {
+                                            echo 'Approved';
+                                        } elseif ($row['status'] == 'rejected') {
+                                            echo 'Rejected';
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <a href="approve_peminjaman.php?id=<?php echo $row['id']; ?>" class="btn btn-success">Approve</a>
+                                        <a href="reject_peminjaman.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Reject</a>
+                                    </td>
                                 </tr>
-                            <?php endif; ?>
+                            <?php 
+                            $i++;
+                            endwhile; ?>
                         </tbody>
                     </table>
                 </div>

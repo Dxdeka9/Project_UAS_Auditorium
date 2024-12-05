@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'mahasiswa') {
 
 // Ambil data peminjaman untuk mahasiswa yang sedang login
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT p.id, a.nama AS nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai 
+$sql = "SELECT p.id, a.nama AS nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai, p.status 
         FROM peminjaman p 
         INNER JOIN auditorium a ON p.id_auditorium = a.id 
         WHERE p.id_pengguna = ?
@@ -66,6 +66,7 @@ $result = $stmt->get_result();
                                 <th>Tanggal</th>
                                 <th>Jam Mulai</th>
                                 <th>Jam Selesai</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,6 +79,17 @@ $result = $stmt->get_result();
                                     <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
                                     <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
                                     <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
+                                    <td>
+                                        <?php
+                                        if ($row['status'] == 'pending') {
+                                            echo 'Pending';
+                                        } elseif ($row['status'] == 'approved') {
+                                            echo 'Approved';
+                                        } elseif ($row['status'] == 'rejected') {
+                                            echo 'Rejected';
+                                        }
+                                        ?>
+                                    </td>
                                 </tr>
                             <?php 
                             $i++;

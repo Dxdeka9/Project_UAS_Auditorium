@@ -33,7 +33,7 @@ $result = $stmt->get_result();
             <div class="col-md-3 bg-light sidebar p-4">
                 <div class="text-center mb-4">
                     <div class="profile-picture bg-secondary rounded-circle mb-3" style="width: 100px; height: 100px;"></div>
-                    <h5>Contoh Nama</h5>
+                    <h5>Mahasiswa</h5>
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-3">
