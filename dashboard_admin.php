@@ -46,7 +46,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="dashboard_admin.css">
-        <script src="dashboard_admin.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
@@ -57,19 +56,15 @@
         <header class="custom-header d-flex justify-content-between align-items-center">
             <!-- Logo dan Tulisan Admin -->
             <div class="d-flex align-items-center">
-                <img src="logo_upnvj.jpg" alt="Logo UPNVJ">
-                <div>
-                    <h6 class="mb-0">ADMIN</h6>
-                    <small class="sub-text">UPN "Veteran" Jakarta</small>
-                </div>
+                <img src="logo_admin.png" alt="Logo Admin UPNVJ" style="width: 190px; height: auto;">
             </div>
 
             <!-- Judul Halaman di Tengah -->
-            <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;">Peminjaman Auditorium UPNVJ</h5>
+            <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;"><b>Peminjaman Auditorium UPNVJ</b></h5>
 
             <!-- Info Tambahan -->
             <div class="d-flex align-items-center">
-                <span class="me-3"><?= date('d-m-Y'); ?></span>
+                <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
             </div>
         </header>
 
@@ -77,13 +72,13 @@
             <div class="row">
                 <!-- Sidebar -->
                 <div class="custom-sidebar col-md-2 text-white d-flex flex-column min-vh-100 p-3">
-                    <div class="text-center mb-4">
+                    <div class="text-center mb-4 mt-4">
                         <img src="profil.png" alt="Profile" class="img-fluid rounded-circle mb-3" width="100">
                         <h4 class="mb-0 text-black"><?php echo $nama_admin; ?></h4>
                         <small>ADMIN</small>
                     </div>
                     <ul class="nav flex-column mb-auto">
-                        <li class="nav-item"><a href="#" class="nav-link text-white">Dashboard</a></li>
+                        <li class="nav-item"><a href="dashboard_admin.php" class="nav-link text-black"><b>Dashboard</b></a></li>
                         <li class="nav-item"><a href="daftar_admin.php" class="nav-link text-white">Daftar Auditorium</a></li>
                         <li class="nav-item"><a href="riwayat_peminjaman.php" class="nav-link text-white mb-4">Riwayat Peminjaman</a></li>
                         <a href="logout.php" class="btn btn-danger w-100 mt-auto mb-2">Log out</a>
@@ -91,14 +86,10 @@
                 </div>
 
                 <!-- Main Content -->
-                <div class="col-md-10 p-4">
-                    <div class="col-md-10">
-                        <!-- Pencarian -->
-                        <input type="text" id="search" class="form-control mb-2" placeholder="Cari Data..." value="<?= htmlspecialchars($search_data); ?>">
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover" id="search-results">
+                <div class="col-md-12 p-4">
+                    <div class="main-content table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <h3>Data Peminjaman Auditorium</h3>
                             <thead class="table-dark">
                                 <tr>
                                     <th>No.</th>
@@ -147,9 +138,10 @@
                 </div>
             </div>
         </div>
-        <footer>
-            <div class="footer-text">
-                <p>&copy; Universitas Pembangunan Nasional "Veteran" Jakarta 2024 | All Rights Reserved</p>
+        <!-- Footer -->
+        <footer class="bg-white rounded text-secondary py-3">
+            <div class="container text-center">
+                <p class="mb-0">&copy; 2024 Universitas Pembangunan Nasional "Veteran" Jakarta. All Rights Reserved.</p>
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
