@@ -1,22 +1,3 @@
-<?php
-include 'includes/db.php';
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT p.id, a.nama as nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai 
-        FROM peminjaman p 
-        INNER JOIN auditorium a ON p.id_auditorium = a.id 
-        WHERE p.id_pengguna = ?
-        ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
