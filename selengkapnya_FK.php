@@ -45,20 +45,19 @@
         <!-- End Sidebar -->
 
             <!-- Main Content -->
-            <div class="col-md-9">
-                <div class="container py-4">
-                    <h2>Auditorium Fakultas Kedokteran</h2>
+             <div class="col-md-9">
+                <div class="container py-4 t" style="text-align: left; padding: 2rem;">
+                    <h2>Auditorium Dr. Wahidin Sudiro Husodo</h2>
+                    <br>
                     <div style="width: 500px; margin: 0 auto;">
-                        <img src="auditorium 1.jpg" alt="Auditorium FK" class="img-fluid rounded">
+                        <img src="https://fk.upnvj.ac.id/wp-content/uploads/2022/04/IMG_2038-scaled.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded" style="position:left;">
                     </div>
-                    <div class="details text-left mb-2">
-                        <p><strong><br>Lokasi:</strong> Gedung Wahidin Sudiro Husodo, lantai 3</p>
+                    <div class="details text-left" style="padding:2rem;text-align:justify;">
+                        <p><strong><br>Lokasi:</strong> Lantai 3, Gedung Dr.Wahidin S.H., UPN Pondok Labu</p>
                         <p><strong>Kapasitas:</strong> 200 Orang</p>
                         <p><strong>Jam Operasional:</strong> 07.00 WIB - 16.00 WIB</p>
-                    </div>
-                    <div style="text-align:justify">
                         <p>
-                            Auditorium ini dirancang untuk mendukung berbagai kegiatan akademik maupun non-akademik dengan kapasitas maksimal mencapai 200 orang. Lokasinya yang strategis di dalam lingkungan fakultas menjadikannya tempat yang ideal untuk seminar, lokakarya, diskusi panel, dan acara resmi lainnya. Dengan fasilitas yang memadai, auditorium ini berfungsi sebagai pusat kegiatan yang mendukung pengembangan pendidikan dan kegiatan kemahasiswaan di Fakultas Kedokteran.
+                            Auditorium Dr. Wahidin Sudiro Husodo merupakan salah satu fasilitas utama di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) "Veteran" Jakarta, Kampus Pondok Labu. Dirancang sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, pelatihan, rapat resmi, hingga acara kemahasiswaan. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menyediakan lingkungan yang ideal untuk penyelenggaraan acara yang membutuhkan ruang yang luas, representatif, dan nyaman. Auditorium ini mencerminkan nilai profesionalisme dan semangat pendidikan, menjadikannya tempat yang tepat untuk berbagai kegiatan kampus.
                         </p>
                     </div>
                 </div>

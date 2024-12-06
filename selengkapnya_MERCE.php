@@ -46,20 +46,21 @@
 
             <!-- Main Content -->
             <div class="col-md-9">
-                <div class="container py-4">
-                    <h2>Auditorium MERCE Kedokteran</h2>
+                <div class="container py-4 t" style="text-align: left; padding: 2rem;">
+                    <h2>Auditorium Bhineka Tunggal Ika</h2>
+                    <br>
                     <div style="width: 500px; margin: 0 auto;">
-                        <img src="" alt="Auditorium MERCE FK" class="img-fluid rounded">
+                        <img src="https://icsot.upnvj.ac.id/wp-content/uploads/2023/10/IMG_3839-min-scaled-1.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded" style="position:left;">
                     </div>
-                    <div class="details text-left mb-4">
-                        <p><strong><br>Lokasi:</strong> Gedung Rektorat, lantai 4</p>
-                        <p><strong>Kapasitas:</strong> 88 Orang</p>
+                    <div class="details text-left" style="padding:2rem;text-align:justify;">
+                        <p><strong><br>Lokasi:</strong> Lantai 4, Gedung Fakultas Kedokteran, UPN Limo</p>
+                        <p><strong>Kapasitas:</strong> 160 Orang</p>
                         <p><strong>Jam Operasional:</strong> 07.00 WIB - 16.00 WIB</p>
-                    </div>
-                    <div style="text-align:justify">
                         <p>
-                            Auditorium Bhineka Tunggal Ika merupakan salah satu fasilitas utama yang dimiliki oleh Universitas Pembangunan Nasional (UPN) "Veteran" Jakarta. Sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, rapat besar, pelatihan, acara kemahasiswaan, hingga pertemuan formal tingkat universitas. Dengan kapasitas dan fasilitas modern, Auditorium Bhineka Tunggal Ika didesain untuk mendukung penyelenggaraan acara yang membutuhkan ruang luas dan representatif. Auditorium ini mencerminkan nilai-nilai kebhinekaan dan persatuan, sesuai dengan nama yang diusungnya, menjadikannya simbol penting bagi aktivitas akademik dan non-akademik di lingkungan kampus.
+                            Auditorium Merce adalah salah satu fasilitas unggulan di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) "Veteran" Jakarta, Kampus Limo. Auditorium ini dirancang untuk mendukung berbagai kegiatan, seperti rapat formal, pelatihan, seminar, dan acara mahasiswa. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menjadi tempat yang cocok untuk kegiatan yang membutuhkan suasana profesional dan nyaman. Auditorium Merce mencerminkan semangat kolaborasi dan inovasi di lingkungan kampus, sehingga menjadi lokasi yang cocok untuk kegiatan akademik maupun non-akademik.
                         </p>
+                    </div>
+                    <div style="text-align:justify;">
                     </div>
                 </div>
             </div>
