@@ -8,6 +8,24 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'mahasiswa') {
     exit();
 }
 
+// Jika ada request untuk menghapus data
+if (isset($_GET['delete_id'])) {
+    $delete_id = intval($_GET['delete_id']);
+    $user_id = $_SESSION['user_id'];
+
+    // Hapus data hanya jika milik pengguna yang login
+    $sql_delete = "DELETE FROM peminjaman WHERE id = ? AND id_pengguna = ?";
+    $stmt_delete = $conn->prepare($sql_delete);
+    $stmt_delete->bind_param("ii", $delete_id, $user_id);
+
+    if ($stmt_delete->execute()) {
+        $success_message = "Data berhasil dihapus.";
+    } else {
+        $error_message = "Terjadi kesalahan saat menghapus data.";
+    }
+    $stmt_delete->close();
+}
+
 // Ambil data peminjaman untuk mahasiswa yang sedang login
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT p.id, a.nama AS nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai, p.status 
@@ -28,10 +46,23 @@ $result = $stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Mahasiswa</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .main-content {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+    </style>
+    <script>
+        function confirmDelete(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                window.location.href = 'dashboard.php?delete_id=' + id;
+            }
+        }
+    </script>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #5d9c59; ">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5d9c59;">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
                 <img src="logo_mahasiswa.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
@@ -70,8 +101,9 @@ $result = $stmt->get_result();
         <!-- Main Content -->
         <div class="main-content flex-grow-1 p-4">
             <h3 class="mb-4">Riwayat Peminjaman</h3>
+
             <div class="table-responsive shadow-sm p-3 mb-5">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover table-sm">
                     <thead class="table-dark">
                         <tr>
                             <th>No.</th>
@@ -80,48 +112,52 @@ $result = $stmt->get_result();
                             <th>Jam Mulai</th>
                             <th>Jam Selesai</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                        $i = 1;
+                        while ($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo $i; ?></td>
+                                <td><?php echo htmlspecialchars($row['nama_auditorium']); ?></td>
+                                <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
+                                <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
+                                <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
+                                <td>
+                                    <?php
+                                    $status = [
+                                        'pending' => '<span class="badge bg-warning text-dark">Pending</span>',
+                                        'approved' => '<span class="badge bg-success">Approved</span>',
+                                        'rejected' => '<span class="badge bg-danger">Rejected</span>',
+                                    ];
+                                    echo $status[$row['status']];
+                                    ?>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $row['id']; ?>)">Hapus</button>
+                                </td>
+                            </tr>
                             <?php 
-                            $i = 1;
-                            while ($row = $result->fetch_assoc()): ?>
-                                <tr>
-                                    <td><?php echo $i; ?></td>
-                                    <td><?php echo htmlspecialchars($row['nama_auditorium']); ?></td>
-                                    <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
-                                    <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
-                                    <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
-                                    <td>
-                                        <?php
-                                        $status = [
-                                            'pending' => '<span class="badge bg-warning text-dark">Pending</span>',
-                                            'approved' => '<span class="badge bg-success">Approved</span>',
-                                            'rejected' => '<span class="badge bg-danger">Rejected</span>',
-                                        ];
-                                        echo $status[$row['status']];
-                                        ?>
-                                    </td>
-                                </tr>
-                                <?php 
-                            $i++;
-                            endwhile; ?>
-                        </tbody>
-                    </table>
-                </div>
-                <?php if ($result->num_rows == 0): ?>
-                    <div class="alert alert-info mt-3">Belum ada riwayat peminjaman.</div>
-                <?php endif; ?>
+                        $i++;
+                        endwhile; ?>
+                    </tbody>
+                </table>
             </div>
+
+            <?php if ($result->num_rows == 0): ?>
+                <div class="alert alert-info mt-3">Belum ada riwayat peminjaman.</div>
+            <?php endif; ?>
+        </div>
         <!-- End Main Content -->
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white rounded text-secondary py-3">
+    <footer class="bg-white text-secondary py-3 mt-auto">
         <div class="container text-center">
             <p class="mb-0">&copy; 2024 Universitas Pembangunan Nasional "Veteran" Jakarta. All Rights Reserved.</p>
         </div>
     </footer>
 </body>
 </html>
-
