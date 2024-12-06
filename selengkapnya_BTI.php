@@ -45,21 +45,23 @@
         <!-- End Sidebar -->
 
 
-            <!-- Main Content -->
+            <!-- Main Content --> 
             <div class="col-md-9">
-                <div class="container py-4">
+                <div class="container py-4 t" style="text-align: left; padding: 2rem;">
                     <h2>Auditorium Bhineka Tunggal Ika</h2>
+                    <br>
                     <div style="width: 500px; margin: 0 auto;">
-                        <img src="auditorium 1.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded">
+                        <img src="asset/BTI.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded" style="position:left;">
                     </div>
-                    <div class="details text-left mb-4">
-                        <p><strong><br>Lokasi:</strong> Gedung Rektorat, lantai 4</p>
+                    <div class="details text-left" style="padding:2rem;text-align:justify;">
+                        <p><strong><br>Lokasi:</strong> Lantai 4, gedung Rektorat, UPN Pondok Labu</p>
+                        <p><strong>Kapasitas:</strong> 400 Orang</p>
                         <p><strong>Jam Operasional:</strong> 07.00 WIB - 16.00 WIB</p>
-                    </div>
-                    <div style="text-align:justify">
                         <p>
                             Auditorium Bhineka Tunggal Ika merupakan salah satu fasilitas utama yang dimiliki oleh Universitas Pembangunan Nasional (UPN) "Veteran" Jakarta. Sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, rapat besar, pelatihan, acara kemahasiswaan, hingga pertemuan formal tingkat universitas. Dengan kapasitas dan fasilitas modern, Auditorium Bhineka Tunggal Ika didesain untuk mendukung penyelenggaraan acara yang membutuhkan ruang luas dan representatif. Auditorium ini mencerminkan nilai-nilai kebhinekaan dan persatuan, sesuai dengan nama yang diusungnya, menjadikannya simbol penting bagi aktivitas akademik dan non-akademik di lingkungan kampus.
                         </p>
+                    </div>
+                    <div style="text-align:justify;">
                     </div>
                 </div>
             </div>
