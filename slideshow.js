@@ -1,17 +1,23 @@
 let slideIndex = 0;
-showSlides();
+const slides = document.querySelectorAll(".mySlides");
 
 function showSlides() {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1 }
-    slides[slideIndex - 1].style.display = "block";
-    setTimeout(showSlides, 3000); // Change image every 3 seconds
+    // Remove active class from all slides
+    slides.forEach((slide) => slide.classList.remove("active"));
+
+    // Add active class to the current slide
+    slides[slideIndex].classList.add("active");
+
+    // Increment slide index and reset if at the end
+    slideIndex = (slideIndex + 1) % slides.length;
+
+    // Change slide every 5 seconds
+    setTimeout(showSlides, 3000);
 }
+
+// Start the slideshow
+showSlides();
+
 
 /* ini code buat jaga-jaga klo slideshow register.css ngawur
 let slideIndex = 0;

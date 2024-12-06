@@ -82,7 +82,14 @@
                         <a href="logout.php" class="btn btn-danger w-100 mt-auto mb-2">Log out</a>
                     </ul>
                 </div>
-
+                <ul class="nav flex-column mb-auto">
+                    <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li>
+                    <li class="nav-item"><a href="daftar_admin.php" class="nav-link text-white">Daftar Auditorium</a></li>
+                    <li class="nav-item"><a href="riwayat_peminjaman.php" class="nav-link text-white mb-4">Riwayat Peminjaman</a></li>
+                         <a href="logout.php" class="btn btn-danger w-100 mt-auto mb-2">Log out</a>
+                </ul>
+            </div>
+          
                 <!-- Main Content -->
                 <div class="col-md-10 p-4">
                     <div class="input-group mb-2">

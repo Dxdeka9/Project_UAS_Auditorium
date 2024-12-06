@@ -3,17 +3,19 @@ include 'includes/db.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nama = $_POST['nama'];
-    $email = $_POST['email'];
+    // Ambil input dari form
+    $nama = $conn->real_escape_string($_POST['nama']);
+    $email = $conn->real_escape_string($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    
+
+    // Query untuk menyimpan data
     $sql = "INSERT INTO pengguna (nama, email, password) VALUES ('$nama', '$email', '$password')";
     if ($conn->query($sql) === TRUE) {
         $_SESSION['message'] = "Registrasi berhasil!";
-        $_SESSION['message_type'] = "success"; // success untuk pesan hijau
+        $_SESSION['message_type'] = "success"; 
     } else {
         $_SESSION['message'] = "Error: " . $conn->error;
-        $_SESSION['message_type'] = "danger"; // danger untuk pesan merah
+        $_SESSION['message_type'] = "danger"; 
     }
     header("Location: register.php");
     exit();
@@ -33,14 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <!-- Slideshow Background -->
     <div class="slideshow-container">
-        <div class="mySlides fade">
-            <img src="page1.jpg" style="width:100%; height:100vh; object-fit:cover;">
+        <div class="mySlides active">
+            <img src="page1.jpg" alt="Page 1">
         </div>
-        <div class="mySlides fade">
-            <img src="page2.jpg" style="width:100%; height:100vh; object-fit:cover;">
+        <div class="mySlides">
+            <img src="page2.jpg" alt="Page 2">
         </div>
-        <div class="mySlides fade">
-            <img src="page3.jpg" style="width:100%; height:100vh; object-fit:cover;">
+        <div class="mySlides">
+            <img src="page3.jpg" alt="Page 3">
         </div>
     </div>
 
@@ -50,21 +52,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <!-- Tampilkan pesan sukses atau error -->
         <?php if (isset($_SESSION['message'])): ?>
-            <div class="alert alert-<?php echo isset($_SESSION['message_type']) ? $_SESSION['message_type'] : 'info'; ?> alert-dismissible fade show" role="alert">
+            <div class="alert alert-<?php echo $_SESSION['message_type']; ?> alert-dismissible fade show" role="alert">
                 <?php echo $_SESSION['message']; ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <?php
-            // Hapus pesan setelah ditampilkan
-            unset($_SESSION['message']);
-            unset($_SESSION['message_type']);
+            //notif pesan
+            $message_type = $_SESSION['message_type'];
+            unset($_SESSION['message'], $_SESSION['message_type']);
             ?>
             <!-- Redirect ke index.php setelah 3 detik jika registrasi berhasil -->
-            <?php if (isset($_SESSION['message_type']) && $_SESSION['message_type'] == "success"): ?>
+            <?php if ($message_type == "success"): ?>
                 <script>
                     setTimeout(() => {
                         window.location.href = 'index.php';
-                    }, 1000);
+                    }, 3000);
                 </script>
             <?php endif; ?>
         <?php endif; ?>

@@ -11,16 +11,20 @@
 
 /* Hide slides by default */
 .mySlides {
-    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out; /* Smooth blend transition */
 }
 
-/* Fading animation */
-.fade {
-    animation-name: fade;
-    animation-duration: 1s;
+/* Show active slide */
+.mySlides.active {
+    opacity: 1;
 }
 
-@keyframes fade {
-    from { opacity: 0.4; }
-    to { opacity: 1; }
+.mySlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

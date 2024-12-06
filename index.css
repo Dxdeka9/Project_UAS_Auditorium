@@ -7,29 +7,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* Container untuk memusatkan login form */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Untuk sedikit gelap di belakang */
 }
 
 /* Login Container */
 .login-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.819); /* Sedikit lebih solid */
     padding: 30px 40px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 400px;
     text-align: center;
+    z-index: 2; /* Tetap di atas segalanya */
 }
 
 .login-container h1 {
@@ -91,37 +81,27 @@ body {
     margin-top: 10px;
 }
 
-/* Slideshow container */
-.slideshow-container {
+/* Overlay Effect for Background */
+.slideshow-container::after {
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Agar form berada di atas slideshow */
+    background: rgba(0, 0, 0, 0.4); /* Overlay gelap untuk meningkatkan kontras */
+    z-index: 0; /* Agar berada di atas slideshow tapi di bawah form */
 }
 
-.mySlides {
-    display: none;
+/* Container untuk memusatkan login form */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1; /* Pastikan form berada di atas overlay dan slideshow */
 }
-
-.mySlides img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@keyframes fade {
-    from {
-        opacity: 0.4;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
