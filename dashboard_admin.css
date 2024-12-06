@@ -1,58 +1,29 @@
-/* Sidebar */
 .custom-sidebar {
   background-color: #5d9c59;
-  position: fixed;
-  top: 60px; /* Height of header */
-  left: 0;
-  width: 240px;
-  height: calc(100vh - 60px); /* Fill the remaining height below header */
-  overflow-y: auto;
-  z-index: 999;
 }
 
 .custom-sidebar ul.nav li.nav-item a.nav-link {
-  text-decoration: none;
-  color: white;
-  padding: 8px 12px;
-  display: block;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  text-decoration: none !important;
+  color: white !important;
+  padding: 8px 12px !important;
+  display: block !important;
+  border-radius: 4px !important;
+  transition: background-color 0.3s ease !important;
 }
 
 .custom-sidebar ul.nav li.nav-item a.nav-link:hover {
-  background-color: #495057;
+  background-color: #495057 !important;
 }
 
-/* Header */
 .custom-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: rgba(219, 219, 219, 1); /* Adjust color */
-  padding: 10px 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid #ddd;
-}
-
-/* Main content */
-.main-content {
-  margin-left: 240px; /* Sidebar width */
-  margin-top: 60px; /* Height of header */
-  padding-top: 20px;
-  /* margin-right: 8px; */
-  padding-bottom: 80px; /* Space at the bottom for footer */
-  overflow-x: auto;
-}
-
-.table-responsive {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  background-color: rgba(219, 219, 219, 1) !important; /* Warna abu */
+  font-size: 14px; /* Ukuran font kecil */
+  padding: 20px 15px; /* Padding kecil */
+  border-bottom: 1px solid #ddd; /* Garis bawah */
 }
 
 .custom-header img {
-  width: 37px; /* Smaller logo size */
+  width: 37px; /* Ukuran logo lebih kecil */
   margin-right: 10px;
 }
 
@@ -61,18 +32,23 @@
   margin: 0;
 }
 
-/* Footer */
+.sub-text {
+  font-size: smaller !important;
+  color: #666 !important;
+}
+
 footer {
-  position: relative;
-  background-color: rgba(219, 219, 219, 1);
-  padding: 10px 0;
+  position: relative !important; /* Mengubah dari default */
+  width: 100% !important;
+  background-color: rgba(219, 219, 219, 1) !important;
+  padding: 10px 0 !important;
   border-top: 1px solid #ccc !important;
   z-index: 100 !important;
-  margin-left: 240px; /* Align footer below the sidebar */
-  margin-top: 20px;
+  /* Menghapus margin-top yang menyebabkan jarak */
+  /* margin-top: 100px; */
 }
 
 .footer-text {
-  text-align: center;
-  font-size: 0.8rem;
+  text-align: center !important;
+  font-size: 0.8rem !important;
 }

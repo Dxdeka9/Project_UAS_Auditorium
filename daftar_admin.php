@@ -117,7 +117,8 @@ $result_auditorium = $conn->query($query_auditorium);
                                         <p class='card-text'>$lokasi</p>
                                         <div class='d-flex justify-content-between'>
                                             <a href='edit_auditorium.php?id=$id' class='btn btn-primary'>Edit</a>
-                                            <a href='?delete_id=$id' class='btn
+                                            <a href='?delete_id=$id' class='btn btn-danger' onclick='return confirm(\"Apakah Anda yakin ingin menghapus auditorium ini?\");'>Delete</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
