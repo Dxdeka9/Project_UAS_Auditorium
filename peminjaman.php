@@ -20,10 +20,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $keperluan = $_POST['keperluan'] ?? '';
         $id_pengguna = (int)$_SESSION['user_id'];
 
+        // Validasi data input
         if ($id_auditorium <= 0 || $tanggal < date('Y-m-d') || $waktu_mulai >= $waktu_selesai) {
             throw new Exception("Data input tidak valid!");
         }
 
+        // Validasi dan proses upload file
+        if (!isset($_FILES['file']) || $_FILES['file']['error'] != UPLOAD_ERR_OK) {
+            throw new Exception("File lampiran wajib diunggah!");
+        }
+
+        $allowed_extensions = ['pdf', 'doc', 'docx', 'jpg', 'png'];
+        $file_info = pathinfo($_FILES['file']['name']);
+        $file_extension = strtolower($file_info['extension']);
+
+        if (!in_array($file_extension, $allowed_extensions)) {
+            throw new Exception("Format file tidak diizinkan! (Hanya: pdf, doc, docx, jpg, png)");
+        }
+
+        $upload_dir = 'uploads/';
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true); // Buat folder jika belum ada
+        }
+
+        $new_file_name = uniqid('file_', true) . '.' . $file_extension;
+        $file_path = $upload_dir . $new_file_name;
+
+        if (!move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
+            throw new Exception("Gagal mengunggah file!");
+        }
+
+        // Validasi jadwal bentrok
         $sql = "SELECT 1 FROM peminjaman 
                 WHERE id_auditorium = ? AND tanggal = ? AND status != 'declined' 
                 AND ((waktu_mulai BETWEEN ? AND ?) OR (waktu_selesai BETWEEN ? AND ?) 
@@ -35,10 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->get_result()->num_rows > 0) throw new Exception("Jadwal bentrok!");
         $stmt->close();
 
-        $stmt = $conn->prepare("INSERT INTO peminjaman (id_pengguna, id_auditorium, tanggal, waktu_mulai, waktu_selesai, keperluan, status) VALUES (?, ?, ?, ?, ?, ?, 'pending')");
-        $stmt->bind_param("iissss", $id_pengguna, $id_auditorium, $tanggal, $waktu_mulai, $waktu_selesai, $keperluan);
+        // Simpan data ke database
+        $stmt = $conn->prepare(
+            "INSERT INTO peminjaman (id_pengguna, id_auditorium, tanggal, waktu_mulai, waktu_selesai, keperluan, file_path, status) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')"
+        );
+        $stmt->bind_param("iisssss", $id_pengguna, $id_auditorium, $tanggal, $waktu_mulai, $waktu_selesai, $keperluan, $file_path);
         if (!$stmt->execute()) throw new Exception("Error saat menyimpan peminjaman!");
-        
+
         $message = "Peminjaman berhasil diajukan!";
     } catch (Exception $e) {
         $error = $e->getMessage();
@@ -62,7 +93,7 @@ $auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama")->fetch_all
             <?= $message ? "<div class='alert alert-success'>" . htmlspecialchars($message) . "</div>" : ''; ?>
             <?= $error ? "<div class='alert alert-danger'>" . htmlspecialchars($error) . "</div>" : ''; ?>
             <h2>Ajukan Peminjaman Auditorium</h2>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="id_auditorium">Pilih Auditorium</label>
                     <select name="id_auditorium" id="id_auditorium" class="form-control" required>
@@ -88,6 +119,7 @@ $auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama")->fetch_all
                     <label for="keperluan">Keperluan</label>
                     <textarea name="keperluan" id="keperluan" class="form-control" rows="4" required></textarea>
                 </div>
+                    <input type="file" name="file" id="file" class="form-control" required>
                 <div class="flex">
                     <button type="submit" class="btn-primary">Ajukan</button>
                     <a href="dashboard.php" class="btn-secondary">Kembali</a>
