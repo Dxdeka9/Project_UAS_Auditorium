@@ -1,0 +1,54 @@
+.custom-sidebar {
+    background-color: #5d9c59;
+  }
+  
+  .custom-sidebar ul.nav li.nav-item a.nav-link {
+    text-decoration: none !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    display: block !important;
+    border-radius: 4px !important;
+    transition: background-color 0.3s ease !important;
+  }
+  
+  .custom-sidebar ul.nav li.nav-item a.nav-link:hover {
+    background-color: #495057 !important;
+  }
+  
+  .custom-header {
+    background-color: rgba(219, 219, 219, 1) !important; /* Warna abu */
+    font-size: 14px; /* Ukuran font kecil */
+    padding: 20px 15px; /* Padding kecil */
+    border-bottom: 1px solid #ddd; /* Garis bawah */
+  }
+  
+  .custom-header img {
+    width: 37px; /* Ukuran logo lebih kecil */
+    margin-right: 10px;
+  }
+  
+  .custom-header h6,
+  .custom-header small {
+    margin: 0;
+  }
+  
+  .sub-text {
+    font-size: smaller !important;
+    color: #666 !important;
+  }
+  
+  footer {
+    position: relative !important; /* Mengubah dari default */
+    width: 100% !important;
+    background-color: rgba(219, 219, 219, 1) !important;
+    padding: 10px 0 !important;
+    border-top: 1px solid #ccc !important;
+    z-index: 100 !important;
+    /* Menghapus margin-top yang menyebabkan jarak */
+    /* margin-top: 100px; */
+  }
+  
+  .footer-text {
+    text-align: center !important;
+    font-size: 0.8rem !important;
+  }
