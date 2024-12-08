@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Get auditoriums
-$auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama")->fetch_all(MYSQLI_ASSOC) ?? [];
+$auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama_auditorium")->fetch_all(MYSQLI_ASSOC) ?? [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
