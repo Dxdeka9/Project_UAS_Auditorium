@@ -125,7 +125,6 @@ $auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama_auditorium")
                     <button type="submit" class="btn-primary">Ajukan</button>
                     <a href="dashboard.php" class="btn-secondary">Kembali</a>
                 </div>
-                <a href="dashboard.php" target="blank" class="btn-secondary">Kembali</a>
             </form>
         </div>
     </div>
