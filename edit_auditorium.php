@@ -3,32 +3,36 @@ include 'includes/db.php';
 session_start();
 
 // Cek apakah user sudah login dan memiliki peran admin
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     header("Location: index.php");
     exit();
 }
 
-// Ambil nama pengguna dari database berdasarkan user_id
-$user_id = $_SESSION['user_id'];
-$query_user = "SELECT nama FROM pengguna WHERE id = $user_id";
-$result_user = $conn->query($query_user);
-$nama_admin = $result_user->num_rows > 0 ? htmlspecialchars($result_user->fetch_assoc()['nama']) : "Admin Tidak Ditemukan";
+// Ambil nama admin dari tabel pengguna
+$user_id = $_SESSION['id_user'];
+$query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = ?"; // Ganti 'id' menjadi 'id_user'
+$stmt_user = $conn->prepare($query_user);
+$stmt_user->bind_param("i", $user_id);
+$stmt_user->execute();
+$result_user = $stmt_user->get_result();
+$nama_admin = $result_user->num_rows > 0 ? htmlspecialchars($result_user->fetch_assoc()['nama_lengkap']) : "Admin Tidak Ditemukan";
+$stmt_user->close();
 
 // Tangkap ID auditorium yang akan diedit
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $id_auditorium = $_GET['id'];
 
     // Query untuk mengambil data auditorium berdasarkan ID
-    $query_auditorium = "SELECT * FROM auditorium WHERE id = ?";
+    $query_auditorium = "SELECT nama_auditorium, lokasi_kampus FROM auditorium WHERE id_auditorium = ?";
     $stmt = $conn->prepare($query_auditorium);
-    $stmt->bind_param("i", $id);
+    $stmt->bind_param("i", $id_auditorium);
     $stmt->execute();
     $result_auditorium = $stmt->get_result();
 
     if ($result_auditorium->num_rows > 0) {
         $auditorium = $result_auditorium->fetch_assoc();
-        $nama = htmlspecialchars($auditorium['nama']);
-        $lokasi = htmlspecialchars($auditorium['lokasi']);
+        $nama_auditorium = htmlspecialchars($auditorium['nama_auditorium']);
+        $lokasi_kampus = htmlspecialchars($auditorium['lokasi_kampus']);
     } else {
         echo "<script>alert('Auditorium tidak ditemukan.'); window.location.href='daftar_admin.php';</script>";
         exit();
@@ -46,9 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $lokasi_update = $_POST['lokasi'];
 
     // Query untuk update data auditorium
-    $query_update = "UPDATE auditorium SET nama = ?, lokasi = ? WHERE id = ?";
+    $query_update = "UPDATE auditorium SET nama_auditorium = ?, lokasi_kampus = ? WHERE id_auditorium = ?";
     $stmt_update = $conn->prepare($query_update);
-    $stmt_update->bind_param("ssi", $nama_update, $lokasi_update, $id);
+    $stmt_update->bind_param("ssi", $nama_update, $lokasi_update, $id_auditorium);
 
     if ($stmt_update->execute()) {
         // Redirect setelah berhasil update
@@ -61,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt_update->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,11 +115,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <form method="POST">
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Auditorium</label>
-                        <input type="text" class="form-control" id="nama" name="nama" value="<?= $nama ?>" required>
+                        <input type="text" class="form-control" id="nama" name="nama" value="<?= $nama_auditorium ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label for="lokasi" class="form-label">Lokasi</label>
-                        <input type="text" class="form-control" id="lokasi" name="lokasi" value="<?= $lokasi ?>" required>
+                        <label for="lokasi" class="form-label">Lokasi Kampus</label>
+                        <input type="text" class="form-control" id="lokasi" name="lokasi" value="<?= $lokasi_kampus ?>" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>
