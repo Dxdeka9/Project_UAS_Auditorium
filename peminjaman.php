@@ -120,6 +120,7 @@ $auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama_auditorium")
                     <textarea name="keperluan" id="keperluan" class="form-control" rows="4" required></textarea>
                 </div>
                     <input type="file" name="file" id="file" class="form-control" required>
+                    <a href="" name="Template Pengajuan"></a>
                 <div class="flex">
                     <button type="submit" class="btn-primary">Ajukan</button>
                     <a href="dashboard.php" class="btn-secondary">Kembali</a>
