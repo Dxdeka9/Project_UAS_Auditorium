@@ -2,7 +2,7 @@
 $host = "127.0.0.1";
 $username = "root"; 
 $password = ""; 
-$database = "peminjaman_auditorium";
+$database = "db_auditorium";
 
 $conn = new mysqli($host, $username, $password, $database);
 

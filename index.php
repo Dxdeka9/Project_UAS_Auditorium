@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['role'] = $user['role'];
 
             if (isset($_POST['remember_me'])) {
-                setcookie('username', $email, time() + (86400 * 30), "/"); // Cookie username disimpan selama 30 hari
+                setcookie('email', $email, time() + (86400 * 30), "/"); // Cookie username disimpan selama 30 hari
                 setcookie('password', base64_encode($password), time() + (86400 * 30), "/"); // Cookie password disimpan selama 30 hari
             }
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-    $username_cookie = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
+    $email_cookie = isset($_COOKIE['email']) ? $_COOKIE['email'] : '';
     $password_cookie = '';
 ?>
 
