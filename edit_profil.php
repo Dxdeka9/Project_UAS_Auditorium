@@ -22,6 +22,27 @@ if ($result->num_rows > 0) {
     $error = "Data pengguna tidak ditemukan.";
     $user = null;
 }
+
+// Proses update data jika form disubmit
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nama_lengkap = $_POST['nama_lengkap'];
+    $email = $_POST['email'];
+    $no_telp = $_POST['no_telp'];
+
+    $update_sql = "UPDATE pengguna SET nama_lengkap = ?, email = ?, no_telp = ? WHERE id_user = ?";
+    $update_stmt = $conn->prepare($update_sql);
+    $update_stmt->bind_param("sssi", $nama_lengkap, $email, $no_telp, $user_id);
+
+    if ($update_stmt->execute()) {
+        $success = "Profil berhasil diperbarui.";
+        // Refresh data pengguna
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+    } else {
+        $error = "Terjadi kesalahan saat memperbarui profil.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +50,7 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Mahasiswa</title>
+    <title>Edit Profil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
@@ -72,37 +93,38 @@ if ($result->num_rows > 0) {
 
         <!-- Main Content -->
         <div class="main-content col-md-9 p-4">
-            <h2 class="mb-4">Profil Mahasiswa</h2>
+            <h2 class="mb-4">Edit Profil</h2>
+
+            <!-- Notifikasi -->
             <?php if (!empty($error)): ?>
                 <div class="alert alert-danger"><?php echo $error; ?></div>
-            <?php else: ?>
-                
-                <table class="table table-bordered bg-white rounded shadow-sm">
-                    <tr>
-                        <th>Nama Lengkap</th>
-                        <td><?php echo htmlspecialchars($user['nama_lengkap']); ?></td>
-                    </tr>
-                    <tr>
-                        <th>Email</th>
-                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                    </tr>
-                    <tr>
-                        <th>Nomor Telepon</th>
-                        <td><?php echo htmlspecialchars($user['no_telp']); ?></td>
-                    </tr>
-                    <tr>
-                        <th>Role</th>
-                        <td><?php echo htmlspecialchars($user['role']); ?></td>
-                    </tr>
-                </table>
-                <a href="edit_profil.php" class="btn btn-primary mt-3">Edit Profil</a>
+            <?php elseif (!empty($success)): ?>
+                <div class="alert alert-success"><?php echo $success; ?></div>
             <?php endif; ?>
+
+            <!-- Form Edit Profil -->
+            <form method="POST" class="bg-white p-4 rounded shadow-sm">
+                <div class="mb-3">
+                    <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?php echo htmlspecialchars($user['nama_lengkap']); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="no_telp" class="form-label">Nomor Telepon</label>
+                    <input type="text" class="form-control" id="no_telp" name="no_telp" value="<?php echo htmlspecialchars($user['no_telp']); ?>" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                <a href="dashboard.php" class="btn btn-secondary">Kembali</a>
+            </form>
         </div>
         <!-- End Main Content -->
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white text-secondary py-3">
+    <footer class="bg-white text-secondary py-3 mt-auto">
         <div class="container text-center">
             <p class="mb-0">&copy; 2024 Universitas Pembangunan Nasional "Veteran" Jakarta. All Rights Reserved.</p>
         </div>
