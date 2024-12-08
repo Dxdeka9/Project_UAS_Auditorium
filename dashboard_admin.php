@@ -9,7 +9,7 @@
     }
 
     // Ambil nama pengguna dari database berdasarkan user_id
-    $user_id = $_SESSION['user_id']; // Ambil user_id dari session
+    $user_id = $_SESSION['id_user']; // Ambil user_id dari session
     $query_user = "SELECT nama FROM pengguna WHERE id = $user_id"; // query untuk mengambil nama pengguna dari tabel pengguna
     $result_user = $conn->query($query_user); // untuk menjalankan query
 
