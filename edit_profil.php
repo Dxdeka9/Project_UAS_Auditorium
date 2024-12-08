@@ -116,6 +116,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="no_telp" class="form-label">Nomor Telepon</label>
                     <input type="text" class="form-control" id="no_telp" name="no_telp" value="<?php echo htmlspecialchars($user['no_telp']); ?>" required>
                 </div>
+                <div class="mb-3">
+                    <label for="no_telp" class="form-label">Program Studi</label>
+                    <input type="text" class="form-control" id="program_studi" name="program_studi" value="<?php echo htmlspecialchars($user['program_studi']); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="no_telp" class="form-label">Nomor Induk Mahasiswa</label>
+                    <input type="text" class="form-control" id="nim" name="nim" value="<?php echo htmlspecialchars($user['nim']); ?>" required>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 <a href="dashboard.php" class="btn btn-secondary">Kembali</a>
             </form>

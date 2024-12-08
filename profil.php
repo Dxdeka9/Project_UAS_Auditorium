@@ -91,8 +91,12 @@ if ($result->num_rows > 0) {
                         <td><?php echo htmlspecialchars($user['no_telp']); ?></td>
                     </tr>
                     <tr>
-                        <th>Role</th>
-                        <td><?php echo htmlspecialchars($user['role']); ?></td>
+                        <th>Program Studi</th>
+                        <td><?php echo htmlspecialchars($user['program_studi']); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Nomor Induk Mahasiswa</th>
+                        <td><?php echo htmlspecialchars($user['nim']); ?></td>
                     </tr>
                 </table>
                 <a href="edit_profil.php" class="btn btn-primary mt-3">Edit Profil</a>
