@@ -27,7 +27,7 @@ if (isset($_GET['delete_id'])) {
 }
 
 // Ambil data riwayat peminjaman untuk mahasiswa yang sedang login
-$user_id = $_SESSION['id_user'];
+$user_id = $_SESSION['user_id'];
 $sql = "SELECT r.id_riwayat, a.nama_auditorium, r.peminjam, r.tanggal_pinjam, r.waktu_mulai, r.waktu_selesai, r.keperluan, r.foto_surat, r.status 
         FROM riwayat_peminjaman r
         INNER JOIN auditorium a ON r.id_auditorium = a.id_auditorium
