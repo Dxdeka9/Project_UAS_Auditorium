@@ -1,34 +1,33 @@
 <?php
 include 'includes/db.php';
-
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
+    $email = $conn->real_escape_string($_POST['email']);
     $password = $_POST['password'];
 
-    // Cegah SQL Injection
-    $email = $conn->real_escape_string($email);
-
+    // Query untuk mengambil data pengguna berdasarkan email
     $sql = "SELECT * FROM pengguna WHERE email='$email'";
     $result = $conn->query($sql);
 
     $error = ""; // Variabel untuk pesan error
 
-    if ($result->num_rows > 0) {
+    if ($result && $result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
         // Verifikasi password
         if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
+            // Set sesi pengguna
+            $_SESSION['user_id'] = $user['id_user']; // Pastikan sesuai dengan kolom di tabel
             $_SESSION['role'] = $user['role'];
 
+            // Jika remember me dicentang, simpan cookie
             if (isset($_POST['remember_me'])) {
-                setcookie('email', $email, time() + (86400 * 30), "/"); // Cookie username disimpan selama 30 hari
-                setcookie('password', base64_encode($password), time() + (86400 * 30), "/"); // Cookie password disimpan selama 30 hari
+                setcookie('email', $email, time() + (86400 * 30), "/"); // Cookie email selama 30 hari
+                setcookie('password', base64_encode($password), time() + (86400 * 30), "/"); // Cookie password selama 30 hari
             }
 
-            // Redirect ke dashboard sesuai role
+            // Redirect berdasarkan role
             if ($user['role'] == 'admin') {
                 header("Location: dashboard_admin.php");
             } else {
@@ -43,8 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-    $email_cookie = isset($_COOKIE['email']) ? $_COOKIE['email'] : '';
-    $password_cookie = '';
+// Ambil data dari cookie jika tersedia
+$email_cookie = isset($_COOKIE['email']) ? $_COOKIE['email'] : '';
+$password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['password']) : '';
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
                 <!-- Checkbox "Ingat Saya" dipindahkan ke bawah tombol Login -->
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="remember_me" id="remember_me" <?php echo isset($_COOKIE['username']) ? 'checked' : ''; ?>>
+                    <input type="checkbox" class="form-check-input" name="remember_me" id="remember_me" <?php echo isset($_COOKIE['email']) ? 'checked' : ''; ?>>
                     <label class="form-check-label" for="remember_me">Ingat saya</label>
                 </div>
             </form>
