@@ -26,13 +26,13 @@ if (isset($_GET['delete_id'])) {
     $stmt_delete->close();
 }
 
-// Ambil data peminjaman untuk mahasiswa yang sedang login
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT p.id, a.nama AS nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai, p.status 
-        FROM peminjaman p 
-        INNER JOIN auditorium a ON p.id_auditorium = a.id 
-        WHERE p.id_pengguna = ?
-        ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
+// Ambil data riwayat peminjaman untuk mahasiswa yang sedang login
+$user_id = $_SESSION['id_user'];
+$sql = "SELECT r.id_riwayat, a.nama_auditorium, r.peminjam, r.tanggal_pinjam, r.waktu_mulai, r.waktu_selesai, r.keperluan, r.foto_surat, r.status 
+        FROM riwayat_peminjaman r
+        INNER JOIN auditorium a ON r.id_auditorium = a.id_auditorium
+        WHERE r.id_user = ?
+        ORDER BY r.tanggal_pinjam DESC, r.waktu_mulai DESC";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
