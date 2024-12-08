@@ -87,7 +87,6 @@
                                     <th>Tanggal</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
-                                    <th>Peminjam</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -126,7 +125,7 @@
                             </tbody>
                         </table>
                         <?php if ($result->num_rows == 0): ?>
-                            <div class="alert alert-info mt-3">Belum ada riwayat peminjaman.</div>
+                            <div class="alert alert-info mt-3">Belum ada data peminjaman.</div>
                         <?php endif; ?>
                     </div>
                 </div>
