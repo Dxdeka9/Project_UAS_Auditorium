@@ -51,8 +51,14 @@ if ($result->num_rows > 0) {
         <!-- Sidebar -->
         <div class="sidebar bg-dark text-white p-4 d-flex flex-column">
             <div class="text-center mb-4">
-                <img src="profil.png" alt="Profile Picture" class="profile-picture rounded-circle mb-3" style="width: 100px; height: 100px;">
-                <h5>Mahasiswa</h5>
+                <?php
+                     if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
+                        echo "<img src='" . $user['foto_profile'] . "' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                     } else {
+                        echo "<img src='profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                     }
+                  ?>
+                <h5><?php echo htmlspecialchars($user['nama_lengkap']); ?></h5>
             </div>
             <ul class="nav flex-column flex-grow-1">
                 <li class="nav-item mb-2">

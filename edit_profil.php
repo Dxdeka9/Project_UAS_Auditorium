@@ -28,10 +28,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama_lengkap = $_POST['nama_lengkap'];
     $email = $_POST['email'];
     $no_telp = $_POST['no_telp'];
+    $program_studi = $_POST['program_studi'];
+    $nim = $_POST['nim'];
 
-    $update_sql = "UPDATE pengguna SET nama_lengkap = ?, email = ?, no_telp = ? WHERE id_user = ?";
+    // Logika untuk mengunggah foto
+    if (isset($_FILES['foto_profile']) && $_FILES['foto_profile']['error'] === UPLOAD_ERR_OK) {
+        $target_dir = "uploads/";
+        $foto_name = basename($_FILES['foto_profile']['name']);
+        $target_file = $target_dir . uniqid() . "_" . $foto_name;
+        
+        // Validasi file
+        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+        $file_type = mime_content_type($_FILES['foto_profile']['tmp_name']);
+        if (!in_array($file_type, $allowed_types)) {
+            $error = "Format foto tidak valid. Gunakan JPEG, PNG, atau GIF.";
+        } elseif (move_uploaded_file($_FILES['foto_profile']['tmp_name'], $target_file)) {
+            $foto_profile = $target_file;
+        } else {
+            $error = "Gagal mengunggah foto.";
+        }
+    }
+
+    // Query pembaruan
+    $update_sql = "UPDATE pengguna SET nama_lengkap = ?, email = ?, no_telp = ?, program_studi = ?, nim = ?" .
+                  (isset($foto_profile) ? ", foto_profile = ?" : "") . " WHERE id_user = ?";
     $update_stmt = $conn->prepare($update_sql);
-    $update_stmt->bind_param("sssi", $nama_lengkap, $email, $no_telp, $user_id);
+    if (isset($foto_profile)) {
+        $update_stmt->bind_param("ssssssi", $nama_lengkap, $email, $no_telp, $program_studi, $nim, $foto_profile, $user_id);
+    } else {
+        $update_stmt->bind_param("sssssi", $nama_lengkap, $email, $no_telp, $program_studi, $nim, $user_id);
+    }
 
     if ($update_stmt->execute()) {
         $success = "Profil berhasil diperbarui.";
@@ -54,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
+    
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5d9c59;">
         <div class="container-fluid">
@@ -72,8 +99,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Sidebar -->
         <div class="sidebar bg-dark text-white p-4 d-flex flex-column">
             <div class="text-center mb-4">
-                <img src="profil.png" alt="Profile Picture" class="profile-picture rounded-circle mb-3" style="width: 100px; height: 100px;">
-                <h5>Mahasiswa</h5>
+                <?php
+                     if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
+                        echo "<img src='" . $user['foto_profile'] . "' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                     } else {
+                        echo "<img src='profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                     }
+                  ?>
+                <h5><?php echo htmlspecialchars($user['nama_lengkap']); ?></h5>
             </div>
             <ul class="nav flex-column flex-grow-1">
                 <li class="nav-item mb-2">
@@ -103,7 +136,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
 
             <!-- Form Edit Profil -->
-            <form method="POST" class="bg-white p-4 rounded shadow-sm">
+            <form method="POST" class="bg-white p-4 rounded shadow-sm" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="foto_profile" class="form-label">Foto Profil</label>
+                    <input type="file" class="form-control" id="foto_profile" name="foto_profile">
+                </div>
                 <div class="mb-3">
                     <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                     <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?php echo htmlspecialchars($user['nama_lengkap']); ?>" required>
