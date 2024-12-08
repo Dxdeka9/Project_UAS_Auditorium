@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php endif; ?>
 
             <form method="POST" action="">
-                <input type="text" name="email" placeholder="Email" required value="<?php echo htmlspecialchars($username_cookie); ?>">
+                <input type="text" name="email" placeholder="Email" required value="<?php echo htmlspecialchars($email_cookie); ?>">
                 <input type="password" name="password" placeholder="Password" required value="<?php echo htmlspecialchars($password_cookie); ?>">
                 <button type="submit">Login</button>
                 
