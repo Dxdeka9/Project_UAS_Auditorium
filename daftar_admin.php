@@ -3,16 +3,16 @@ include 'includes/db.php';
 session_start();
 
 // Cek apakah user sudah login dan memiliki peran admin
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     header("Location: index.php");
     exit();
 }
 
 // Ambil nama pengguna dari database berdasarkan user_id
-$user_id = $_SESSION['user_id'];
-$query_user = "SELECT nama FROM pengguna WHERE id = $user_id";
+$user_id = $_SESSION['id_user'];
+$query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = $user_id";
 $result_user = $conn->query($query_user);
-$nama_admin = $result_user->num_rows > 0 ? htmlspecialchars($result_user->fetch_assoc()['nama']) : "Admin Tidak Ditemukan";
+$nama_admin = $result_user->num_rows > 0 ? htmlspecialchars($result_user->fetch_assoc()['nama_lengkap']) : "Admin Tidak Ditemukan"; // Ganti "nama" dengan "nama_lengkap"
 
 // Tangkap filter yang dipilih (jika ada)
 $filter_lokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : '';
@@ -22,7 +22,7 @@ if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
 
     // Query untuk menghapus auditorium berdasarkan ID
-    $query_delete = "DELETE FROM auditorium WHERE id = ?";
+    $query_delete = "DELETE FROM auditorium WHERE id_auditorium = ?";
     
     // Persiapkan statement untuk menghindari SQL Injection
     $stmt = $conn->prepare($query_delete);
@@ -42,9 +42,9 @@ if (isset($_GET['delete_id'])) {
 }
 
 // Query untuk mendapatkan daftar auditorium berdasarkan filter lokasi
-$query_auditorium = "SELECT id, nama, lokasi FROM auditorium";
+$query_auditorium = "SELECT id_auditorium, nama_auditorium, lokasi_kampus FROM auditorium"; // Hapus koma tambahan
 if ($filter_lokasi != '') {
-    $query_auditorium .= " WHERE lokasi = '$filter_lokasi'";
+    $query_auditorium .= " WHERE lokasi_kampus = '$filter_lokasi'"; // Pastikan kolom sesuai
 }
 $result_auditorium = $conn->query($query_auditorium);
 
@@ -97,8 +97,8 @@ $result_auditorium = $conn->query($query_auditorium);
                 <!-- Tombol Filter -->
                 <div class="btn-group mb-3" role="group" aria-label="Filter Buttons">
                     <a href="daftar_admin.php" class="btn btn-danger <?= $filter_lokasi == '' ? 'active' : '' ?>">Semua</a>
-                    <a href="daftar_admin.php?lokasi=UPNVJ Pondok Labu" class="btn btn-secondary <?= $filter_lokasi == 'UPNVJ Pondok Labu' ? 'active' : '' ?>">UPNVJ Pondok Labu</a>
-                    <a href="daftar_admin.php?lokasi=UPNVJ Kampus Limo" class="btn btn-secondary <?= $filter_lokasi == 'UPNVJ Kampus Limo' ? 'active' : '' ?>">UPNVJ Kampus Limo</a>
+                    <a href="daftar_admin.php?lokasi=Kampus Pondok Labu" class="btn btn-secondary <?= $filter_lokasi == 'Kampus ondok Labu' ? 'active' : '' ?>">Kampus Pondok Labu</a>
+                    <a href="daftar_admin.php?lokasi=Kampus Limo" class="btn btn-secondary <?= $filter_lokasi == 'Kampus Limo' ? 'active' : '' ?>">Kampus Limo</a>
                 </div>
 
                 <!-- Daftar Auditorium -->
@@ -106,18 +106,18 @@ $result_auditorium = $conn->query($query_auditorium);
                     <?php
                     if ($result_auditorium->num_rows > 0) {
                         while ($auditorium = $result_auditorium->fetch_assoc()) {
-                            $id = htmlspecialchars($auditorium['id']);
-                            $nama = htmlspecialchars($auditorium['nama']);
-                            $lokasi = htmlspecialchars($auditorium['lokasi']);
+                            $id_audit = htmlspecialchars($auditorium['id_auditorium']);
+                            $nama_auditorium = htmlspecialchars($auditorium['nama_auditorium']);
+                            $lokasi_kampus = htmlspecialchars($auditorium['lokasi_kampus']);
                             echo "
                             <div class='col-md-4 mb-3'>
                                 <div class='card shadow-sm'>
                                     <div class='card-body'>
-                                        <h5 class='card-title'>$nama</h5>
-                                        <p class='card-text'>$lokasi</p>
+                                        <h5 class='card-title'>$nama_auditorium</h5>
+                                        <p class='card-text'>$lokasi_kampus</p>
                                         <div class='d-flex justify-content-between'>
-                                            <a href='edit_auditorium.php?id=$id' class='btn btn-primary'>Edit</a>
-                                            <a href='?delete_id=$id' class='btn btn-danger' onclick='return confirm(\"Apakah Anda yakin ingin menghapus auditorium ini?\");'>Delete</a>
+                                            <a href='edit_auditorium.php?id=$id_audit' class='btn btn-primary'>Edit</a>
+                                            <a href='?delete_id=$id_audit' class='btn btn-danger' onclick='return confirm(\"Apakah Anda yakin ingin menghapus auditorium ini?\");'>Delete</a>
                                         </div>
                                     </div>
                                 </div>
