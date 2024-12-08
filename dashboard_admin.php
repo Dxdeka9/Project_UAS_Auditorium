@@ -3,41 +3,41 @@
     session_start();
 
     // Cek apakah user sudah login dan memiliki peran admin
-    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
         header("Location: index.php");
         exit();
     }
 
     // Ambil nama pengguna dari database berdasarkan user_id
-    $user_id = $_SESSION['user_id']; // Ambil user_id dari session
-    $query_user = "SELECT nama FROM pengguna WHERE id = $user_id"; // query untuk mengambil nama pengguna dari tabel pengguna
+    $user_id = $_SESSION['id_user']; // Ambil user_id dari session
+    $query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = $user_id"; // query untuk mengambil nama pengguna dari tabel pengguna
     $result_user = $conn->query($query_user); // untuk menjalankan query
 
     // Periksa apakah data pengguna ditemukan
     if ($result_user->num_rows > 0) { // jika data pengguna ditemukan
         $row_user = $result_user->fetch_assoc(); // ambil data pengguna dari hasil query
-        $nama_admin = htmlspecialchars($row_user['nama']); // Nama admin yang sedang login
+        $nama_admin = htmlspecialchars($row_user['nama_lengkap']); // Nama admin yang sedang login
     } else {
         $nama_admin = "Admin Tidak Ditemukan";
     }
 
-    // Ambil search term jika ada
-    $search_data = isset($_GET['search']) ? $_GET['search'] : '';
+    // // Ambil search term jika ada
+    // $search_data = isset($_GET['search']) ? $_GET['search'] : '';
 
-    // Modifikasi query SQL untuk mencari berdasarkan search term
-    $sql = "SELECT p.id, a.nama AS nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai, p.id_pengguna, p.status
-            FROM peminjaman p
-            INNER JOIN auditorium a ON p.id_auditorium = a.id
-            WHERE a.nama LIKE '%$search_data%' OR p.id_pengguna LIKE '%$search_data%'
-            ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
-    $result = $conn->query($sql);
-
-    // // Ambil semua data peminjaman
+    // // Modifikasi query SQL untuk mencari berdasarkan search term
     // $sql = "SELECT p.id, a.nama AS nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai, p.id_pengguna, p.status
     //         FROM peminjaman p
     //         INNER JOIN auditorium a ON p.id_auditorium = a.id
+    //         WHERE a.nama LIKE '%$search_data%' OR p.id_pengguna LIKE '%$search_data%'
     //         ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
     // $result = $conn->query($sql);
+
+    // Ambil semua data peminjaman
+    $sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.keperluan, p.foto_surat, p.status
+            FROM peminjaman p
+            INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
+            ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
+    $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>

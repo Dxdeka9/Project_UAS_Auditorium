@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Des 2024 pada 14.27
+-- Waktu pembuatan: 08 Des 2024 pada 16.38
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -90,7 +90,8 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id_user`, `nama_lengkap`, `email`, `password`, `nim`, `program_studi`, `no_telp`, `foto_profile`, `role`) VALUES
-(5, 'Abduh Revan', 'abduh@gmail.com', '$2y$10$a0G5dB5FNFMnrSRgE3j72.AkEBYA20JQPYL8pbrd3FaXwAeHVvHrW', '2310512160', 'S1-Sistem Informasi', '081234567891', 'default.jpg', 'mahasiswa');
+(5, 'Abduh Revan', 'abduh@gmail.com', '$2y$10$a0G5dB5FNFMnrSRgE3j72.AkEBYA20JQPYL8pbrd3FaXwAeHVvHrW', '2310512160', 'S1-Sistem Informasi', '081234567891', 'default.jpg', 'mahasiswa'),
+(6, 'Samsuri', 'adminsamsuri@gmail.com', '$2y$10$qchdliHZdvpm7xX.tvib4.Z1xWRjccKmKlP35fqjjVWn3KqOqyzXm', '2310512161', 'S1-Sistem Informasi', '081234567893', 'default.jpg', 'admin');
 
 -- --------------------------------------------------------
 
@@ -167,7 +168,7 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `riwayat_peminjaman`
