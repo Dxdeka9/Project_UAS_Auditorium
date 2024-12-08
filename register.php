@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $program_studi = $conn->real_escape_string($_POST['program_studi']);
     $no_telp = $conn->real_escape_string($_POST['no_telp']);
     $foto_profile = 'default.jpg'; // Atur default untuk foto profil
-    $role = 'user'; // Set role default sebagai 'user'
+    $role = 'mahasiswa'; // Set role default sebagai 'user'
 
     // Query untuk menyimpan data
     $sql = "INSERT INTO pengguna (nama_lengkap, email, password, nim, program_studi, no_telp, foto_profile, role) 
