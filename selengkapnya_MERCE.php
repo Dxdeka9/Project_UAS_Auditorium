@@ -47,7 +47,7 @@
             <!-- Main Content -->
             <div class="col-md-9">
                 <div class="container py-4 t" style="text-align: left; padding: 2rem;">
-                    <h2>Auditorium Bhineka Tunggal Ika</h2>
+                    <h2>Auditorium MERCE Kedokteran</h2>
                     <br>
                     <div style="width: 500px; margin: 0 auto;">
                         <img src="https://icsot.upnvj.ac.id/wp-content/uploads/2023/10/IMG_3839-min-scaled-1.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded" style="position:left;">
