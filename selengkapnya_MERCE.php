@@ -53,7 +53,7 @@ if ($result->num_rows > 0) {
             <div class="text-center mb-4">
                 <?php
                      if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
-                        echo "<img src='" . $user['foto_profile'] . "' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                        echo "<img src='" . $user['foto_profile'] . "' class='object-fit-cover profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      } else {
                         echo "<img src='profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      }
