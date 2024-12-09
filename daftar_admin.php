@@ -3,13 +3,13 @@ include 'includes/db.php';
 session_start();
 
 // Cek apakah user sudah login dan memiliki peran admin
-if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header("Location: index.php");
     exit();
 }
 
 // Ambil nama pengguna dari database berdasarkan user_id
-$user_id = $_SESSION['id_user'];
+$user_id = $_SESSION['user_id'];
 $query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = $user_id";
 $result_user = $conn->query($query_user);
 $nama_admin = $result_user->num_rows > 0 ? htmlspecialchars($result_user->fetch_assoc()['nama_lengkap']) : "Admin Tidak Ditemukan"; // Ganti "nama" dengan "nama_lengkap"

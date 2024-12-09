@@ -3,13 +3,13 @@
     session_start();
 
     // Cek apakah user sudah login dan memiliki peran admin
-    if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         header("Location: index.php");
         exit();
     }
 
     // Ambil nama pengguna dari database berdasarkan user_id
-    $user_id = $_SESSION['id_user']; // Ambil user_id dari session
+    $user_id = $_SESSION['user_id']; // Ambil user_id dari session
     $query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = $user_id"; // query untuk mengambil nama pengguna dari tabel pengguna
     $result_user = $conn->query($query_user); // untuk menjalankan query
 
@@ -27,6 +27,8 @@
             INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
             ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
     $result = $conn->query($sql);
+
+    date_default_timezone_set("Asia/Bangkok");
 ?>
 
 <!DOCTYPE html>

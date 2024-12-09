@@ -107,20 +107,24 @@ $auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama_auditorium")
                     <label for="tanggal">Tanggal</label>
                     <input type="date" name="tanggal" id="tanggal" class="form-control" min="<?= date('Y-m-d'); ?>" required>
                 </div>
-                <div class="form-group">
-                    <label for="jam_mulai">Jam Mulai</label>
-                    <input type="time" name="jam_mulai" id="jam_mulai" class="form-control" required>
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="jam_mulai">Jam Mulai</label>
+                        <input type="time" name="jam_mulai" id="jam_mulai" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jam_selesai">Jam Selesai</label>
+                        <input type="time" name="jam_selesai" id="jam_selesai" class="form-control" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="jam_selesai">Jam Selesai</label>
-                    <input type="time" name="jam_selesai" id="jam_selesai" class="form-control" required>
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <input type="file" name="file" id="file" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <a href="https://drive.google.com/drive/folders/15m7m4RRfFeySmeh60DTgOPT171YamWPm" class="template-link">Template Pengajuan</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="keperluan">Keperluan</label>
-                    <textarea name="keperluan" id="keperluan" class="form-control" rows="4" required></textarea>
-                </div>
-                    <input type="file" name="file" id="file" class="form-control" required>
-                    <a href="https://drive.google.com/drive/folders/15m7m4RRfFeySmeh60DTgOPT171YamWPm">Template Pengajuan</a>
                 <div class="flex">
                     <button type="submit" class="btn-primary">Ajukan</button>
                     <a href="dashboard.php" class="btn-secondary">Kembali</a>
