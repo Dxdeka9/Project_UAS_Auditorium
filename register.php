@@ -10,8 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $role = 'mahasiswa'; // Set role default sebagai 'user'
 
     // Query untuk menyimpan data
-    $sql = "INSERT INTO pengguna (nama_lengkap, email, password, nim, program_studi, no_telp, foto_profile, role) 
-            VALUES ('$nama_lengkap', '$email', '$password', '$nim', '$program_studi', '$no_telp', '$foto_profile', '$role')";
+    $sql = "INSERT INTO pengguna (nama_lengkap, email, password, role) 
+            VALUES ('$nama_lengkap', '$email', '$password', '$role')";
     if ($conn->query($sql) === TRUE) {
         $_SESSION['message'] = "Registrasi berhasil!";
         $_SESSION['message_type'] = "success"; 
