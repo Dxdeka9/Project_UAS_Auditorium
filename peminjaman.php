@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception("Format file tidak diizinkan! (Hanya: pdf, doc, docx, jpg, png)");
         }
 
-        $upload_dir = 'uploads/';
+        $upload_dir = 'surat/';
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0777, true); // Buat folder jika belum ada
         }
