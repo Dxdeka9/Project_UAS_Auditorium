@@ -1,3 +1,29 @@
+<?php
+include 'includes/db.php';
+session_start();
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit();
+}
+
+// Ambil informasi pengguna dari database
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM pengguna WHERE id_user = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+} else {
+    $error = "Data pengguna tidak ditemukan.";
+    $user = null;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +37,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #5d9c59; ">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
-                <img src="logo_mahasiswa.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
+                <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
-            <form class="d-flex ms-auto" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+            <div class="d-flex align-items-center text-light">
+                <span class="me-3" style="font-size: 16px;"><?= date('d-m-Y'); ?></span>
+            </div>
         </div>
     </nav>
     <!-- End Navbar -->
@@ -25,18 +50,24 @@
         <!-- Sidebar -->
         <div class="sidebar bg-dark text-white p-4 d-flex flex-column">
             <div class="text-center mb-4">
-                <img src="profil.png" alt="Profile Picture" class="profile-picture rounded-circle mb-3" style="width: 100px; height: 100px;">
-                <h5>Mahasiswa</h5>
+                <?php
+                     if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
+                        echo "<img src='" . $user['foto_profile'] . "' class='object-fit-cover profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                     } else {
+                        echo "<img src='asset/profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                     }
+                  ?>
+                <h5><?php echo htmlspecialchars($user['nama_lengkap']); ?></h5>
             </div>
             <ul class="nav flex-column flex-grow-1">
                 <li class="nav-item mb-2">
+                    <a href="dashboard.php" class="nav-link text-light">Dashboard</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="daftar_ruang.php" class="nav-link text-active">Daftar Auditorium</a>
+                </li>
+                <li class="nav-item mb-2">
                     <a href="profil.php" class="nav-link text-light">Profil</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="dashboard.php" class="nav-link text-light">Riwayat Peminjaman</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="daftar_ruang.php" class="nav-link text-active">Daftar Ruang</a>
                 </li>
             </ul>
             <a href="peminjaman.php" class="btn btn-success w-100 mt-3">Ajukan Peminjaman</a>

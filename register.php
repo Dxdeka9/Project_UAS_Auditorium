@@ -7,15 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nama_lengkap = $conn->real_escape_string($_POST['nama_lengkap']);
     $email = $conn->real_escape_string($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $nim = $conn->real_escape_string($_POST['nim']);
-    $program_studi = $conn->real_escape_string($_POST['program_studi']);
-    $no_telp = $conn->real_escape_string($_POST['no_telp']);
-    $foto_profile = 'default.jpg'; // Atur default untuk foto profil
     $role = 'mahasiswa'; // Set role default sebagai 'user'
 
     // Query untuk menyimpan data
-    $sql = "INSERT INTO pengguna (nama_lengkap, email, password, nim, program_studi, no_telp, foto_profile, role) 
-            VALUES ('$nama_lengkap', '$email', '$password', '$nim', '$program_studi', '$no_telp', '$foto_profile', '$role')";
+    $sql = "INSERT INTO pengguna (nama_lengkap, email, password, role) 
+            VALUES ('$nama_lengkap', '$email', '$password', '$role')";
     if ($conn->query($sql) === TRUE) {
         $_SESSION['message'] = "Registrasi berhasil!";
         $_SESSION['message_type'] = "success"; 
@@ -89,18 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan password" required>
-            </div>
-            <div class="mb-3">
-                <label for="nim" class="form-label">NIM</label>
-                <input type="text" name="nim" id="nim" class="form-control" placeholder="Masukkan NIM Anda" required>
-            </div>
-            <div class="mb-3">
-                <label for="program_studi" class="form-label">Program Studi</label>
-                <input type="text" name="program_studi" id="program_studi" class="form-control" placeholder="Masukkan program studi Anda" required>
-            </div>
-            <div class="mb-3">
-                <label for="no_telp" class="form-label">Nomor Telepon</label>
-                <input type="text" name="no_telp" id="no_telp" class="form-control" placeholder="Masukkan nomor telepon Anda" required>
             </div>
             <button type="submit" class="btn btn-primary w-100">Daftar</button>
         </form>

@@ -1,132 +1,159 @@
+/* Styling dasar untuk body */
 body {
-    background: linear-gradient(135deg, #d8f3dc, #b7e4c7); /* Gradasi hijau */
-    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #d8f3dc, #b7e4c7); /* Gradien hijau muda */
+    font-family: 'Poppins', sans-serif; /* Font yang digunakan */
     margin: 0;
     padding: 0;
 }
 
+/* Container utama agar konten berada di tengah halaman */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100vh; /* Mengisi tinggi penuh layar */
 }
 
+/* Styling untuk form peminjaman */
 .form-container {
-    background: #fff;
+    background: #fff; /* Warna latar putih */
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 12px; /* Sudut membulat */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Efek bayangan */
     max-width: 500px;
     width: 100%;
-    animation: fadeIn 0.8s ease;
+    animation: fadeIn 0.8s ease; /* Animasi fade in */
 }
 
+/* Heading (judul) form */
 h2 {
-    color: #40916c;
+    color: #40916c; /* Warna hijau */
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* Label untuk input */
 label {
     font-weight: bold;
     font-size: 15px;
-    color: #555;
+    color: #555; /* Warna teks abu-abu */
     display: block;
     margin-bottom: 5px;
 }
 
+/* Wrapper untuk setiap input atau grup */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Jarak antar grup */
 }
 
+/* Styling input (form-control) */
 .form-control {
-    width: 96%;
+    width: 90%; /* Lebar input */
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: 1px solid #ccc; /* Batas abu-abu */
+    border-radius: 8px; /* Sudut membulat */
     margin-top: 5px;
     font-size: 14px;
 }
 
+/* Menghindari textarea diubah ukurannya */
 textarea {
     resize: none;
 }
 
-/* Atur ulang tombol Ajukan */
-.btn-primary {
-    margin: 20px 0; /* Pusatkan tombol secara horizontal */
-    padding: 15px 40px; /* Tambah padding untuk memperbesar tombol */
-    border: none;
-    border-radius: 20px;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    color: #fff;
-    width: 60%; /* Perlebar tombol hingga 60% dari lebar container */
-    background: #52b788;
-    transition: background 0.3s;
+/* Grup form untuk tata letak inline */
+.form-group-inline {
+    display: flex;
+    justify-content: space-between; /* Jarak antara item */
+    align-items: center;
+    gap: 20px; /* Menambahkan jarak antara "Jam Mulai" dan "Jam Selesai" */
 }
 
-.btn-primary:hover {
-    background: #40916c;
+/* Untuk menyesuaikan setiap grup di dalam inline */
+.form-group-inline .form-group {
+    flex: 1; /* Membuat lebar setiap grup fleksibel */
 }
 
-/* Gaya untuk tombol Kembali */
-.btn-secondary {
-    margin: 20px 0px 20px 20px; /* Pusatkan tombol secara horizontal */
-    padding: 15px 40px; /* Tambah padding untuk memperbesar tombol */
-    border: none;
-    border-radius: 20px;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    color: #fff;
-    width: 35%; /* Lebarkan tombol hingga 60% dari lebar container */
-    background: #d4f1d4; /* Warna latar belakang yang lebih terang */
-    ;
-    transition: background 0.3s, transform 0.3s;
-}
-
-.btn-secondary:hover {
-    background: #52b788; /* Ubah warna latar belakang saat hover */
-    transform: translateY(-5px); /* Efek sedikit mengangkat tombol saat hover */
-}
-
-
-.alert {
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
+/* Link ke template pengajuan */
+.template-link {
+    display: block;
+    margin-top: 5px;
     font-size: 14px;
+    color: #40916c; /* Hijau */
+    text-decoration: none;
+    font-weight: bold;
 }
 
+/* Efek hover pada template-link */
+.template-link:hover {
+    text-decoration: underline;
+    color: #52b788; /* Warna hijau lebih terang */
+}
+
+/* Tombol utama (submit) */
+.btn-primary {
+    margin: 20px 0;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    width: 60%; /* Lebar tombol */
+    background: #52b788; /* Hijau terang */
+    transition: background 0.3s; /* Transisi warna */
+}
+
+/* Efek hover untuk tombol utama */
+.btn-primary:hover {
+    background: #40916c; /* Hijau lebih gelap */
+}
+
+/* Tombol kembali */
+.btn-secondary {
+    margin: 20px 0px 20px 20px;
+    padding: 15px 40px;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    background: #b8b5b8; /* Abu-abu muda */
+}
+
+/* Efek hover untuk tombol kembali */
+.btn-secondary:hover {
+    background: #909090; /* Warna abu-abu lebih gelap saat hover */
+    transition: background 0.3s; /* Transisi warna */
+}
+
+/* Alert untuk notifikasi */
+.alert {
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Alert sukses */
 .alert-success {
-    background: #e6f4ea;
-    color: #40916c;
+    background-color: #d4edda; /* Hijau muda */
+    color: #155724; /* Hijau teks */
 }
 
+/* Alert gagal */
 .alert-danger {
-    background: #fcebea;
-    color: #d90429;
+    background-color: #f8d7da; /* Merah muda */
+    color: #721c24; /* Merah teks */
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Menyamakan lebar dropdown (select) dengan input */
+select.form-control {
+    width: 100%; /* Sama seperti input tanggal */
 }
 
-#id_auditorium {
-    width: 100%; /* Mengurangi lebar select */
-    padding: 8px; /* Menyesuaikan padding agar tidak terlalu besar */
-    font-size: 14px; /* Mengecilkan ukuran font */
+/* Menyamakan lebar input tanggal dengan elemen lainnya */
+input[type="date"].form-control {
+    width: 96%; /* Sama seperti dropdown */
 }
-
-
-

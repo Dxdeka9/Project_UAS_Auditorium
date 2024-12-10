@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Verifikasi password
         if (password_verify($password, $user['password'])) {
             // Set sesi pengguna
-            $_SESSION['id_user'] = $user['id_user']; // Pastikan sesuai dengan kolom di tabel
+            $_SESSION['user_id'] = $user['id_user']; // Pastikan sesuai dengan kolom di tabel
             $_SESSION['role'] = $user['role'];
 
             // Jika remember me dicentang, simpan cookie

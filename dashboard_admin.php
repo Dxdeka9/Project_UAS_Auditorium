@@ -3,13 +3,13 @@
     session_start();
 
     // Cek apakah user sudah login dan memiliki peran admin
-    if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         header("Location: index.php");
         exit();
     }
 
     // Ambil nama pengguna dari database berdasarkan user_id
-    $user_id = $_SESSION['id_user']; // Ambil user_id dari session
+    $user_id = $_SESSION['user_id']; // Ambil user_id dari session
     $query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = $user_id"; // query untuk mengambil nama pengguna dari tabel pengguna
     $result_user = $conn->query($query_user); // untuk menjalankan query
 
@@ -21,23 +21,14 @@
         $nama_admin = "Admin Tidak Ditemukan";
     }
 
-    // // Ambil search term jika ada
-    // $search_data = isset($_GET['search']) ? $_GET['search'] : '';
-
-    // // Modifikasi query SQL untuk mencari berdasarkan search term
-    // $sql = "SELECT p.id, a.nama AS nama_auditorium, p.tanggal, p.waktu_mulai, p.waktu_selesai, p.id_pengguna, p.status
-    //         FROM peminjaman p
-    //         INNER JOIN auditorium a ON p.id_auditorium = a.id
-    //         WHERE a.nama LIKE '%$search_data%' OR p.id_pengguna LIKE '%$search_data%'
-    //         ORDER BY p.tanggal DESC, p.waktu_mulai DESC";
-    // $result = $conn->query($sql);
-
     // Ambil semua data peminjaman
-    $sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.keperluan, p.foto_surat, p.status
+    $sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.foto_surat, p.status
             FROM peminjaman p
             INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
             ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
     $result = $conn->query($sql);
+
+    date_default_timezone_set("Asia/Bangkok");
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +88,7 @@
                                     <th>Tanggal</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
-                                    <th>Peminjam</th>
+                                    <th>Surat</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -109,10 +100,18 @@
                                     <tr>
                                         <td><?php echo $i; ?></td>
                                         <td><?php echo htmlspecialchars($row['nama_auditorium']); ?></td>
-                                        <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
+                                        <td><?php echo date('d-m-Y', strtotime($row['tanggal_pinjam'])); ?></td>
                                         <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
                                         <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
-                                        <td><?php echo $row['id_pengguna']; ?></td>
+                                        <td>
+                                            <?php if (!empty($row['foto_surat'])): ?>
+                                                <a href="uploads/<?php echo htmlspecialchars($row['foto_surat']); ?>" target="_blank">
+                                                    <img src="uploads/<?php echo htmlspecialchars($row['foto_surat']); ?>" alt="Surat" style="width: 100px; height: auto;">
+                                                </a>
+                                            <?php else: ?>
+                                                Tidak Ada Surat
+                                            <?php endif; ?>
+                                        </td>
                                         <td>
                                             <?php
                                             if ($row['status'] == 'pending') {
@@ -125,8 +124,8 @@
                                             ?>
                                         </td>
                                         <td>
-                                            <a href="approve_peminjaman.php?id=<?php echo $row['id']; ?>" class="btn btn-success">Approve</a>
-                                            <a href="reject_peminjaman.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Reject</a>
+                                            <a href="approve_peminjaman.php?id=<?php echo $row['id_user']; ?>" class="btn btn-success">Approve</a>
+                                            <a href="reject_peminjaman.php?id=<?php echo $row['id_user']; ?>" class="btn btn-danger">Reject</a>
                                         </td>
                                     </tr>
                                 <?php 
@@ -134,12 +133,15 @@
                                 endwhile; ?>
                             </tbody>
                         </table>
+                        <?php if ($result->num_rows == 0): ?>
+                            <div class="alert alert-info mt-3">Belum ada data peminjaman.</div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Footer -->
-        <footer class="bg-white rounded text-secondary py-3">
+        <footer class="bg-white rounded text-secondary col-md-10 p-4">
             <div class="container text-center">
                 <p class="mb-0">&copy; 2024 Universitas Pembangunan Nasional "Veteran" Jakarta. All Rights Reserved.</p>
             </div>
