@@ -126,7 +126,7 @@ $auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama_auditorium")
                         <input type="file" name="file" id="file" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <a href="https://drive.google.com/drive/folders/15m7m4RRfFeySmeh60DTgOPT171YamWPm" class="template-link">Template Pengajuan</a>
+                        <a href="https://drive.google.com/drive/folders/15m7m4RRfFeySmeh60DTgOPT171YamWPm" target="_blank" class="template-link">Template Pengajuan</a>
                     </div>
                 </div>
                 <div class="flex">
