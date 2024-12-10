@@ -85,7 +85,7 @@ $result = $stmt->get_result();
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5d9c59;">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
-                <img src="logo_mahasiswa.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
+                <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
             <form class="d-flex ms-auto" role="search" method="GET" action="dashboard.php">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
