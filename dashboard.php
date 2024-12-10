@@ -45,18 +45,14 @@ if (isset($_GET['delete_id'])) {
 $user_id = $_SESSION['user_id'];
 
 $search = isset($_GET['search']) ? "%" . $conn->real_escape_string($_GET['search']) . "%" : "%";
-
-$sql = "SELECT r.id_riwayat, a.nama_auditorium, r.peminjam, r.tanggal_pinjam, r.waktu_mulai, r.waktu_selesai, r.foto_surat, r.status 
-        FROM riwayat_peminjaman r
-        INNER JOIN auditorium a ON r.id_auditorium = a.id_auditorium
-        WHERE r.id_user = ? AND a.nama_auditorium LIKE ?
-        ORDER BY r.tanggal_pinjam DESC, r.waktu_mulai DESC";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("is", $user_id, $search);
-$stmt->execute();
-$result = $stmt->get_result();
-
+$sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.foto_surat, p.status
+        FROM peminjaman p
+        INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
+        WHERE a.nama_auditorium LIKE '%$search%' 
+        OR p.id_user LIKE '%$search%' 
+        OR p.tanggal_pinjam LIKE '%$search%'
+        ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -147,7 +143,7 @@ $result = $stmt->get_result();
                             <tr>
                                 <td><?php echo $i; ?></td>
                                 <td><?php echo htmlspecialchars($row['nama_auditorium']); ?></td>
-                                <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
+                                <td><?php echo date('d-m-Y', strtotime($row['tanggal_pinjam'])); ?></td>
                                 <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
                                 <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
                                 <td>
@@ -161,7 +157,7 @@ $result = $stmt->get_result();
                                     ?>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $row['id']; ?>)">Hapus</button>
+                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $row['id_peminjaman']; ?>)">Hapus</button>
                                 </td>
                             </tr>
                             <?php 
@@ -170,7 +166,7 @@ $result = $stmt->get_result();
                     </tbody>
                 </table>
                 <?php if ($result->num_rows == 0): ?>
-                    <div class="alert alert-info mt-3">Belum ada riwayat peminjaman.</div>
+                    <div class="alert alert-info mt-3">Belum ada data peminjaman.</div>
                 <?php endif; ?>
             </div>
         </div>
