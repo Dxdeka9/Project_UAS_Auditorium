@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
     <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #5d9c59; ">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
-                <img src="logo_mahasiswa.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
+                <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
             <div class="d-flex align-items-center text-light">
                 <span class="me-3" style="font-size: 16px;"><?= date('d-m-Y'); ?></span>
@@ -48,13 +48,13 @@ if ($result->num_rows > 0) {
 
     <div class="d-flex flex-grow-1">
         <!-- Sidebar -->
-        <div class="sidebar bg-dark text-white p-4 d-flex flex-column">
+       <div class="sidebar bg-dark text-white p-4 d-flex flex-column">
             <div class="text-center mb-4">
                 <?php
                      if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
-                        echo "<img src='" . $user['foto_profile'] . "' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                        echo "<img src='" . $user['foto_profile'] . "' class='object-fit-cover profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      } else {
-                        echo "<img src='profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                        echo "<img src='asset/profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      }
                   ?>
                 <h5><?php echo htmlspecialchars($user['nama_lengkap']); ?></h5>
