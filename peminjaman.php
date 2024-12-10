@@ -2,7 +2,7 @@
 include 'includes/db.php';
 session_start();
 
-// Redirect if not logged in
+// Redirect jika belum login
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -14,14 +14,14 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
         $id_auditorium = (int)($_POST['id_auditorium'] ?? 0);
-        $tanggal = $_POST['tanggal'] ?? '';
+        $tanggal_pinjam = $_POST['tanggal'] ?? '';
         $waktu_mulai = $_POST['jam_mulai'] ?? '';
         $waktu_selesai = $_POST['jam_selesai'] ?? '';
         $keperluan = $_POST['keperluan'] ?? '';
         $id_pengguna = (int)$_SESSION['user_id'];
 
         // Validasi data input
-        if ($id_auditorium <= 0 || $tanggal < date('Y-m-d') || $waktu_mulai >= $waktu_selesai) {
+        if ($id_auditorium <= 0 || $tanggal_pinjam < date('Y-m-d') || $waktu_mulai >= $waktu_selesai) {
             throw new Exception("Data input tidak valid!");
         }
 
@@ -52,23 +52,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Validasi jadwal bentrok
         $sql = "SELECT 1 FROM peminjaman 
-                WHERE id_auditorium = ? AND tanggal = ? AND status != 'declined' 
+                WHERE id_auditorium = ? AND tanggal_pinjam = ? AND status != 'declined' 
                 AND ((waktu_mulai BETWEEN ? AND ?) OR (waktu_selesai BETWEEN ? AND ?) 
                      OR (waktu_mulai <= ? AND waktu_selesai >= ?))";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("isssssss", $id_auditorium, $tanggal, $waktu_mulai, $waktu_selesai, $waktu_mulai, $waktu_selesai, $waktu_mulai, $waktu_selesai);
+        $stmt->bind_param("isssssss", $id_auditorium, $tanggal_pinjam, $waktu_mulai, $waktu_selesai, $waktu_mulai, $waktu_selesai, $waktu_mulai, $waktu_selesai);
         $stmt->execute();
 
-        if ($stmt->get_result()->num_rows > 0) throw new Exception("Jadwal bentrok!");
+        if ($stmt->get_result()->num_rows > 0) {
+            throw new Exception("Jadwal bentrok!");
+        }
         $stmt->close();
 
         // Simpan data ke database
         $stmt = $conn->prepare(
-            "INSERT INTO peminjaman (id_pengguna, id_auditorium, tanggal, waktu_mulai, waktu_selesai, keperluan, file_path, status) 
+            "INSERT INTO peminjaman (id_user, id_auditorium, tanggal_pinjam, waktu_mulai, waktu_selesai, keperluan, foto_surat, status) 
              VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')"
         );
-        $stmt->bind_param("iisssss", $id_pengguna, $id_auditorium, $tanggal, $waktu_mulai, $waktu_selesai, $keperluan, $file_path);
-        if (!$stmt->execute()) throw new Exception("Error saat menyimpan peminjaman!");
+        $stmt->bind_param("iisssss", $id_pengguna, $id_auditorium, $tanggal_pinjam, $waktu_mulai, $waktu_selesai, $keperluan, $file_path);
+        if (!$stmt->execute()) {
+            throw new Exception("Error saat menyimpan peminjaman!");
+        }
 
         $message = "Peminjaman berhasil diajukan!";
     } catch (Exception $e) {
@@ -76,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Get auditoriums
+// Dapatkan daftar auditorium
 $auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama_auditorium")->fetch_all(MYSQLI_ASSOC) ?? [];
 ?>
 <!DOCTYPE html>
