@@ -61,13 +61,13 @@ if ($result->num_rows > 0) {
             </div>
             <ul class="nav flex-column flex-grow-1">
                 <li class="nav-item mb-2">
+                    <a href="dashboard.php" class="nav-link text-light">Dashboard</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="daftar_ruang.php" class="nav-link text-active">Daftar Auditorium</a>
+                </li>
+                <li class="nav-item mb-2">
                     <a href="profil.php" class="nav-link text-light">Profil</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="dashboard.php" class="nav-link text-light">Riwayat Peminjaman</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="daftar_ruang.php" class="nav-link text-active">Daftar Ruang</a>
                 </li>
             </ul>
             <a href="peminjaman.php" class="btn btn-success w-100 mt-3">Ajukan Peminjaman</a>

@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="text-center mb-4">
                 <?php
                      if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
-                        echo "<img src='" . $user['foto_profile'] . "' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                        echo "<img src='" . $user['foto_profile'] . "' class='object-fit-cover profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      } else {
                         echo "<img src='profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      }
@@ -110,13 +110,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <ul class="nav flex-column flex-grow-1">
                 <li class="nav-item mb-2">
+                    <a href="dashboard.php" class="nav-link text-light">Dashboard</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="daftar_ruang.php" class="nav-link text-light">Daftar Auditorium</a>
+                </li>
+                <li class="nav-item mb-2">
                     <a href="profil.php" class="nav-link text-active">Profil</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="dashboard.php" class="nav-link text-light">Riwayat Peminjaman</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="daftar_ruang.php" class="nav-link text-light">Daftar Ruang</a>
                 </li>
             </ul>
             <a href="peminjaman.php" class="btn btn-success w-100 mt-3">Ajukan Peminjaman</a>
@@ -163,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                <a href="dashboard.php" class="btn btn-secondary">Kembali</a>
+                <a href="profil.php" class="btn btn-secondary">Kembali</a>
             </form>
         </div>
         <!-- End Main Content -->

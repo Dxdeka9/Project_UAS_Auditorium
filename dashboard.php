@@ -110,13 +110,13 @@ $result = $stmt->get_result();
             </div>
             <ul class="nav flex-column flex-grow-1">
                 <li class="nav-item mb-2">
+                    <a href="dashboard.php" class="nav-link text-active">Dashboard</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="daftar_ruang.php" class="nav-link text-light">Daftar Auditorium</a>
+                </li>
+                <li class="nav-item mb-2">
                     <a href="profil.php" class="nav-link text-light">Profil</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="dashboard.php" class="nav-link text-active">Riwayat Peminjaman</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="daftar_ruang.php" class="nav-link text-light">Daftar Ruang</a>
                 </li>
             </ul>
             <a href="peminjaman.php" class="btn btn-success w-100 mt-3">Ajukan Peminjaman</a>
@@ -126,8 +126,7 @@ $result = $stmt->get_result();
 
         <!-- Main Content -->
         <div class="main-content flex-grow-1 p-4">
-            <h3 class="mb-4">Riwayat Peminjaman</h3>
-
+            <h3 class="mb-4">Daftar Peminjaman Auditorium</h3>
             <div class="table-responsive shadow-sm p-3 mb-5">
                 <table class="table table-bordered table-hover table-sm">
                     <thead class="table-dark">
@@ -170,11 +169,10 @@ $result = $stmt->get_result();
                         endwhile; ?>
                     </tbody>
                 </table>
+                <?php if ($result->num_rows == 0): ?>
+                    <div class="alert alert-info mt-3">Belum ada riwayat peminjaman.</div>
+                <?php endif; ?>
             </div>
-
-            <?php if ($result->num_rows == 0): ?>
-                <div class="alert alert-info mt-3">Belum ada riwayat peminjaman.</div>
-            <?php endif; ?>
         </div>
         <!-- End Main Content -->
     </div>
