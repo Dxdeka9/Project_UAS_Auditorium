@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
     <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #5d9c59; ">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
-                <img src="logo_mahasiswa.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
+                <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
             <div class="d-flex align-items-center text-light">
                 <span class="me-3" style="font-size: 16px;"><?= date('d-m-Y'); ?></span>
@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
                      if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
                         echo "<img src='" . $user['foto_profile'] . "' class='object-fit-cover profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      } else {
-                        echo "<img src='profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                        echo "<img src='asset/profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      }
                   ?>
                 <h5><?php echo htmlspecialchars($user['nama_lengkap']); ?></h5>
@@ -77,9 +77,8 @@ if ($result->num_rows > 0) {
 
 
             <!-- Main Content --> 
-            <div class="col-md-9">
+            <div class="col-md-9 shadow-sm">
                 <div class="container py-4 t" style="text-align: left; padding: 2rem;">
-                <a href="daftar_ruang.php" class="btn btn-secondary mb-3">Kembali</a>
                     <h2>Auditorium Bhineka Tunggal Ika</h2>
                     <br>
                     <div style="width: 500px; margin: 0 auto;">
@@ -93,7 +92,8 @@ if ($result->num_rows > 0) {
                             Auditorium Bhineka Tunggal Ika merupakan salah satu fasilitas utama yang dimiliki oleh Universitas Pembangunan Nasional (UPN) "Veteran" Jakarta. Sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, rapat besar, pelatihan, acara kemahasiswaan, hingga pertemuan formal tingkat universitas. Dengan kapasitas dan fasilitas modern, Auditorium Bhineka Tunggal Ika didesain untuk mendukung penyelenggaraan acara yang membutuhkan ruang luas dan representatif. Auditorium ini mencerminkan nilai-nilai kebhinekaan dan persatuan, sesuai dengan nama yang diusungnya, menjadikannya simbol penting bagi aktivitas akademik dan non-akademik di lingkungan kampus.
                         </p>
                     </div>
-                    <div style="text-align:justify;">
+                    <div style="text-align:right;">
+                        <a href="daftar_ruang.php" class="btn btn-secondary mb-3">Kembali</a>
                     </div>
                 </div>
             </div>
