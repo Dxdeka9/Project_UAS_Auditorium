@@ -39,10 +39,9 @@ if ($result->num_rows > 0) {
             <div class="d-flex align-items-center">
                 <img src="logo_mahasiswa.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
-            <form class="d-flex ms-auto" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+            <div class="d-flex align-items-center text-light">
+                <span class="me-3" style="font-size: 16px;"><?= date('d-m-Y'); ?></span>
+            </div>
         </div>
     </nav>
     <!-- End Navbar -->

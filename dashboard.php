@@ -43,15 +43,20 @@ if (isset($_GET['delete_id'])) {
 
 // Ambil data riwayat peminjaman untuk mahasiswa yang sedang login
 $user_id = $_SESSION['user_id'];
+
+$search = isset($_GET['search']) ? "%" . $conn->real_escape_string($_GET['search']) . "%" : "%";
+
 $sql = "SELECT r.id_riwayat, a.nama_auditorium, r.peminjam, r.tanggal_pinjam, r.waktu_mulai, r.waktu_selesai, r.keperluan, r.foto_surat, r.status 
         FROM riwayat_peminjaman r
         INNER JOIN auditorium a ON r.id_auditorium = a.id_auditorium
-        WHERE r.id_user = ?
+        WHERE r.id_user = ? AND a.nama_auditorium LIKE ?
         ORDER BY r.tanggal_pinjam DESC, r.waktu_mulai DESC";
+
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
+$stmt->bind_param("is", $user_id, $search);
 $stmt->execute();
 $result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -82,8 +87,8 @@ $result = $stmt->get_result();
             <div class="d-flex align-items-center">
                 <img src="logo_mahasiswa.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
-            <form class="d-flex ms-auto" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex ms-auto" role="search" method="GET" action="dashboard.php">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
         </div>
