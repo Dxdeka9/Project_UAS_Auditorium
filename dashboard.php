@@ -46,7 +46,7 @@ $user_id = $_SESSION['user_id'];
 
 $search = isset($_GET['search']) ? "%" . $conn->real_escape_string($_GET['search']) . "%" : "%";
 
-$sql = "SELECT r.id_riwayat, a.nama_auditorium, r.peminjam, r.tanggal_pinjam, r.waktu_mulai, r.waktu_selesai, r.keperluan, r.foto_surat, r.status 
+$sql = "SELECT r.id_riwayat, a.nama_auditorium, r.peminjam, r.tanggal_pinjam, r.waktu_mulai, r.waktu_selesai, r.foto_surat, r.status 
         FROM riwayat_peminjaman r
         INNER JOIN auditorium a ON r.id_auditorium = a.id_auditorium
         WHERE r.id_user = ? AND a.nama_auditorium LIKE ?
@@ -85,7 +85,7 @@ $result = $stmt->get_result();
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5d9c59;">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
-                <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
+                <img src="logo_mahasiswa.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
             <form class="d-flex ms-auto" role="search" method="GET" action="dashboard.php">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
@@ -103,7 +103,7 @@ $result = $stmt->get_result();
                      if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
                         echo "<img src='" . $user['foto_profile'] . "' class='object-fit-cover profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      } else {
-                        echo "<img src='asset/profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                        echo "<img src='profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      }
                   ?>
                 <h5><?php echo htmlspecialchars($user['nama_lengkap']); ?></h5>
