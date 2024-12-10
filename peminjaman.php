@@ -99,7 +99,7 @@ $auditoriums = $conn->query("SELECT * FROM auditorium ORDER BY nama_auditorium")
                     <select name="id_auditorium" id="id_auditorium" class="form-control" required>
                         <option value="">-- Pilih Auditorium --</option>
                         <?php foreach ($auditoriums as $auditorium): ?>
-                            <option value="<?= $auditorium['id']; ?>"><?= htmlspecialchars($auditorium['nama']); ?></option>
+                            <option value="<?= $auditorium['id_auditorium']; ?>"><?= htmlspecialchars($auditorium['nama_auditorium']); ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
