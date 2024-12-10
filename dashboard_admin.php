@@ -85,6 +85,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Auditorium</th>
+                                    <th>Peminjam</th>
                                     <th>Tanggal</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
@@ -100,6 +101,7 @@
                                     <tr>
                                         <td><?php echo $i; ?></td>
                                         <td><?php echo htmlspecialchars($row['nama_auditorium']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['peminjam']); ?></td>
                                         <td><?php echo date('d-m-Y', strtotime($row['tanggal_pinjam'])); ?></td>
                                         <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
                                         <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
