@@ -22,7 +22,7 @@
     }
 
     // Ambil semua data peminjaman
-    $sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.keperluan, p.foto_surat, p.status
+    $sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.foto_surat, p.status
             FROM peminjaman p
             INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
             ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
@@ -85,10 +85,10 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Auditorium</th>
-                                    <th>Peminjam</th>
                                     <th>Tanggal</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
+                                    <th>Surat</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -100,11 +100,18 @@
                                     <tr>
                                         <td><?php echo $i; ?></td>
                                         <td><?php echo htmlspecialchars($row['nama_auditorium']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['peminjam']); ?></td>
                                         <td><?php echo date('d-m-Y', strtotime($row['tanggal_pinjam'])); ?></td>
                                         <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
                                         <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
-                                        <td><?php echo $row['id_user']; ?></td>
+                                        <td>
+                                            <?php if (!empty($row['foto_surat'])): ?>
+                                                <a href="uploads/<?php echo htmlspecialchars($row['foto_surat']); ?>" target="_blank">
+                                                    <img src="uploads/<?php echo htmlspecialchars($row['foto_surat']); ?>" alt="Surat" style="width: 100px; height: auto;">
+                                                </a>
+                                            <?php else: ?>
+                                                Tidak Ada Surat
+                                            <?php endif; ?>
+                                        </td>
                                         <td>
                                             <?php
                                             if ($row['status'] == 'pending') {
