@@ -1,5 +1,8 @@
+/* Sidebar Kustom */
 .custom-sidebar {
   background-color: #5d9c59;
+  padding: 15px;
+  min-height: 100vh;
 }
 
 .custom-sidebar ul.nav li.nav-item a.nav-link {
@@ -15,11 +18,15 @@
   background-color: #495057 !important;
 }
 
+/* Header Kustom */
 .custom-header {
   background-color: rgba(219, 219, 219, 1) !important; /* Warna abu */
   font-size: 14px; /* Ukuran font kecil */
   padding: 20px 15px; /* Padding kecil */
   border-bottom: 1px solid #ddd; /* Garis bawah */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .custom-header img {
@@ -27,9 +34,12 @@
   margin-right: 10px;
 }
 
-.custom-header h6,
-.custom-header small {
+.custom-header h5 {
+  font-size: 20px;
+  font-weight: bold;
   margin: 0;
+  text-align: center;
+  flex-grow: 1;
 }
 
 .sub-text {
@@ -37,18 +47,67 @@
   color: #666 !important;
 }
 
+/* Footer Kustom */
 footer {
   position: relative !important; /* Mengubah dari default */
   width: 100% !important;
   background-color: rgba(219, 219, 219, 1) !important;
   padding: 10px 0 !important;
   border-top: 1px solid #ccc !important;
-  z-index: 100 !important;
-  /* Menghapus margin-top yang menyebabkan jarak */
-  /* margin-top: 100px; */
 }
 
 .footer-text {
   text-align: center !important;
   font-size: 0.8rem !important;
+}
+
+/* Kartu Auditorium */
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card h5 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  margin: 0 0 10px;
+  color: #666;
+}
+
+.card .btn {
+  width: 45%;
+}
+
+.card .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.card .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.card .btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.card .btn-danger:hover {
+  background-color: #a71d2a;
 }
