@@ -101,7 +101,7 @@ $result = $stmt->get_result();
                      if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
                         echo "<img src='" . $user['foto_profile'] . "' class='object-fit-cover profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      } else {
-                        echo "<img src='profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                        echo "<img src='asset/profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      }
                   ?>
                 <h5><?php echo htmlspecialchars($user['nama_lengkap']); ?></h5>
