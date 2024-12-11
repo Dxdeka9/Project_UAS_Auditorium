@@ -1,13 +1,9 @@
 /* Styling dasar untuk body */
 body {
-  background: linear-gradient(
-    135deg,
-    #d8f3dc,
-    #b7e4c7
-  ); /* Gradien hijau muda */
-  font-family: "Poppins", sans-serif; /* Font yang digunakan */
-  margin: 0;
-  padding: 0;
+    background: linear-gradient(135deg, #5D9C59, #96dbae); /* Gradien hijau muda */
+    font-family: 'Poppins', sans-serif; /* Font yang digunakan */
+    margin: 0;
+    padding: 0;
 }
 
 /* Container utama agar konten berada di tengah halaman */
