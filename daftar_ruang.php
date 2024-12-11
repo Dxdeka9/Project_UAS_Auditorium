@@ -122,15 +122,6 @@ date_default_timezone_set("Asia/Bangkok")
                     <div class="col-md-3 mb-3">
                         <div class="card">
                             <div class="card-body text-center">
-                                <h5>Auditorium Fakultas Ilmu Sosial & Politik</h5>
-                                <p class="text-muted">UPN Pondok Labu</p>
-                                <a href="selengkapnya_FISIP.php">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
                                 <h5>Auditorium Fakultas Teknik</h5>
                                 <p class="text-muted">UPN Limo</p>
                                <a href="selengkapnya_FT.php">Lihat Selengkapnya</a>
