@@ -29,8 +29,7 @@ if (isset($_GET['delete_id'])) {
     $user_id = $_SESSION['user_id'];
 
     // Hapus data hanya jika milik pengguna yang login
-    $sql_delete = "DELETE FROM peminjaman WHERE id = ? AND id_pengguna = ?";
-    $stmt_delete = $conn->prepare($sql_delete);
+    $stmt_delete = $conn->prepare("DELETE FROM peminjaman WHERE id_peminjaman = ? AND id_user = ?");
     $stmt_delete->bind_param("ii", $delete_id, $user_id);
 
     if ($stmt_delete->execute()) {
@@ -44,15 +43,18 @@ if (isset($_GET['delete_id'])) {
 // Ambil data riwayat peminjaman untuk mahasiswa yang sedang login
 $user_id = $_SESSION['user_id'];
 
-$search = isset($_GET['search']) ? "%" . $conn->real_escape_string($_GET['search']) . "%" : "%";
+$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) . '%' : '%';
 $sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.foto_surat, p.status
         FROM peminjaman p
         INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
-        WHERE a.nama_auditorium LIKE '%$search%' 
-        OR p.id_user LIKE '%$search%' 
-        OR p.tanggal_pinjam LIKE '%$search%'
+        WHERE a.nama_auditorium LIKE ? 
+        OR p.id_user LIKE ?
+        OR p.tanggal_pinjam LIKE ?
         ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sss", $search, $search, $search);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
