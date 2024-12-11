@@ -14,6 +14,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $id_auditorium = (int)($_POST['id_auditorium'] ?? 0);
+            $peminjam = $_POST['peminjam'] ?? '';
             $tanggal_pinjam = $_POST['tanggal'] ?? '';
             $waktu_mulai = $_POST['jam_mulai'] ?? '';
             $waktu_selesai = $_POST['jam_selesai'] ?? '';
@@ -65,10 +66,10 @@
 
             // Simpan data ke database
             $stmt = $conn->prepare(
-                "INSERT INTO peminjaman (id_user, id_auditorium, tanggal_pinjam, waktu_mulai, waktu_selesai, foto_surat, status) 
-                VALUES (?, ?, ?, ?, ?, ?, 'pending')"
+                "INSERT INTO peminjaman (id_user, id_auditorium, tanggal_pinjam, waktu_mulai, waktu_selesai, peminjam, foto_surat, status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')"
             );
-            $stmt->bind_param("iissss", $id_pengguna, $id_auditorium, $tanggal_pinjam, $waktu_mulai, $waktu_selesai, $file_path);
+            $stmt->bind_param("iisssss", $id_pengguna, $id_auditorium, $tanggal_pinjam, $waktu_mulai, $waktu_selesai, $peminjam, $file_path);
             if (!$stmt->execute()) {
                 throw new Exception("Error saat menyimpan peminjaman!");
             }
@@ -106,6 +107,10 @@
                                 <option value="<?= $auditorium['id_auditorium']; ?>"><?= htmlspecialchars($auditorium['nama_auditorium']); ?></option>
                             <?php endforeach; ?>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="peminjam">Peminjam</label>
+                        <input type="text" name="peminjam" id="peminjam" class="form-control" placeholder="Isikan nama ormawa/event ormawa" required>
                     </div>
                     <div class="form-group">
                         <label for="tanggal">Tanggal</label>
