@@ -55,6 +55,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("sss", $search, $search, $search);
 $stmt->execute();
 $result = $stmt->get_result();
+date_default_timezone_set("Asia/Bangkok")
 ?>
 
 <!DOCTYPE html>
@@ -85,10 +86,9 @@ $result = $stmt->get_result();
             <div class="d-flex align-items-center">
                 <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
-            <form class="d-flex ms-auto" role="search" method="GET" action="dashboard.php">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+            <div class="d-flex align-items-center text-light">
+                <span class="me-3" style="font-size: 16px;"><?= date('d-m-Y'); ?></span>
+            </div>
         </div>
     </nav>
     <!-- End Navbar -->

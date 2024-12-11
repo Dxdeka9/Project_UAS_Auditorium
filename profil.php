@@ -22,6 +22,7 @@ if ($result->num_rows > 0) {
     $error = "Data pengguna tidak ditemukan.";
     $user = null;
 }
+date_default_timezone_set("Asia/Bangkok")
 ?>
 
 <!DOCTYPE html>
