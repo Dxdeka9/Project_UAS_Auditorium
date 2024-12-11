@@ -74,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $stmt_update->close();
+    date_default_timezone_set("Asia/Bangkok");
 }
 ?>
 
@@ -85,12 +86,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Edit Auditorium - UPNVJ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
-<header class="navbar navbar-dark bg-primary p-3">
-    <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">Edit Auditorium</span>
-        <span class="text-white">Admin: <?= $nama_admin; ?></span>
-    </div>
+<body class="d-flex flex-column min-vh-100" style="background-color: #5d9c59;">
+        <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #FDF7F4;">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                <img src="asset/logo_admin.png" alt="Logo Admin UPNVJ" style="width: 190px; height: auto;">
+            </div>
+            <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;"><b>Peminjaman Auditorium UPNVJ</b></h5>
+            <div class="d-flex align-items-center">
+                <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
+            </div>
+        </div>
+    </nav>
 </header>
 
 <div class="container mt-5">

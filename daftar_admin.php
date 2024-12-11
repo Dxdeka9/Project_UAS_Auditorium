@@ -48,6 +48,7 @@ if ($filter_lokasi != '') {
 }
 $result_auditorium = $conn->query($query_auditorium);
 
+date_default_timezone_set("Asia/Bangkok");
 ?>
 
 <!DOCTYPE html>
@@ -59,36 +60,42 @@ $result_auditorium = $conn->query($query_auditorium);
     <link rel="stylesheet" href="daftar&riwayat.css">
     <title>Daftar Auditorium - Auditorium UPNVJ</title>
 </head>
-<body>
-<header class="custom-header d-flex justify-content-between align-items-center">
-    <div class="d-flex align-items-center">
-        <img src="logo_upnvj.jpg" alt="Logo UPNNVJ">
-        <div>
-            <h6 class="mb-0">ADMIN</h6>
-            <small class="sub-text">UPN "Veteran" Jakarta</small>
-        </div>
-    </div>
-    <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;">Daftar Auditorium</h5>
-    <div class="d-flex align-items-center">
-        <span class="me-3"><?= date('d-m-Y'); ?></span>
-    </div>
-</header>
 
-<div class="container-fluid">
-    <div class="row">
+<body class="d-flex flex-column min-vh-100" style="background-color: #5d9c59;">
+        <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #FDF7F4;">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                <img src="asset/logo_admin.png" alt="Logo Admin UPNVJ" style="width: 190px; height: auto;">
+            </div>
+            <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;"><b>Peminjaman Auditorium UPNVJ</b></h5>
+            <div class="d-flex align-items-center">
+                <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <div class="d-flex flex-grow-1">
         <!-- Sidebar -->
-        <div class="custom-sidebar col-md-2 text-white d-flex flex-column min-vh-100 p-3">
+        <div class="sidebar bg-dark text-white p-4 d-flex flex-column">
             <div class="text-center mb-4">
-                <img src="profil.png" alt="Profile" class="img-fluid rounded-circle mb-3" width="100">
-                <h4 class="mb-0 text-black"><?= $nama_admin; ?></h4>
+                <img src="asset/profil.png" alt="Profile" class="img-fluid rounded-circle mb-3" width="100">
+                <h4 class="mb-0 text-light"><?php echo $nama_admin; ?></h4>
                 <small>ADMIN</small>
             </div>
-            <ul class="nav flex-column mb-auto">
-                <li class="nav-item"><a href="dashboard_admin.php" class="nav-link text-white">Dashboard</a></li>
-                <li class="nav-item"><a href="daftar_admin.php" class="nav-link text-white">Daftar Auditorium</a></li>
-                <li class="nav-item"><a href="riwayat_peminjaman.php" class="nav-link text-white mb-4">Riwayat Peminjaman</a></li>
-                <a href="logout.php" class="btn btn-danger w-100 mt-auto mb-2">Log out</a>
+            <ul class="nav flex-column flex-grow-1">
+                <li class="nav-item mb-2">
+                    <a href="dashboard_admin.php" class="nav-link text-light">Dashboard</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="daftar_admin.php" class="nav-link text-active">Daftar Auditorium</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="riwayat_peminjaman.php" class="nav-link text-light">Riwayat Peminjaman</a>
+                </li>
             </ul>
+            <a href="logout.php" class="btn btn-danger w-100 mt-2">Log Out</a>
         </div>
 
         <!-- Main Content -->
@@ -134,11 +141,12 @@ $result_auditorium = $conn->query($query_auditorium);
     </div>
 </div>
 
-<footer>
-    <div class="footer-text text-center">
-        <p>&copy; Universitas Pembangunan Nasional "Veteran" Jakarta 2024 | All Rights Reserved</p>
-    </div>
-</footer>
+  <!-- Footer -->
+  <footer class="bg-white text-secondary py-3 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 Universitas Pembangunan Nasional "Veteran" Jakarta. All Rights Reserved.</p>
+        </div>
+    </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
