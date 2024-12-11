@@ -22,6 +22,7 @@ if ($result->num_rows > 0) {
     $error = "Data pengguna tidak ditemukan.";
     $user = null;
 }
+date_default_timezone_set("Asia/Bangkok")
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +41,7 @@ if ($result->num_rows > 0) {
                 <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
             <div class="d-flex align-items-center text-light">
-                <span class="me-3" style="font-size: 16px;"><?= date('d-m-Y'); ?></span>
+            <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
             </div>
         </div>
     </nav>

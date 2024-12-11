@@ -109,15 +109,6 @@ if ($result->num_rows > 0) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5>Auditorium Fakultas Ilmu Sosial & Politik</h5>
-                                <p class="text-muted">UPN Pondok Labu</p>
-                                <a href="selengkapnya_FISIP.php">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
             </div>

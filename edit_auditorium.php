@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 // Ambil nama admin dari tabel pengguna
 $user_id = $_SESSION['user_id'];
-$query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = ?"; // Ganti 'id' menjadi 'id_user'
+$query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = ?";
 $stmt_user = $conn->prepare($query_user);
 $stmt_user->bind_param("i", $user_id);
 $stmt_user->execute();
@@ -23,7 +23,8 @@ if (isset($_GET['id'])) {
     $id_auditorium = $_GET['id'];
 
     // Query untuk mengambil data auditorium berdasarkan ID
-    $query_auditorium = "SELECT nama_auditorium, lokasi_kampus FROM auditorium WHERE id_auditorium = ?";
+    $query_auditorium = "SELECT nama_auditorium, lokasi_kampus, lokasi_gedung, kapasitas, operasional, deskripsi 
+                         FROM auditorium WHERE id_auditorium = ?";
     $stmt = $conn->prepare($query_auditorium);
     $stmt->bind_param("i", $id_auditorium);
     $stmt->execute();
@@ -33,6 +34,10 @@ if (isset($_GET['id'])) {
         $auditorium = $result_auditorium->fetch_assoc();
         $nama_auditorium = htmlspecialchars($auditorium['nama_auditorium']);
         $lokasi_kampus = htmlspecialchars($auditorium['lokasi_kampus']);
+        $lokasi_gedung = htmlspecialchars($auditorium['lokasi_gedung']);
+        $kapasitas = htmlspecialchars($auditorium['kapasitas']);
+        $operasional = htmlspecialchars($auditorium['operasional']);
+        $deskripsi = htmlspecialchars($auditorium['deskripsi']);
     } else {
         echo "<script>alert('Auditorium tidak ditemukan.'); window.location.href='daftar_admin.php';</script>";
         exit();
@@ -47,12 +52,18 @@ if (isset($_GET['id'])) {
 // Proses update data jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nama_update = $_POST['nama'];
-    $lokasi_update = $_POST['lokasi'];
+    $lokasi_kampus_update = $_POST['lokasi_kampus'];
+    $lokasi_gedung_update = $_POST['lokasi_gedung'];
+    $kapasitas_update = $_POST['kapasitas'];
+    $operasional_update = $_POST['operasional'];
+    $deskripsi_update = $_POST['deskripsi'];
 
     // Query untuk update data auditorium
-    $query_update = "UPDATE auditorium SET nama_auditorium = ?, lokasi_kampus = ? WHERE id_auditorium = ?";
+    $query_update = "UPDATE auditorium 
+                     SET nama_auditorium = ?, lokasi_kampus = ?, lokasi_gedung = ?, kapasitas = ?, operasional = ?, deskripsi = ? 
+                     WHERE id_auditorium = ?";
     $stmt_update = $conn->prepare($query_update);
-    $stmt_update->bind_param("ssi", $nama_update, $lokasi_update, $id_auditorium);
+    $stmt_update->bind_param("ssssssi", $nama_update, $lokasi_kampus_update, $lokasi_gedung_update, $kapasitas_update, $operasional_update, $deskripsi_update, $id_auditorium);
 
     if ($stmt_update->execute()) {
         // Redirect setelah berhasil update
@@ -63,77 +74,69 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $stmt_update->close();
+    date_default_timezone_set("Asia/Bangkok");
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Auditorium - UPNVJ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="daftar&riwayat.css">
-    <title>Edit Auditorium - Auditorium UPNVJ</title>
 </head>
-<body>
-<header class="custom-header d-flex justify-content-between align-items-center">
-    <div class="d-flex align-items-center">
-        <img src="logo_upnvj.jpg" alt="Logo UPNNVJ">
-        <div>
-            <h6 class="mb-0">ADMIN</h6>
-            <small class="sub-text">UPN "Veteran" Jakarta</small>
+<body class="d-flex flex-column min-vh-100" style="background-color: #5d9c59;">
+        <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #FDF7F4;">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                <img src="asset/logo_admin.png" alt="Logo Admin UPNVJ" style="width: 190px; height: auto;">
+            </div>
+            <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;"><b>Peminjaman Auditorium UPNVJ</b></h5>
+            <div class="d-flex align-items-center">
+                <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
+            </div>
         </div>
-    </div>
-    <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;">Edit Auditorium</h5>
-    <div class="d-flex align-items-center">
-        <span class="me-3"><?= date('d-m-Y'); ?></span>
-    </div>
+    </nav>
 </header>
 
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="custom-sidebar col-md-2 text-white d-flex flex-column min-vh-100 p-3">
-            <div class="text-center mb-4">
-                <img src="profil.png" alt="Profile" class="img-fluid rounded-circle mb-3" width="100">
-                <h4 class="mb-0 text-black"><?= $nama_admin; ?></h4>
-                <small>ADMIN</small>
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h3 class="text-center mb-4">Edit Data Auditorium</h3>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama Auditorium</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="<?= $nama_auditorium ?>" required>
             </div>
-            <ul class="nav flex-column mb-auto">
-                <li class="nav-item"><a href="dashboard_admin.php" class="nav-link text-white">Dashboard</a></li>
-                <li class="nav-item"><a href="daftar_admin.php" class="nav-link text-white">Daftar Auditorium</a></li>
-                <li class="nav-item"><a href="riwayat_peminjaman.php" class="nav-link text-white mb-4">Riwayat Peminjaman</a></li>
-                <a href="logout.php" class="btn btn-danger w-100 mt-auto mb-2">Log out</a>
-            </ul>
-        </div>
-
-        <!-- Main Content -->
-        <div class="col-md-10">
-            <div class="container mt-4">
-                <!-- Form Edit Auditorium -->
-                <form method="POST">
-                    <div class="mb-3">
-                        <label for="nama" class="form-label">Nama Auditorium</label>
-                        <input type="text" class="form-control" id="nama" name="nama" value="<?= $nama_auditorium ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="lokasi" class="form-label">Lokasi Kampus</label>
-                        <input type="text" class="form-control" id="lokasi" name="lokasi" value="<?= $lokasi_kampus ?>" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </form>
+            <div class="mb-3">
+                <label for="lokasi_kampus" class="form-label">Lokasi Kampus</label>
+                <input type="text" class="form-control" id="lokasi_kampus" name="lokasi_kampus" value="<?= $lokasi_kampus ?>" required>
             </div>
-        </div>
+            <div class="mb-3">
+                <label for="lokasi_gedung" class="form-label">Lokasi Gedung</label>
+                <input type="text" class="form-control" id="lokasi_gedung" name="lokasi_gedung" value="<?= $lokasi_gedung ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="kapasitas" class="form-label">Kapasitas</label>
+                <input type="number" class="form-control" id="kapasitas" name="kapasitas" value="<?= $kapasitas ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="operasional" class="form-label">Jam Operasional</label>
+                <input type="text" class="form-control" id="operasional" name="operasional" value="<?= $operasional ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label">Deskripsi</label>
+                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4" required><?= $deskripsi ?></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update</button>
+        </form>
     </div>
 </div>
 
-<footer>
-    <div class="footer-text text-center">
-        <p>&copy; Universitas Pembangunan Nasional "Veteran" Jakarta 2024 | All Rights Reserved</p>
-    </div>
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <p>&copy; 2024 Universitas Pembangunan Nasional "Veteran" Jakarta</p>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

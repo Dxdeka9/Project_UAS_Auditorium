@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 $peminjaman_id = $_GET['id'];
 
 // Update status peminjaman menjadi 'approved'
-$sql = "UPDATE peminjaman SET status = 'approved' WHERE id = ?";
+$sql = "UPDATE peminjaman SET status = 'approved' WHERE id_peminjaman = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $peminjaman_id);
 if ($stmt->execute()) {

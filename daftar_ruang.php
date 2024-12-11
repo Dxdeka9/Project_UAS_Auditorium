@@ -22,6 +22,7 @@ if ($result->num_rows > 0) {
     $error = "Data pengguna tidak ditemukan.";
     $user = null;
 }
+date_default_timezone_set("Asia/Bangkok")
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +41,7 @@ if ($result->num_rows > 0) {
                 <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
             <div class="d-flex align-items-center text-light">
-                <span class="me-3" style="font-size: 16px;"><?= date('d-m-Y'); ?></span>
+            <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
             </div>
         </div>
     </nav>
@@ -115,15 +116,6 @@ if ($result->num_rows > 0) {
                                 <h5>Audiorium MERCE Kedokteran</h5>
                                 <p class="text-muted">UPN Limo</p>
                                 <a href="selengkapnya_MERCE.php">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5>Auditorium Fakultas Ilmu Sosial & Politik</h5>
-                                <p class="text-muted">UPN Pondok Labu</p>
-                                <a href="selengkapnya_FISIP.php">Lihat Selengkapnya</a>
                             </div>
                         </div>
                     </div>

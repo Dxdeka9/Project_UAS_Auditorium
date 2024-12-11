@@ -29,8 +29,7 @@ if (isset($_GET['delete_id'])) {
     $user_id = $_SESSION['user_id'];
 
     // Hapus data hanya jika milik pengguna yang login
-    $sql_delete = "DELETE FROM peminjaman WHERE id = ? AND id_pengguna = ?";
-    $stmt_delete = $conn->prepare($sql_delete);
+    $stmt_delete = $conn->prepare("DELETE FROM peminjaman WHERE id_peminjaman = ? AND id_user = ?");
     $stmt_delete->bind_param("ii", $delete_id, $user_id);
 
     if ($stmt_delete->execute()) {
@@ -44,19 +43,19 @@ if (isset($_GET['delete_id'])) {
 // Ambil data riwayat peminjaman untuk mahasiswa yang sedang login
 $user_id = $_SESSION['user_id'];
 
-$search = isset($_GET['search']) ? "%" . $conn->real_escape_string($_GET['search']) . "%" : "%";
-
-$sql = "SELECT r.id_riwayat, a.nama_auditorium, r.peminjam, r.tanggal_pinjam, r.waktu_mulai, r.waktu_selesai, r.foto_surat, r.status 
-        FROM riwayat_peminjaman r
-        INNER JOIN auditorium a ON r.id_auditorium = a.id_auditorium
-        WHERE r.id_user = ? AND a.nama_auditorium LIKE ?
-        ORDER BY r.tanggal_pinjam DESC, r.waktu_mulai DESC";
-
+$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) . '%' : '%';
+$sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.foto_surat, p.status
+        FROM peminjaman p
+        INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
+        WHERE a.nama_auditorium LIKE ? 
+        OR p.id_user LIKE ?
+        OR p.tanggal_pinjam LIKE ?
+        ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("is", $user_id, $search);
+$stmt->bind_param("sss", $search, $search, $search);
 $stmt->execute();
 $result = $stmt->get_result();
-
+date_default_timezone_set("Asia/Bangkok")
 ?>
 
 <!DOCTYPE html>
@@ -87,10 +86,9 @@ $result = $stmt->get_result();
             <div class="d-flex align-items-center">
                 <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
-            <form class="d-flex ms-auto" role="search" method="GET" action="dashboard.php">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+            <div class="d-flex align-items-center text-light">
+            <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
+            </div>
         </div>
     </nav>
     <!-- End Navbar -->
@@ -103,7 +101,7 @@ $result = $stmt->get_result();
                      if (isset($user['foto_profile']) && !empty($user['foto_profile'])) {
                         echo "<img src='" . $user['foto_profile'] . "' class='object-fit-cover profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      } else {
-                        echo "<img src='profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
+                        echo "<img src='asset/profil.png' class='profile-picture rounded-circle mb-3'style='width: 100px; height: 100px;' />";
                      }
                   ?>
                 <h5><?php echo htmlspecialchars($user['nama_lengkap']); ?></h5>
@@ -133,6 +131,7 @@ $result = $stmt->get_result();
                         <tr>
                             <th>No.</th>
                             <th>Auditorium</th>
+                            <th>Peminjam</th>
                             <th>Tanggal</th>
                             <th>Jam Mulai</th>
                             <th>Jam Selesai</th>
@@ -147,7 +146,8 @@ $result = $stmt->get_result();
                             <tr>
                                 <td><?php echo $i; ?></td>
                                 <td><?php echo htmlspecialchars($row['nama_auditorium']); ?></td>
-                                <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
+                                <td><?php echo htmlspecialchars($row['peminjam']); ?></td>
+                                <td><?php echo date('d-m-Y', strtotime($row['tanggal_pinjam'])); ?></td>
                                 <td><?php echo date('H:i', strtotime($row['waktu_mulai'])); ?></td>
                                 <td><?php echo date('H:i', strtotime($row['waktu_selesai'])); ?></td>
                                 <td>
@@ -161,7 +161,7 @@ $result = $stmt->get_result();
                                     ?>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $row['id']; ?>)">Hapus</button>
+                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $row['id_peminjaman']; ?>)">Hapus</button>
                                 </td>
                             </tr>
                             <?php 
@@ -170,7 +170,7 @@ $result = $stmt->get_result();
                     </tbody>
                 </table>
                 <?php if ($result->num_rows == 0): ?>
-                    <div class="alert alert-info mt-3">Belum ada riwayat peminjaman.</div>
+                    <div class="alert alert-info mt-3">Belum ada data peminjaman.</div>
                 <?php endif; ?>
             </div>
         </div>

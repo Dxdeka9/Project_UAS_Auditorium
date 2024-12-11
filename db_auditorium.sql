@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Des 2024 pada 10.23
+-- Waktu pembuatan: 10 Des 2024 pada 17.26
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -66,6 +66,14 @@ CREATE TABLE `peminjaman` (
   `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `peminjaman`
+--
+
+INSERT INTO `peminjaman` (`id_peminjaman`, `id_user`, `id_auditorium`, `peminjam`, `tanggal_pinjam`, `waktu_mulai`, `waktu_selesai`, `foto_surat`, `status`) VALUES
+(1, 5, 1, '', '2024-12-11', '07:00:00', '12:00:00', 'uploads/file_675834b1847060.47888435.pdf', 'pending'),
+(2, 5, 1, '', '2024-12-10', '22:53:00', '23:00:00', 'uploads/file_6758641410afb6.87556116.pdf', 'pending');
+
 -- --------------------------------------------------------
 
 --
@@ -108,7 +116,6 @@ CREATE TABLE `riwayat_peminjaman` (
   `tanggal_pinjam` date NOT NULL,
   `waktu_mulai` time NOT NULL,
   `waktu_selesai` time NOT NULL,
-  `keperluan` varchar(255) NOT NULL,
   `foto_surat` varchar(255) NOT NULL,
   `status` enum('approved','rejected') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -162,7 +169,7 @@ ALTER TABLE `auditorium`
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_peminjaman` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengguna`
@@ -174,7 +181,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT untuk tabel `riwayat_peminjaman`
 --
 ALTER TABLE `riwayat_peminjaman`
-  MODIFY `id_riwayat` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_riwayat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
