@@ -141,5 +141,6 @@
                 </form>
             </div>
         </div>
+        <script src="peminjaman.js"></script>
     </body>
 </html>
