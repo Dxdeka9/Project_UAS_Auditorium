@@ -136,7 +136,6 @@ date_default_timezone_set("Asia/Bangkok")
                             <th>Jam Mulai</th>
                             <th>Jam Selesai</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -159,9 +158,6 @@ date_default_timezone_set("Asia/Bangkok")
                                     ];
                                     echo $status[$row['status']];
                                     ?>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $row['id_peminjaman']; ?>)">Hapus</button>
                                 </td>
                             </tr>
                             <?php 
