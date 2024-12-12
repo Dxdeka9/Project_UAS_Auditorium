@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- End Sidebar -->
 
         <!-- Main Content -->
-        <div class="main-content col-md-9 p-4">
+        <div class="main-content col-md-10 p-4">
             <h2 class="mb-4">Edit Profil</h2>
 
             <!-- Notifikasi -->

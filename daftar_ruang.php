@@ -22,6 +22,17 @@ if ($result->num_rows > 0) {
     $error = "Data pengguna tidak ditemukan.";
     $user = null;
 }
+
+// Tangkap filter yang dipilih (jika ada)
+$filter_lokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : '';
+
+// Query untuk mendapatkan daftar auditorium berdasarkan filter lokasi
+$query_auditorium = "SELECT id_auditorium, nama_auditorium, lokasi_kampus FROM auditorium"; // Hapus koma tambahan
+if ($filter_lokasi != '') {
+    $query_auditorium .= " WHERE lokasi_kampus = '$filter_lokasi'"; // Pastikan kolom sesuai
+}
+$result_auditorium = $conn->query($query_auditorium);
+
 date_default_timezone_set("Asia/Bangkok")
 ?>
 
@@ -77,59 +88,66 @@ date_default_timezone_set("Asia/Bangkok")
         <!-- End Sidebar -->
 
         <!-- Main Content -->
-        <div class="col-md-9 p-4" id="ruang">
-                <h4>Ruang Auditorium</h4>
-                <br>
-                <!-- Tabs -->
-                <ul class="nav nav-pills mb-3">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">Semua</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pondok_labu.php" class="nav-link">UPN Pondok Labu</a>
-                    <li class="nav-item">
-                        <a href="limo.php" class="nav-link">UPN Limo</a>
-                </ul>
-                <!-- Room List -->
-                <div class="row">
-                    <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5>Auditorium Bhineka Tunggal Ika</h5>
-                                <p class="text-muted">UPN Pondok Labu</p>
-                                <a href="selengkapnya_BTI.php">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5>Auditorium Fakultas Kedokteran</h5>
-                                <p class="text-muted">UPN Pondok Labu</p>
-                                <a href="selengkapnya_FK.php">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5>Audiorium MERCE Kedokteran</h5>
-                                <p class="text-muted">UPN Limo</p>
-                                <a href="selengkapnya_MERCE.php">Lihat Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5>Auditorium Fakultas Teknik</h5>
-                                <p class="text-muted">UPN Limo</p>
-                               <a href="selengkapnya_FT.php">Lihat Selengkapnya</a>
+        <div class="col-md-10 p-4" id="ruang">
+            <h4>Ruang Auditorium</h4>
+            <br>
+            <!-- Tabs -->
+            <div class="nav nav-pills mb-3" role="group" aria-label="Filter Buttons">
+                <a href="daftar_ruang.php" class="nav-item nav-link active me-2 <?= $filter_lokasi == '' ? 'active' : '' ?>">Semua</a>
+                <a href="pondok_labu.php?lokasi=Kampus Pondok Labu" class="btn btn-secondary me-2 <?= $filter_lokasi == 'Kampus Pondok Labu' ? 'active' : '' ?>">Kampus Pondok Labu</a>
+                <a href="limo.php?lokasi=Kampus Limo" class="btn btn-secondary <?= $filter_lokasi == 'Kampus Limo' ? 'active' : '' ?>">Kampus Limo</a>
+            </div>
+            
+            <!-- Room List -->
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="asset/BTI_depan.jpg" alt="Card image cap">
+                        <div class="card-body mb-3">
+                            <h5 class="card-title text-center">Auditorium Bhineka Tunggal Ika</h5>
+                            <p class="card-text text-center">Kampus Pondok Labu</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="selengkapnya_BTI.php" class="btn btn-primary">Selengkapnya &raquo;</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-md-3 mb-3">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="asset/FK.jpg" alt="Card image cap">
+                        <div class="card-body mb-3">
+                            <h5 class="card-title text-center">Auditorium Dr. Wahidin Sudiro Husodo</h5>
+                            <p class="card-text text-center">Kampus Pondok Labu</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="selengkapnya_BTI.php" class="btn btn-primary">Selengkapnya &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="asset/Merce.jpg" alt="Card image cap">
+                        <div class="card-body mb-3">
+                            <h5 class="card-title text-center">Auditorium MERCE Kedokteran</h5>
+                            <p class="card-text text-center">Kampus Limo</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="selengkapnya_FK.php" class="btn btn-primary">Selengkapnya &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card" style="width: 18rem; height: 23rem;">
+                        <img class="card-img-top" src="asset/Tanah_Airku.jpg" alt="Card image cap">
+                        <div class="card-body mb-3">
+                            <h5 class="card-title text-center">Auditorium Tanah Airku</h5>
+                            <p class="card-text text-center">Kampus Limo</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="selengkapnya_FK.php" class="btn btn-primary">Selengkapnya &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
