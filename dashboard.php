@@ -86,10 +86,9 @@ date_default_timezone_set("Asia/Bangkok")
             <div class="d-flex align-items-center">
                 <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
-            <form class="d-flex ms-auto" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+            <div class="d-flex align-items-center text-light">
+                <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
+            </div>
         </div>
     </nav>
     <!-- End Navbar -->
@@ -127,6 +126,10 @@ date_default_timezone_set("Asia/Bangkok")
         <div class="main-content flex-grow-1 p-4">
             <h3 class="mb-4">Daftar Peminjaman Auditorium</h3>
             <div class="table-responsive shadow-sm p-3 mb-5">
+                <form class="d-flex ms-auto mb-2" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
                 <table class="table table-bordered table-hover table-sm">
                     <thead class="table-dark">
                         <tr>
