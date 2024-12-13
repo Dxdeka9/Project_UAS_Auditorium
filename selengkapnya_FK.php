@@ -76,21 +76,35 @@ if ($result->num_rows > 0) {
         <!-- End Sidebar -->
 
             <!-- Main Content -->
-             <div class="col-md-9">
+             <div class="col-md-9 shadow-sm">
                 <div class="container py-4 t" style="text-align: left; padding: 2rem;">
-                    <h2>Auditorium Dr. Wahidin Sudiro Husodo</h2>
-                    <br>
-                    <div style="width: 500px; margin: 0 auto;">
-                        <img src="https://fk.upnvj.ac.id/wp-content/uploads/2022/04/IMG_2038-scaled.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded" style="position:left;">
-                    </div>
-                    <div class="details text-left" style="padding:2rem;text-align:justify;">
-                        <p><strong><br>Lokasi:</strong> Lantai 3, Gedung Dr.Wahidin S.H., UPN Pondok Labu</p>
-                        <p><strong>Kapasitas:</strong> 200 Orang</p>
-                        <p><strong>Jam Operasional:</strong> 07.00 WIB - 16.00 WIB</p>
-                        <p>
-                            Auditorium Dr. Wahidin Sudiro Husodo merupakan salah satu fasilitas utama di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) "Veteran" Jakarta, Kampus Pondok Labu. Dirancang sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, pelatihan, rapat resmi, hingga acara kemahasiswaan. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menyediakan lingkungan yang ideal untuk penyelenggaraan acara yang membutuhkan ruang yang luas, representatif, dan nyaman. Auditorium ini mencerminkan nilai profesionalisme dan semangat pendidikan, menjadikannya tempat yang tepat untuk berbagai kegiatan kampus.
-                        </p>
-                    </div>
+                    <?php
+            $sql = "SELECT * FROM auditorium WHERE nama_auditorium = 'Auditorium Dr. Wahidin Sudiro Husodo'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Output data
+                while($row = $result->fetch_assoc()) {
+                    if ($row["nama_auditorium"] == "Auditorium Dr. Wahidin Sudiro Husodo") {
+                        echo "<h2>" . $row["nama_auditorium"] . "</h2>";
+                        echo "<div style='width: 500px; margin: 0 auto;'>";
+                        echo "<img src='" . $row["foto_auditorium"] . "' alt='Auditorium Dr. Wahidin Sudiro Husodo' class='img-fluid rounded' style='position:left;'>";
+                        echo "</div>";
+                        echo "<div class='details text-left' style='padding:2rem;text-align:justify;'>";
+                        echo "<p><strong>Lokasi:</strong> " . $row["lokasi_gedung"] . "</p>";
+                        echo "<p><strong>Kapasitas:</strong> " . $row["kapasitas"] . " Orang</p>";
+                        echo "<p><strong>Jam Operasional:</strong> " . $row["operasional"] . "</p>";
+                        echo "<p>" . $row["deskripsi"] . "</p>";
+                        echo "</div>";
+                        echo "<div style='text-align:right;'>";
+                        echo "<a href='daftar_ruang.php' class='btn btn-secondary mb-3'>Kembali</a>";
+                        echo "</div>";
+                    }
+                }
+            } else {
+                echo "Tidak ada data.";
+            }
+            ?>
                 </div>
             </div>
         </div>
