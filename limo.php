@@ -104,7 +104,7 @@ if ($result->num_rows > 0) {
                         <div class="card" style="width: 18rem; height: 23rem;">
                             <img class="card-img-top" src="asset/Tanah_Airku.jpg" alt="Card image cap">
                             <div class="card-body mb-3">
-                                <h5 class="card-title text-center">Auditorium Tanah Airku</h5>
+                                <h5 class="card-title text-center">Auditorium <br>Tanah Airku</h5>
                                 <p class="card-text text-center">Kampus Limo</p>
                                 <div class="d-flex justify-content-center">
                                     <a href="selengkapnya_FK.php" class="btn btn-primary">Selengkapnya &raquo;</a>
