@@ -68,7 +68,7 @@ date_default_timezone_set("Asia/Bangkok");
             <div class="d-flex align-items-center">
                 <img src="asset/logo_admin.png" alt="Logo Admin UPNVJ" style="width: 190px; height: auto;">
             </div>
-            <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;"><b>Peminjaman Auditorium UPNVJ</b></h5>
+            <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;"><b>Daftar Auditorium</b></h5>
             <div class="d-flex align-items-center">
                 <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
             </div>
