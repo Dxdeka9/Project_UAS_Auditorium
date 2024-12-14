@@ -145,7 +145,7 @@
                                 endwhile; ?>
                             </tbody>
                         </table>
-                    <?php if ($result->num_rows == 0): ?>
+                    <?php if ($result2->num_rows == 0): ?>
                         <div class="alert alert-info mt-3">Belum ada data peminjaman.</div>
                     <?php endif; ?>
                 </div>
