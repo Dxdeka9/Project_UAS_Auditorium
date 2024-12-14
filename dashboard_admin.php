@@ -119,7 +119,7 @@
                                             <a href="<?php echo htmlspecialchars($row['foto_surat']); ?>" target="_blank">
                                                 <?php if (strpos($row['foto_surat'], '.pdf') !== false): ?> <!-- strpos() untuk memeriksa apakah nama file mengandung .pdf Jika ya, tampilkan tombol "Lihat Surat".-->
                                                     <!-- Jika file adalah PDF -->
-                                                    <button class="btn btn-primary">Lihat Surat</button>
+                                                    <button class="btn btn-primary">Surat</button>
                                                 <?php else: ?>
                                                     <!-- Jika file adalah gambar -->
                                                     <img src="<?php echo htmlspecialchars($row['foto_surat']); ?>" alt="Surat" style="width: 120px; height: auto;">
