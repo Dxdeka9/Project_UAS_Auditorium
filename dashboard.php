@@ -23,23 +23,6 @@ if ($result->num_rows > 0) {
     $user = null;
 }
 
-// Jika ada request untuk menghapus data
-if (isset($_GET['delete_id'])) {
-    $delete_id = intval($_GET['delete_id']);
-    $user_id = $_SESSION['user_id'];
-
-    // Hapus data hanya jika milik pengguna yang login
-    $stmt_delete = $conn->prepare("DELETE FROM peminjaman WHERE id_peminjaman = ? AND id_user = ?");
-    $stmt_delete->bind_param("ii", $delete_id, $user_id);
-
-    if ($stmt_delete->execute()) {
-        $success_message = "Data berhasil dihapus.";
-    } else {
-        $error_message = "Terjadi kesalahan saat menghapus data.";
-    }
-    $stmt_delete->close();
-}
-
 // Ambil data riwayat peminjaman untuk mahasiswa yang sedang login
 $search = isset($_GET['search']) ? '%' . $conn->real_escape_string($_GET['search']) . '%' : '%';
 $sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.foto_surat, p.status
@@ -69,14 +52,8 @@ date_default_timezone_set("Asia/Bangkok")
             overflow-x: auto;
         }
     </style>
-    <script>
-        function confirmDelete(id) {
-            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                window.location.href = 'dashboard.php?delete_id=' + id;
-            }
-        }
-    </script>
 </head>
+
 <body class="d-flex flex-column min-vh-100 bg-light">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5d9c59;">
@@ -128,7 +105,7 @@ date_default_timezone_set("Asia/Bangkok")
                     <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
-                <table class="table table-bordered table-hover table-sm">
+                <table class="table table-bordered table-striped table-hover table-sm">
                     <thead class="table-dark">
                         <tr>
                             <th>No.</th>

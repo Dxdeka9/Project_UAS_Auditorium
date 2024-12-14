@@ -25,6 +25,20 @@
                 throw new Exception("Data input tidak valid!");
             }
 
+            // Validasi jadwal bentrok
+            $sql = "SELECT 1 FROM peminjaman 
+                    WHERE id_auditorium = ? AND tanggal_pinjam = ? AND status != 'declined' 
+                    AND ((waktu_mulai BETWEEN ? AND ?) OR (waktu_selesai BETWEEN ? AND ?) 
+                        OR (waktu_mulai <= ? AND waktu_selesai >= ?))";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("isssssss", $id_auditorium, $tanggal_pinjam, $waktu_mulai, $waktu_selesai, $waktu_mulai, $waktu_selesai, $waktu_mulai, $waktu_selesai);
+            $stmt->execute();
+
+            if ($stmt->get_result()->num_rows > 0) {
+                throw new Exception("Jadwal bentrok!");
+            }
+            $stmt->close();
+
             // Validasi dan proses upload file
             if (!isset($_FILES['file']) || $_FILES['file']['error'] != UPLOAD_ERR_OK) {
                 throw new Exception("File lampiran wajib diunggah!");
@@ -49,21 +63,7 @@
             if (!move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
                 throw new Exception("Gagal mengunggah file!");
             }
-
-            // Validasi jadwal bentrok
-            $sql = "SELECT 1 FROM peminjaman 
-                    WHERE id_auditorium = ? AND tanggal_pinjam = ? AND status != 'declined' 
-                    AND ((waktu_mulai BETWEEN ? AND ?) OR (waktu_selesai BETWEEN ? AND ?) 
-                        OR (waktu_mulai <= ? AND waktu_selesai >= ?))";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("isssssss", $id_auditorium, $tanggal_pinjam, $waktu_mulai, $waktu_selesai, $waktu_mulai, $waktu_selesai, $waktu_mulai, $waktu_selesai);
-            $stmt->execute();
-
-            if ($stmt->get_result()->num_rows > 0) {
-                throw new Exception("Jadwal bentrok!");
-            }
-            $stmt->close();
-
+            
             // Simpan data ke database
             $stmt = $conn->prepare(
                 "INSERT INTO peminjaman (id_user, id_auditorium, tanggal_pinjam, waktu_mulai, waktu_selesai, peminjam, foto_surat, status) 
