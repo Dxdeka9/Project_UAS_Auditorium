@@ -140,8 +140,8 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="approve_peminjaman.php?id=<?php echo $row['id_peminjaman']; ?>" class="btn btn-success">Approve</a>
-                                        <a href="reject_peminjaman.php?id=<?php echo $row['id_peminjaman']; ?>" class="btn btn-danger">Reject</a>
+                                        <a href="verifikasi_peminjaman.php?id=<?= $row['id_peminjaman']; ?>&action=approved" class="btn btn-success">Approve</a>
+                                        <a href="verifikasi_peminjaman.php?id=<?= $row['id_peminjaman']; ?>&action=rejected" class="btn btn-danger">Reject</a>
                                     </td>
                                 </tr>
                             <?php 
