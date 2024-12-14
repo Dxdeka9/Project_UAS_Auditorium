@@ -41,14 +41,12 @@ if (isset($_GET['delete_id'])) {
 }
 
 // Ambil data riwayat peminjaman untuk mahasiswa yang sedang login
-$user_id = $_SESSION['user_id'];
-
-$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) . '%' : '%';
+$search = isset($_GET['search']) ? '%' . $conn->real_escape_string($_GET['search']) . '%' : '%';
 $sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.foto_surat, p.status
         FROM peminjaman p
         INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
         WHERE a.nama_auditorium LIKE ? 
-        OR p.id_user LIKE ?
+        OR p.peminjam LIKE ?
         OR p.tanggal_pinjam LIKE ?
         ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
 $stmt = $conn->prepare($sql);
@@ -127,7 +125,7 @@ date_default_timezone_set("Asia/Bangkok")
             <h3 class="mb-4">Daftar Peminjaman Auditorium</h3>
             <div class="table-responsive shadow-sm p-3 mb-5">
                 <form class="d-flex ms-auto mb-2" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
                 <table class="table table-bordered table-hover table-sm">
@@ -170,7 +168,7 @@ date_default_timezone_set("Asia/Bangkok")
                     </tbody>
                 </table>
                 <?php if ($result->num_rows == 0): ?>
-                    <div class="alert alert-info mt-3">Belum ada data peminjaman.</div>
+                    <div class="alert alert-info mt-3">Tidak ada hasil pencarian untuk kata kunci tersebut.</div>
                 <?php endif; ?>
             </div>
         </div>
