@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2024 at 09:09 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Waktu pembuatan: 14 Des 2024 pada 21.56
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auditorium`
+-- Struktur dari tabel `auditorium`
 --
 
 CREATE TABLE `auditorium` (
@@ -39,7 +39,7 @@ CREATE TABLE `auditorium` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `auditorium`
+-- Dumping data untuk tabel `auditorium`
 --
 
 INSERT INTO `auditorium` (`id_auditorium`, `nama_auditorium`, `lokasi_kampus`, `lokasi_gedung`, `kapasitas`, `operasional`, `deskripsi`, `foto_auditorium`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `auditorium` (`id_auditorium`, `nama_auditorium`, `lokasi_kampus`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `peminjaman`
+-- Struktur dari tabel `peminjaman`
 --
 
 CREATE TABLE `peminjaman` (
@@ -69,7 +69,7 @@ CREATE TABLE `peminjaman` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengguna`
+-- Struktur dari tabel `pengguna`
 --
 
 CREATE TABLE `pengguna` (
@@ -85,7 +85,7 @@ CREATE TABLE `pengguna` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `pengguna`
+-- Dumping data untuk tabel `pengguna`
 --
 
 INSERT INTO `pengguna` (`id_user`, `nama_lengkap`, `email`, `password`, `nim`, `program_studi`, `no_telp`, `foto_profile`, `role`) VALUES
@@ -96,7 +96,7 @@ INSERT INTO `pengguna` (`id_user`, `nama_lengkap`, `email`, `password`, `nim`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `riwayat_peminjaman`
+-- Struktur dari tabel `riwayat_peminjaman`
 --
 
 CREATE TABLE `riwayat_peminjaman` (
@@ -113,27 +113,17 @@ CREATE TABLE `riwayat_peminjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `riwayat_peminjaman`
---
-
-INSERT INTO `riwayat_peminjaman` (`id_riwayat`, `id_peminjaman`, `id_user`, `id_auditorium`, `peminjam`, `tanggal_pinjam`, `waktu_mulai`, `waktu_selesai`, `foto_surat`, `status`) VALUES
-(109, 1, 5, 1, '', '2024-12-11', '07:00:00', '12:00:00', 'uploads/file_675834b1847060.47888435.pdf', 'approved'),
-(110, 4, 5, 2, 'BEM FIK', '2024-12-13', '12:00:00', '16:00:00', 'surat/file_675ae5f60521f1.14891119.pdf', 'approved'),
-(111, 5, 5, 3, 'HIMA Sistem Informasi', '2024-12-14', '07:00:00', '12:00:00', 'surat/file_675ae63f9e4869.95462758.pdf', 'approved'),
-(112, 6, 5, 3, 'Sportavest', '2024-12-15', '07:00:00', '12:00:00', 'surat/file_675d25d90e17b5.86843299.pdf', 'rejected');
-
---
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `auditorium`
+-- Indeks untuk tabel `auditorium`
 --
 ALTER TABLE `auditorium`
   ADD PRIMARY KEY (`id_auditorium`);
 
 --
--- Indexes for table `peminjaman`
+-- Indeks untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`id_peminjaman`),
@@ -141,7 +131,7 @@ ALTER TABLE `peminjaman`
   ADD KEY `idAuditorium_fk` (`id_auditorium`) USING BTREE;
 
 --
--- Indexes for table `pengguna`
+-- Indeks untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_user`),
@@ -149,7 +139,7 @@ ALTER TABLE `pengguna`
   ADD UNIQUE KEY `nim` (`nim`);
 
 --
--- Indexes for table `riwayat_peminjaman`
+-- Indeks untuk tabel `riwayat_peminjaman`
 --
 ALTER TABLE `riwayat_peminjaman`
   ADD PRIMARY KEY (`id_riwayat`),
@@ -158,46 +148,46 @@ ALTER TABLE `riwayat_peminjaman`
   ADD KEY `idauditorium` (`id_auditorium`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `auditorium`
+-- AUTO_INCREMENT untuk tabel `auditorium`
 --
 ALTER TABLE `auditorium`
   MODIFY `id_auditorium` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `peminjaman`
+-- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
   MODIFY `id_peminjaman` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `pengguna`
+-- AUTO_INCREMENT untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
   MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `riwayat_peminjaman`
+-- AUTO_INCREMENT untuk tabel `riwayat_peminjaman`
 --
 ALTER TABLE `riwayat_peminjaman`
   MODIFY `id_riwayat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `peminjaman`
+-- Ketidakleluasaan untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD CONSTRAINT `idauditorium_fk` FOREIGN KEY (`id_auditorium`) REFERENCES `auditorium` (`id_auditorium`),
   ADD CONSTRAINT `iduser_fk` FOREIGN KEY (`id_user`) REFERENCES `pengguna` (`id_user`);
 
 --
--- Constraints for table `riwayat_peminjaman`
+-- Ketidakleluasaan untuk tabel `riwayat_peminjaman`
 --
 ALTER TABLE `riwayat_peminjaman`
   ADD CONSTRAINT `idauditorium` FOREIGN KEY (`id_auditorium`) REFERENCES `auditorium` (`id_auditorium`),
@@ -205,7 +195,7 @@ ALTER TABLE `riwayat_peminjaman`
 
 DELIMITER $$
 --
--- Events
+-- Event
 --
 CREATE DEFINER=`root`@`localhost` EVENT `InsertDataToRiwayat` ON SCHEDULE EVERY 1 MINUTE STARTS '2024-12-10 22:41:09' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
     -- Memindahkan data dari tabel 'peminjaman' ke tabel 'riwayat_peminjaman'
