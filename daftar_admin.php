@@ -103,10 +103,20 @@ date_default_timezone_set("Asia/Bangkok");
             <div class="container mt-4">
                 <!-- Tombol Filter -->
                 <div class="btn-group mb-3" role="group" aria-label="Filter Buttons">
-                    <a href="daftar_admin.php" class="btn btn-danger <?= $filter_lokasi == '' ? 'active' : '' ?>">Semua</a>
-                    <a href="daftar_admin.php?lokasi=Kampus Pondok Labu" class="btn btn-secondary <?= $filter_lokasi == 'Kampus ondok Labu' ? 'active' : '' ?>">Kampus Pondok Labu</a>
-                    <a href="daftar_admin.php?lokasi=Kampus Limo" class="btn btn-secondary <?= $filter_lokasi == 'Kampus Limo' ? 'active' : '' ?>">Kampus Limo</a>
-                </div>
+
+                <!-- Tombol Semua -->
+                <a href="daftar_admin.php" 
+                class="btn <?= $filter_lokasi == '' ? 'btn-danger active' : 'btn-secondary' ?>">Semua</a>
+       
+                <!-- Tombol Kampus Pondok Labu -->
+                <a href="daftar_admin.php?lokasi=Kampus Pondok Labu" 
+                class="btn <?= $filter_lokasi == 'Kampus Pondok Labu' ? 'btn-danger active' : 'btn-secondary' ?>">Kampus Pondok Labu</a>
+       
+                <!-- Tombol Kampus Limo -->
+                <a href="daftar_admin.php?lokasi=Kampus Limo" 
+                class="btn <?= $filter_lokasi == 'Kampus Limo' ? 'btn-danger active' : 'btn-secondary' ?>">Kampus Limo</a>
+            </div>
+
 
                 <!-- Daftar Auditorium -->
                 <div class="row">
