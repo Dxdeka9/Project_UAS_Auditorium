@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Des 2024 pada 17.26
+-- Waktu pembuatan: 14 Des 2024 pada 15.47
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -43,10 +43,10 @@ CREATE TABLE `auditorium` (
 --
 
 INSERT INTO `auditorium` (`id_auditorium`, `nama_auditorium`, `lokasi_kampus`, `lokasi_gedung`, `kapasitas`, `operasional`, `deskripsi`, `foto_auditorium`) VALUES
-(1, 'Auditorium Bhineka Tunggal Ika', 'Kampus Pondok Labu', 'Lantai 4, Gedung Rektorat, UPN Kampus Pondok Labu', '400 Orang', 'Senin-Jumat pukul 07.00-16.00', '\r\nAuditorium Bhineka Tunggal Ika merupakan salah satu fasilitas utama yang dimiliki oleh Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta. Sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, rapat besar, pelatihan, acara kemahasiswaan, hingga pertemuan formal tingkat universitas. Dengan kapasitas dan fasilitas modern, Auditorium Bhineka Tunggal Ika didesain untuk mendukung penyelenggaraan acara yang membutuhkan ruang luas dan representatif. Auditorium ini mencerminkan nilai-nilai kebhinekaan dan persatuan, sesuai dengan nama yang diusungnya, menjadikannya simbol penting bagi aktivitas akademik dan non-akademik di lingkungan kampus.', ''),
-(2, 'Auditorium Dr. Wahidin Sudiro Husodo', 'Kampus Pondok Labu', 'Lantai 3, Gedung Dr.Wahidin S.H., UPN Kampus Pondok Labu', '200 Orang', 'Senin-Jumat pukul 07.00 WIB - 16.00 WIB', 'Auditorium Dr. Wahidin Sudiro Husodo merupakan salah satu fasilitas utama di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta, Kampus Pondok Labu. Dirancang sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, pelatihan, rapat resmi, hingga acara kemahasiswaan. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menyediakan lingkungan yang ideal untuk penyelenggaraan acara yang membutuhkan ruang yang luas, representatif, dan nyaman. Auditorium ini mencerminkan nilai profesionalisme dan semangat pendidikan, menjadikannya tempat yang tepat untuk berbagai kegiatan kampus.', ''),
-(3, 'Auditorium MERCE Kedokteran', 'Kampus Limo', 'Lantai 4, Gedung Fakultas Kedokteran, UPN Kampus Limo', '160 Orang', 'Senin-Jumat pukul 07.00 WIB - 16.00 WIB', 'Auditorium Merce adalah salah satu fasilitas unggulan di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta, Kampus Limo. Auditorium ini dirancang untuk mendukung berbagai kegiatan, seperti rapat formal, pelatihan, seminar, dan acara mahasiswa. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menjadi tempat yang cocok untuk kegiatan yang membutuhkan suasana profesional dan nyaman. Auditorium Merce mencerminkan semangat kolaborasi dan inovasi di lingkungan kampus, sehingga menjadi lokasi yang cocok untuk kegiatan akademik maupun non-akademik.', ''),
-(4, 'Auditorium Tanah Airku', 'Kampus Limo', 'Lantai 8, Gedung Fakultas Teknik, UPN Kampus Limo', '400 Orang', 'Senin-Jumat pukul 07.00 WIB - 16.00 WIB', 'Auditorium Tanah Airku merupakan fasilitas unggulan Fakultas Teknik Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta, Kampus Limo. Dengan kapasitas besar yang mampu menampung hingga 400 orang, auditorium ini dirancang untuk mendukung berbagai acara berskala besar, seperti seminar nasional, konferensi, pelatihan, hingga acara kebudayaan. Fasilitas modern yang tersedia menjadikannya tempat yang strategis untuk berbagai kegiatan yang membutuhkan ruang yang luas dan representatif. Auditorium Tanah Airku mencerminkan semangat kebangsaan dan inovasi, menjadikannya tempat yang pas untuk mendukung berbagai kegiatan di lingkungan kampus.', '');
+(1, 'Auditorium Bhineka Tunggal Ika', 'Kampus Pondok Labu', 'Lantai 4, Gedung Rektorat, UPN Kampus Pondok Labu', '400 Orang', 'Senin-Jumat pukul 07.00-16.00', '\r\nAuditorium Bhineka Tunggal Ika merupakan salah satu fasilitas utama yang dimiliki oleh Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta. Sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, rapat besar, pelatihan, acara kemahasiswaan, hingga pertemuan formal tingkat universitas. Dengan kapasitas dan fasilitas modern, Auditorium Bhineka Tunggal Ika didesain untuk mendukung penyelenggaraan acara yang membutuhkan ruang luas dan representatif. Auditorium ini mencerminkan nilai-nilai kebhinekaan dan persatuan, sesuai dengan nama yang diusungnya, menjadikannya simbol penting bagi aktivitas akademik dan non-akademik di lingkungan kampus.', 'asset/BTI.jpg'),
+(2, 'Auditorium Dr. Wahidin Sudiro Husodo', 'Kampus Pondok Labu', 'Lantai 3, Gedung Dr.Wahidin S.H., UPN Kampus Pondok Labu', '200 Orang', 'Senin-Jumat pukul 07.00 WIB - 16.00 WIB', 'Auditorium Dr. Wahidin Sudiro Husodo merupakan salah satu fasilitas utama di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta, Kampus Pondok Labu. Dirancang sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, pelatihan, rapat resmi, hingga acara kemahasiswaan. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menyediakan lingkungan yang ideal untuk penyelenggaraan acara yang membutuhkan ruang yang luas, representatif, dan nyaman. Auditorium ini mencerminkan nilai profesionalisme dan semangat pendidikan, menjadikannya tempat yang tepat untuk berbagai kegiatan kampus.', 'asset/FK.jpg'),
+(3, 'Auditorium MERCE Kedokteran', 'Kampus Limo', 'Lantai 4, Gedung Fakultas Kedokteran, UPN Kampus Limo', '160 Orang', 'Senin-Jumat pukul 07.00 WIB - 16.00 WIB', 'Auditorium Merce adalah salah satu fasilitas unggulan di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta, Kampus Limo. Auditorium ini dirancang untuk mendukung berbagai kegiatan, seperti rapat formal, pelatihan, seminar, dan acara mahasiswa. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menjadi tempat yang cocok untuk kegiatan yang membutuhkan suasana profesional dan nyaman. Auditorium Merce mencerminkan semangat kolaborasi dan inovasi di lingkungan kampus, sehingga menjadi lokasi yang cocok untuk kegiatan akademik maupun non-akademik.', 'asset/MERCE.jpg'),
+(4, 'Auditorium Tanah Airku', 'Kampus Limo', 'Lantai 8, Gedung Fakultas Teknik, UPN Kampus Limo', '400 Orang', 'Senin-Jumat pukul 07.00 WIB - 16.00 WIB', 'Auditorium Tanah Airku merupakan fasilitas unggulan Fakultas Teknik Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta, Kampus Limo. Dengan kapasitas besar yang mampu menampung hingga 400 orang, auditorium ini dirancang untuk mendukung berbagai acara berskala besar, seperti seminar nasional, konferensi, pelatihan, hingga acara kebudayaan. Fasilitas modern yang tersedia menjadikannya tempat yang strategis untuk berbagai kegiatan yang membutuhkan ruang yang luas dan representatif. Auditorium Tanah Airku mencerminkan semangat kebangsaan dan inovasi, menjadikannya tempat yang pas untuk mendukung berbagai kegiatan di lingkungan kampus.', 'asset/Tanah_Airku.jpg');
 
 -- --------------------------------------------------------
 
@@ -71,8 +71,11 @@ CREATE TABLE `peminjaman` (
 --
 
 INSERT INTO `peminjaman` (`id_peminjaman`, `id_user`, `id_auditorium`, `peminjam`, `tanggal_pinjam`, `waktu_mulai`, `waktu_selesai`, `foto_surat`, `status`) VALUES
-(1, 5, 1, '', '2024-12-11', '07:00:00', '12:00:00', 'uploads/file_675834b1847060.47888435.pdf', 'pending'),
-(2, 5, 1, '', '2024-12-10', '22:53:00', '23:00:00', 'uploads/file_6758641410afb6.87556116.pdf', 'pending');
+(1, 5, 1, '', '2024-12-11', '07:00:00', '12:00:00', 'uploads/file_675834b1847060.47888435.pdf', 'rejected'),
+(3, 5, 1, 'Sportavest', '2024-12-14', '07:00:00', '16:00:00', 'surat/file_6759dad81a2705.60076760.pdf', 'approved'),
+(4, 5, 2, 'BEM FIK', '2024-12-13', '12:00:00', '16:00:00', 'surat/file_675ae5f60521f1.14891119.pdf', 'approved'),
+(5, 5, 3, 'HIMA Sistem Informasi', '2024-12-14', '07:00:00', '12:00:00', 'surat/file_675ae63f9e4869.95462758.pdf', 'rejected'),
+(6, 5, 3, 'Sportavest', '2024-12-15', '07:00:00', '12:00:00', 'surat/file_675d25d90e17b5.86843299.pdf', 'rejected');
 
 -- --------------------------------------------------------
 
@@ -169,7 +172,7 @@ ALTER TABLE `auditorium`
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_peminjaman` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengguna`
@@ -181,7 +184,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT untuk tabel `riwayat_peminjaman`
 --
 ALTER TABLE `riwayat_peminjaman`
-  MODIFY `id_riwayat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id_riwayat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
