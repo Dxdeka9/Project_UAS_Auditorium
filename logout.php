@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    session_destroy();
+    session_start(); // untuk mengakses data sesi
+    session_destroy(); // untuk menghapus sesi yang tersimpan
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +13,8 @@
 <body>
     <script src="cookie.js"></script>
     <script>
-        deleteCookie('user_email');
-        deleteCookie('user_id');
+        deleteCookie('user_email'); //untuk menghapus cookie dengan nama user_email
+        deleteCookie('user_id'); //untuk menghapus cookie dengan nama user_id
         window.location = 'index.php';
     </script>
 </body>
