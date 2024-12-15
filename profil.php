@@ -77,7 +77,7 @@ date_default_timezone_set("Asia/Bangkok")
         <!-- End Sidebar -->
 
         <!-- Main Content -->
-        <div class="main-content col-md-9 p-4">
+        <div class="main-content col-md-10 p-4">
             <h2 class="mb-4">Profil Mahasiswa</h2>
             <?php if (!empty($error)): ?>
                 <div class="alert alert-danger"><?php echo $error; ?></div>

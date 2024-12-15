@@ -11,7 +11,7 @@ function getCookie(nama) {
     const cookies = document.cookie.split(';'); // mengambil semua kuki ke bentuk string
     for (let i = 0; i < cookies.length; i++) { // mencari kuki 
         const c = cookies[i].trim();
-        if (c.indexOf(nama + "=") === 0) { // cek nama kuki apakah sesuai
+        if (c.indexOf(nama + "=") === 0) { // cek nama kuki yang sesuai
             return c.substring((nama + "=").length, c.length); // nilai kuki
         }
     }

@@ -76,23 +76,35 @@ if ($result->num_rows > 0) {
         <!-- End Sidebar -->
 
             <!-- Main Content -->
-            <div class="col-md-9">
+            <div class="col-md-9 shadow-sm">
                 <div class="container py-4 t" style="text-align: left; padding: 2rem;">
-                    <h2>Auditorium Tanah Airku</h2>
-                    <br>
-                    <div style="width: 500px; margin: 0 auto;">
-                        <img src="https://ft.upnvj.ac.id/wp-content/uploads/2021/03/IMG_1000-2048x1365.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded" style="position:left;">
-                    </div>
-                    <div class="details text-left" style="padding:2rem;text-align:justify;">
-                        <p><strong><br>Lokasi:</strong> Lantai 8, Gedung Fakultas Teknik, UPN Limo</p>
-                        <p><strong>Kapasitas:</strong> 400 Orang</p>
-                        <p><strong>Jam Operasional:</strong> 07.00 WIB - 16.00 WIB</p>
-                        <p>
-                            Auditorium Tanah Airku merupakan fasilitas unggulan Fakultas Teknik Universitas Pembangunan Nasional (UPN) "Veteran" Jakarta, Kampus Limo. Dengan kapasitas besar yang mampu menampung hingga 400 orang, auditorium ini dirancang untuk mendukung berbagai acara berskala besar, seperti seminar nasional, konferensi, pelatihan, hingga acara kebudayaan. Fasilitas modern yang tersedia menjadikannya tempat yang strategis untuk berbagai kegiatan yang membutuhkan ruang yang luas dan representatif. Auditorium Tanah Airku mencerminkan semangat kebangsaan dan inovasi, menjadikannya tempat yang pas untuk mendukung berbagai kegiatan di lingkungan kampus.
-                        </p>
-                    </div>
-                    <div style="text-align:justify;">
-                    </div>
+                    <?php
+            $sql = "SELECT * FROM auditorium WHERE nama_auditorium = 'Auditorium Tanah Airku'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Output data
+                while($row = $result->fetch_assoc()) {
+                    if ($row["nama_auditorium"] == "Auditorium Tanah Airku") {
+                        echo "<h2>" . $row["nama_auditorium"] . "</h2>";
+                        echo "<div style='width: 500px; margin: 0 auto;'>";
+                        echo "<img src='" . $row["foto_auditorium"] . "' alt='Auditorium Tanah Airku' class='img-fluid rounded' style='position:left;'>";
+                        echo "</div>";
+                        echo "<div class='details text-left' style='padding:2rem;text-align:justify;'>";
+                        echo "<p><strong>Lokasi:</strong> " . $row["lokasi_gedung"] . "</p>";
+                        echo "<p><strong>Kapasitas:</strong> " . $row["kapasitas"] . " Orang</p>";
+                        echo "<p><strong>Jam Operasional:</strong> " . $row["operasional"] . "</p>";
+                        echo "<p>" . $row["deskripsi"] . "</p>";
+                        echo "</div>";
+                        echo "<div style='text-align:right;'>";
+                        echo "<a href='daftar_ruang.php' class='btn btn-secondary mb-3'>Kembali</a>";
+                        echo "</div>";
+                    }
+                }
+            } else {
+                echo "Tidak ada data.";
+            }
+            ?>
                 </div>
             </div>
         </div>

@@ -57,7 +57,7 @@ date_default_timezone_set("Asia/Bangkok");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="daftar&riwayat.css">
+    <link rel="stylesheet" href="styling/daftar&riwayat.css">
     <title>Daftar Auditorium - Auditorium UPNVJ</title>
 </head>
 
@@ -68,7 +68,7 @@ date_default_timezone_set("Asia/Bangkok");
             <div class="d-flex align-items-center">
                 <img src="asset/logo_admin.png" alt="Logo Admin UPNVJ" style="width: 190px; height: auto;">
             </div>
-            <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;"><b>Peminjaman Auditorium UPNVJ</b></h5>
+            <h5 class="text-center flex-grow-1 mb-0" style="font-size: 20px;"><b>Daftar Auditorium</b></h5>
             <div class="d-flex align-items-center">
                 <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
             </div>
@@ -103,10 +103,20 @@ date_default_timezone_set("Asia/Bangkok");
             <div class="container mt-4">
                 <!-- Tombol Filter -->
                 <div class="btn-group mb-3" role="group" aria-label="Filter Buttons">
-                    <a href="daftar_admin.php" class="btn btn-danger <?= $filter_lokasi == '' ? 'active' : '' ?>">Semua</a>
-                    <a href="daftar_admin.php?lokasi=Kampus Pondok Labu" class="btn btn-secondary <?= $filter_lokasi == 'Kampus ondok Labu' ? 'active' : '' ?>">Kampus Pondok Labu</a>
-                    <a href="daftar_admin.php?lokasi=Kampus Limo" class="btn btn-secondary <?= $filter_lokasi == 'Kampus Limo' ? 'active' : '' ?>">Kampus Limo</a>
-                </div>
+
+                <!-- Tombol Semua -->
+                <a href="daftar_admin.php" 
+                class="btn <?= $filter_lokasi == '' ? 'btn-danger active' : 'btn-secondary' ?>">Semua</a>
+       
+                <!-- Tombol Kampus Pondok Labu -->
+                <a href="daftar_admin.php?lokasi=Kampus Pondok Labu" 
+                class="btn <?= $filter_lokasi == 'Kampus Pondok Labu' ? 'btn-danger active' : 'btn-secondary' ?>">Kampus Pondok Labu</a>
+       
+                <!-- Tombol Kampus Limo -->
+                <a href="daftar_admin.php?lokasi=Kampus Limo" 
+                class="btn <?= $filter_lokasi == 'Kampus Limo' ? 'btn-danger active' : 'btn-secondary' ?>">Kampus Limo</a>
+            </div>
+
 
                 <!-- Daftar Auditorium -->
                 <div class="row">

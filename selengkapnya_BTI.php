@@ -79,22 +79,33 @@ if ($result->num_rows > 0) {
             <!-- Main Content --> 
             <div class="col-md-9 shadow-sm">
                 <div class="container py-4 t" style="text-align: left; padding: 2rem;">
-                    <h2>Auditorium Bhineka Tunggal Ika</h2>
-                    <br>
-                    <div style="width: 500px; margin: 0 auto;">
-                        <img src="asset/BTI.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded" style="position:left;">
-                    </div>
-                    <div class="details text-left" style="padding:2rem;text-align:justify;">
-                        <p><strong><br>Lokasi:</strong> Lantai 4, gedung Rektorat, UPN Pondok Labu</p>
-                        <p><strong>Kapasitas:</strong> 400 Orang</p>
-                        <p><strong>Jam Operasional:</strong> 07.00 WIB - 16.00 WIB</p>
-                        <p>
-                            Auditorium Bhineka Tunggal Ika merupakan salah satu fasilitas utama yang dimiliki oleh Universitas Pembangunan Nasional (UPN) "Veteran" Jakarta. Sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, rapat besar, pelatihan, acara kemahasiswaan, hingga pertemuan formal tingkat universitas. Dengan kapasitas dan fasilitas modern, Auditorium Bhineka Tunggal Ika didesain untuk mendukung penyelenggaraan acara yang membutuhkan ruang luas dan representatif. Auditorium ini mencerminkan nilai-nilai kebhinekaan dan persatuan, sesuai dengan nama yang diusungnya, menjadikannya simbol penting bagi aktivitas akademik dan non-akademik di lingkungan kampus.
-                        </p>
-                    </div>
-                    <div style="text-align:right;">
-                        <a href="daftar_ruang.php" class="btn btn-secondary mb-3">Kembali</a>
-                    </div>
+                    <?php
+            $sql = "SELECT * FROM auditorium WHERE nama_auditorium = 'Auditorium Bhineka Tunggal Ika'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Output data
+                while($row = $result->fetch_assoc()) {
+                    if ($row["nama_auditorium"] == "Auditorium Bhineka Tunggal Ika") {
+                        echo "<h2>" . $row["nama_auditorium"] . "</h2>";
+                        echo "<div style='width: 500px; margin: 0 auto;'>";
+                        echo "<img src='" . $row["foto_auditorium"] . "' alt='Auditorium Bhineka Tunggal Ika' class='img-fluid rounded' style='position:left;'>";
+                        echo "</div>";
+                        echo "<div class='details text-left' style='padding:2rem;text-align:justify;'>";
+                        echo "<p><strong>Lokasi:</strong> " . $row["lokasi_gedung"] . "</p>";
+                        echo "<p><strong>Kapasitas:</strong> " . $row["kapasitas"] . " Orang</p>";
+                        echo "<p><strong>Jam Operasional:</strong> " . $row["operasional"] . "</p>";
+                        echo "<p>" . $row["deskripsi"] . "</p>";
+                        echo "</div>";
+                        echo "<div style='text-align:right;'>";
+                        echo "<a href='daftar_ruang.php' class='btn btn-secondary mb-3'>Kembali</a>";
+                        echo "</div>";
+                    }
+                }
+            } else {
+                echo "Tidak ada data.";
+            }
+            ?>
                 </div>
             </div>
         </div>

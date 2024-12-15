@@ -43,6 +43,7 @@ CREATE TABLE auditorium (
 --
 
 INSERT INTO auditorium (id_auditorium, nama_auditorium, lokasi_kampus, lokasi_gedung, kapasitas, operasional, deskripsi, foto_auditorium) VALUES
+INSERT INTO `auditorium` (`id_auditorium`, `nama_auditorium`, `lokasi_kampus`, `lokasi_gedung`, `kapasitas`, `operasional`, `deskripsi`, `foto_auditorium`) VALUES
 (1, 'Auditorium Bhineka Tunggal Ika', 'Kampus Pondok Labu', 'Lantai 4, Gedung Rektorat, UPN Kampus Pondok Labu', '400 Orang', 'Senin-Jumat pukul 07.00-16.00', '\r\nAuditorium Bhineka Tunggal Ika merupakan salah satu fasilitas utama yang dimiliki oleh Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta. Sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, rapat besar, pelatihan, acara kemahasiswaan, hingga pertemuan formal tingkat universitas. Dengan kapasitas dan fasilitas modern, Auditorium Bhineka Tunggal Ika didesain untuk mendukung penyelenggaraan acara yang membutuhkan ruang luas dan representatif. Auditorium ini mencerminkan nilai-nilai kebhinekaan dan persatuan, sesuai dengan nama yang diusungnya, menjadikannya simbol penting bagi aktivitas akademik dan non-akademik di lingkungan kampus.', 'asset/BTI.jpg'),
 (2, 'Auditorium Dr. Wahidin Sudiro Husodo', 'Kampus Pondok Labu', 'Lantai 3, Gedung Dr.Wahidin S.H., UPN Kampus Pondok Labu', '200 Orang', 'Senin-Jumat pukul 07.00 WIB - 16.00 WIB', 'Auditorium Dr. Wahidin Sudiro Husodo merupakan salah satu fasilitas utama di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta, Kampus Pondok Labu. Dirancang sebagai ruang multifungsi, auditorium ini sering digunakan untuk berbagai kegiatan, seperti seminar, pelatihan, rapat resmi, hingga acara kemahasiswaan. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menyediakan lingkungan yang ideal untuk penyelenggaraan acara yang membutuhkan ruang yang luas, representatif, dan nyaman. Auditorium ini mencerminkan nilai profesionalisme dan semangat pendidikan, menjadikannya tempat yang tepat untuk berbagai kegiatan kampus.', 'asset/FK.jpg'),
 (3, 'Auditorium MERCE Kedokteran', 'Kampus Limo', 'Lantai 4, Gedung Fakultas Kedokteran, UPN Kampus Limo', '160 Orang', 'Senin-Jumat pukul 07.00 WIB - 16.00 WIB', 'Auditorium Merce adalah salah satu fasilitas unggulan di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) \"Veteran\" Jakarta, Kampus Limo. Auditorium ini dirancang untuk mendukung berbagai kegiatan, seperti rapat formal, pelatihan, seminar, dan acara mahasiswa. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menjadi tempat yang cocok untuk kegiatan yang membutuhkan suasana profesional dan nyaman. Auditorium Merce mencerminkan semangat kolaborasi dan inovasi di lingkungan kampus, sehingga menjadi lokasi yang cocok untuk kegiatan akademik maupun non-akademik.', 'asset/MERCE.jpg'),
@@ -160,8 +161,13 @@ ALTER TABLE auditorium
 --
 -- AUTO_INCREMENT untuk tabel peminjaman
 --
+<<<<<<< HEAD
 ALTER TABLE peminjaman
   MODIFY id_peminjaman int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+=======
+ALTER TABLE `peminjaman`
+  MODIFY `id_peminjaman` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+>>>>>>> d0e8c84c4ba355dbef3606453e8ecd82f8f6e850
 
 --
 -- AUTO_INCREMENT untuk tabel pengguna
@@ -172,8 +178,13 @@ ALTER TABLE pengguna
 --
 -- AUTO_INCREMENT untuk tabel riwayat_peminjaman
 --
+<<<<<<< HEAD
 ALTER TABLE riwayat_peminjaman
   MODIFY id_riwayat int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+=======
+ALTER TABLE `riwayat_peminjaman`
+  MODIFY `id_riwayat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+>>>>>>> d0e8c84c4ba355dbef3606453e8ecd82f8f6e850
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -189,15 +200,25 @@ ALTER TABLE peminjaman
 --
 -- Ketidakleluasaan untuk tabel riwayat_peminjaman
 --
+<<<<<<< HEAD
 ALTER TABLE riwayat_peminjaman
   ADD CONSTRAINT idauditorium FOREIGN KEY (id_auditorium) REFERENCES auditorium (id_auditorium),
   ADD CONSTRAINT iduser FOREIGN KEY (id_user) REFERENCES pengguna (id_user);
+=======
+ALTER TABLE `riwayat_peminjaman`
+  ADD CONSTRAINT `idauditorium` FOREIGN KEY (`id_auditorium`) REFERENCES `auditorium` (`id_auditorium`),
+  ADD CONSTRAINT `iduser` FOREIGN KEY (`id_user`) REFERENCES `pengguna` (`id_user`);
+>>>>>>> d0e8c84c4ba355dbef3606453e8ecd82f8f6e850
 
 DELIMITER $$
 --
 -- Event
 --
+<<<<<<< HEAD
 CREATE DEFINER=root@localhost EVENT InsertDataToRiwayat ON SCHEDULE EVERY 1 MINUTE STARTS '2024-12-10 22:41:09' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+=======
+CREATE DEFINER=`root`@`localhost` EVENT `InsertDataToRiwayat` ON SCHEDULE EVERY 1 MINUTE STARTS '2024-12-10 22:41:09' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+>>>>>>> d0e8c84c4ba355dbef3606453e8ecd82f8f6e850
     -- Memindahkan data dari tabel 'peminjaman' ke tabel 'riwayat_peminjaman'
     INSERT INTO riwayat_peminjaman (id_peminjaman, id_user, id_auditorium, peminjam, tanggal_pinjam, waktu_mulai, waktu_selesai, foto_surat, status)
     SELECT id_peminjaman, id_user, id_auditorium, peminjam, tanggal_pinjam, waktu_mulai, waktu_selesai, foto_surat, status

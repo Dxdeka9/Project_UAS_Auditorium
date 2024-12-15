@@ -23,32 +23,13 @@ if ($result->num_rows > 0) {
     $user = null;
 }
 
-// Jika ada request untuk menghapus data
-if (isset($_GET['delete_id'])) {
-    $delete_id = intval($_GET['delete_id']);
-    $user_id = $_SESSION['user_id'];
-
-    // Hapus data hanya jika milik pengguna yang login
-    $stmt_delete = $conn->prepare("DELETE FROM peminjaman WHERE id_peminjaman = ? AND id_user = ?");
-    $stmt_delete->bind_param("ii", $delete_id, $user_id);
-
-    if ($stmt_delete->execute()) {
-        $success_message = "Data berhasil dihapus.";
-    } else {
-        $error_message = "Terjadi kesalahan saat menghapus data.";
-    }
-    $stmt_delete->close();
-}
-
 // Ambil data riwayat peminjaman untuk mahasiswa yang sedang login
-$user_id = $_SESSION['user_id'];
-
-$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) . '%' : '%';
+$search = isset($_GET['search']) ? '%' . $conn->real_escape_string($_GET['search']) . '%' : '%';
 $sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.foto_surat, p.status
         FROM peminjaman p
         INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
         WHERE a.nama_auditorium LIKE ? 
-        OR p.id_user LIKE ?
+        OR p.peminjam LIKE ?
         OR p.tanggal_pinjam LIKE ?
         ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
 $stmt = $conn->prepare($sql);
@@ -71,14 +52,8 @@ date_default_timezone_set("Asia/Bangkok")
             overflow-x: auto;
         }
     </style>
-    <script>
-        function confirmDelete(id) {
-            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                window.location.href = 'dashboard.php?delete_id=' + id;
-            }
-        }
-    </script>
 </head>
+
 <body class="d-flex flex-column min-vh-100 bg-light">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5d9c59;">
@@ -87,7 +62,7 @@ date_default_timezone_set("Asia/Bangkok")
                 <img src="asset/putih.png" alt="Logo MahasiswaUPNVJ" style="width: 190px; height: auto;">
             </div>
             <div class="d-flex align-items-center text-light">
-            <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
+                <span class="me-3" style="font-size: 16px;">Date : <?= date('d-m-Y'); ?></span>
             </div>
         </div>
     </nav>
@@ -126,7 +101,11 @@ date_default_timezone_set("Asia/Bangkok")
         <div class="main-content flex-grow-1 p-4">
             <h3 class="mb-4">Daftar Peminjaman Auditorium</h3>
             <div class="table-responsive shadow-sm p-3 mb-5">
-                <table class="table table-bordered table-hover table-sm">
+                <form class="d-flex ms-auto mb-2" role="search">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+                <table class="table table-bordered table-striped table-hover table-sm">
                     <thead class="table-dark">
                         <tr>
                             <th>No.</th>
@@ -136,7 +115,6 @@ date_default_timezone_set("Asia/Bangkok")
                             <th>Jam Mulai</th>
                             <th>Jam Selesai</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -160,9 +138,6 @@ date_default_timezone_set("Asia/Bangkok")
                                     echo $status[$row['status']];
                                     ?>
                                 </td>
-                                <td>
-                                    <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $row['id_peminjaman']; ?>)">Hapus</button>
-                                </td>
                             </tr>
                             <?php 
                         $i++;
@@ -170,7 +145,7 @@ date_default_timezone_set("Asia/Bangkok")
                     </tbody>
                 </table>
                 <?php if ($result->num_rows == 0): ?>
-                    <div class="alert alert-info mt-3">Belum ada data peminjaman.</div>
+                    <div class="alert alert-info mt-3">Tidak ada hasil pencarian untuk kata kunci tersebut.</div>
                 <?php endif; ?>
             </div>
         </div>

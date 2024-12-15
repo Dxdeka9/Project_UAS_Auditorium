@@ -76,23 +76,35 @@ if ($result->num_rows > 0) {
         <!-- End Sidebar -->
 
             <!-- Main Content -->
-            <div class="col-md-9">
+            <div class="col-md-9 shadow-sm">
                 <div class="container py-4 t" style="text-align: left; padding: 2rem;">
-                    <h2>Auditorium MERCE Kedokteran</h2>
-                    <br>
-                    <div style="width: 500px; margin: 0 auto;">
-                        <img src="https://icsot.upnvj.ac.id/wp-content/uploads/2023/10/IMG_3839-min-scaled-1.jpg" alt="Auditorium Bhineka Tunggal Ika" class="img-fluid rounded" style="position:left;">
-                    </div>
-                    <div class="details text-left" style="padding:2rem;text-align:justify;">
-                        <p><strong><br>Lokasi:</strong> Lantai 4, Gedung Fakultas Kedokteran, UPN Limo</p>
-                        <p><strong>Kapasitas:</strong> 160 Orang</p>
-                        <p><strong>Jam Operasional:</strong> 07.00 WIB - 16.00 WIB</p>
-                        <p>
-                            Auditorium Merce adalah salah satu fasilitas unggulan di Fakultas Kedokteran Universitas Pembangunan Nasional (UPN) "Veteran" Jakarta, Kampus Limo. Auditorium ini dirancang untuk mendukung berbagai kegiatan, seperti rapat formal, pelatihan, seminar, dan acara mahasiswa. Dengan kapasitas 160 orang dan fasilitas modern, auditorium ini menjadi tempat yang cocok untuk kegiatan yang membutuhkan suasana profesional dan nyaman. Auditorium Merce mencerminkan semangat kolaborasi dan inovasi di lingkungan kampus, sehingga menjadi lokasi yang cocok untuk kegiatan akademik maupun non-akademik.
-                        </p>
-                    </div>
-                    <div style="text-align:justify;">
-                    </div>
+                    <?php
+            $sql = "SELECT * FROM auditorium WHERE nama_auditorium = 'Auditorium MERCE Kedokteran'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Output data
+                while($row = $result->fetch_assoc()) {
+                    if ($row["nama_auditorium"] == "Auditorium MERCE Kedokteran") {
+                        echo "<h2>" . $row["nama_auditorium"] . "</h2>";
+                        echo "<div style='width: 500px; margin: 0 auto;'>";
+                        echo "<img src='" . $row["foto_auditorium"] . "' alt='Auditorium MERCE Kedokteran' class='img-fluid rounded' style='position:left;'>";
+                        echo "</div>";
+                        echo "<div class='details text-left' style='padding:2rem;text-align:justify;'>";
+                        echo "<p><strong>Lokasi:</strong> " . $row["lokasi_gedung"] . "</p>";
+                        echo "<p><strong>Kapasitas:</strong> " . $row["kapasitas"] . " Orang</p>";
+                        echo "<p><strong>Jam Operasional:</strong> " . $row["operasional"] . "</p>";
+                        echo "<p>" . $row["deskripsi"] . "</p>";
+                        echo "</div>";
+                        echo "<div style='text-align:right;'>";
+                        echo "<a href='daftar_ruang.php' class='btn btn-secondary mb-3'>Kembali</a>";
+                        echo "</div>";
+                    }
+                }
+            } else {
+                echo "Tidak ada data.";
+            }
+            ?>
                 </div>
             </div>
         </div>
