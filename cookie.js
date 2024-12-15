@@ -12,7 +12,7 @@ function getCookie(nama) {
     for (let i = 0; i < cookies.length; i++) { // mencari kuki 
         const c = cookies[i].trim();
         if (c.indexOf(nama + "=") === 0) { // cek nama kuki yang sesuai
-            return c.substring((nama + "=").length, c.length); // nilai kuki
+            return c.substring((nama + "=").length, c.length); // balikin nilai kuki
         }
     }
     return null;
