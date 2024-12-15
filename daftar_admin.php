@@ -57,7 +57,7 @@ date_default_timezone_set("Asia/Bangkok");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="daftar&riwayat.css">
+    <link rel="stylesheet" href="styling/daftar&riwayat.css">
     <title>Daftar Auditorium - Auditorium UPNVJ</title>
 </head>
 
