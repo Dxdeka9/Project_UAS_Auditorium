@@ -53,20 +53,20 @@ $password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['passwor
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="slideshow.css">
+    <link rel="stylesheet" href="styling/index.css">
+    <link rel="stylesheet" href="styling/slideshow.css">
 </head>
 <body>
     <!-- Slideshow container -->
     <div class="slideshow-container">
         <div class="mySlides active">
-            <img src="page1.jpg" alt="Page 1">
+            <img src="asset/page1.jpg" alt="Page 1">
         </div>
         <div class="mySlides">
-            <img src="page2.jpg" alt="Page 2">
+            <img src="asset/page2.jpg" alt="Page 2">
         </div>
         <div class="mySlides">
-            <img src="page3.jpg" alt="Page 3">
+            <img src="asset/page3.jpg" alt="Page 3">
         </div>
     </div>
 
