@@ -161,13 +161,8 @@ ALTER TABLE auditorium
 --
 -- AUTO_INCREMENT untuk tabel peminjaman
 --
-<<<<<<< HEAD
-ALTER TABLE peminjaman
-  MODIFY id_peminjaman int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-=======
 ALTER TABLE `peminjaman`
   MODIFY `id_peminjaman` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
->>>>>>> d0e8c84c4ba355dbef3606453e8ecd82f8f6e850
 
 --
 -- AUTO_INCREMENT untuk tabel pengguna
@@ -178,13 +173,8 @@ ALTER TABLE pengguna
 --
 -- AUTO_INCREMENT untuk tabel riwayat_peminjaman
 --
-<<<<<<< HEAD
-ALTER TABLE riwayat_peminjaman
-  MODIFY id_riwayat int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
-=======
 ALTER TABLE `riwayat_peminjaman`
   MODIFY `id_riwayat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
->>>>>>> d0e8c84c4ba355dbef3606453e8ecd82f8f6e850
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -200,25 +190,15 @@ ALTER TABLE peminjaman
 --
 -- Ketidakleluasaan untuk tabel riwayat_peminjaman
 --
-<<<<<<< HEAD
-ALTER TABLE riwayat_peminjaman
-  ADD CONSTRAINT idauditorium FOREIGN KEY (id_auditorium) REFERENCES auditorium (id_auditorium),
-  ADD CONSTRAINT iduser FOREIGN KEY (id_user) REFERENCES pengguna (id_user);
-=======
 ALTER TABLE `riwayat_peminjaman`
   ADD CONSTRAINT `idauditorium` FOREIGN KEY (`id_auditorium`) REFERENCES `auditorium` (`id_auditorium`),
   ADD CONSTRAINT `iduser` FOREIGN KEY (`id_user`) REFERENCES `pengguna` (`id_user`);
->>>>>>> d0e8c84c4ba355dbef3606453e8ecd82f8f6e850
 
 DELIMITER $$
 --
 -- Event
 --
-<<<<<<< HEAD
-CREATE DEFINER=root@localhost EVENT InsertDataToRiwayat ON SCHEDULE EVERY 1 MINUTE STARTS '2024-12-10 22:41:09' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
-=======
 CREATE DEFINER=`root`@`localhost` EVENT `InsertDataToRiwayat` ON SCHEDULE EVERY 1 MINUTE STARTS '2024-12-10 22:41:09' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
->>>>>>> d0e8c84c4ba355dbef3606453e8ecd82f8f6e850
     -- Memindahkan data dari tabel 'peminjaman' ke tabel 'riwayat_peminjaman'
     INSERT INTO riwayat_peminjaman (id_peminjaman, id_user, id_auditorium, peminjam, tanggal_pinjam, waktu_mulai, waktu_selesai, foto_surat, status)
     SELECT id_peminjaman, id_user, id_auditorium, peminjam, tanggal_pinjam, waktu_mulai, waktu_selesai, foto_surat, status
