@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Jika remember me dicentang, simpan cookie
             if (isset($_POST['remember_me'])) {
                 setcookie('email', $email, time() + (86400 * 30), "/"); // Cookie email selama 30 hari
-                setcookie('password', base64_encode($password), time() + (86400 * 30), "/"); // Cookie password selama 30 hari
+                setcookie('password', ($password), time() + (86400 * 30), "/"); // Cookie password selama 30 hari
             }
 
             // Redirect berdasarkan role
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 // Ambil data dari cookie jika tersedia
 $email_cookie = isset($_COOKIE['email']) ? $_COOKIE['email'] : '';
-$password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['password']) : '';
+$password_cookie = isset($_COOKIE['password']) ? ($_COOKIE['password']) : '';
 ?>
 
 <!DOCTYPE html>
@@ -80,8 +80,8 @@ $password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['passwor
             <?php endif; ?>
 
             <form method="POST" action="">
-                <input type="text" name="email" placeholder="Email" required value="<?php echo htmlspecialchars($email_cookie); ?>">
-                <input type="password" name="password" placeholder="Password" required value="<?php echo htmlspecialchars($password_cookie); ?>">
+                <input type="text" name="email" placeholder="Email" required value="<?php echo $email_cookie; ?>">
+                <input type="password" name="password" placeholder="Password" required value="<?php echo $password_cookie; ?>">
                 <button type="submit">Login</button>
                 
                 <!-- Checkbox "Ingat Saya" dipindahkan ke bawah tombol Login -->
