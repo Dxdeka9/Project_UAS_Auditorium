@@ -11,7 +11,7 @@
     <title>Cookie logout</title>
 </head>
 <body>
-    <script src="cookie.js"></script>
+    <script src="js/cookie.js"></script>
     <script>
         deleteCookie('user_email');
         deleteCookie('user_id');

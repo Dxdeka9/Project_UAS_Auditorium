@@ -91,6 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="index.php">Sudah punya akun? Login di sini</a>
     </div>
 
-    <script src="slideshow.js"></script>
+    <script src="js/slideshow.js"></script>
 </body>
 </html>

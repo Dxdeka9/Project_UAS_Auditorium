@@ -93,6 +93,6 @@ $password_cookie = isset($_COOKIE['password']) ? base64_decode($_COOKIE['passwor
             <a href="register.php">Create an Account</a>
         </div>
     </div>
-    <script src="slideshow.js"></script>
+    <script src="js/slideshow.js"></script>
 </body>
 </html>

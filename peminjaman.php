@@ -74,7 +74,7 @@
                 throw new Exception("Error saat menyimpan peminjaman!");
             }
 
-            $message = "Peminjaman berhasil diajukan!";
+            $message = "Peminjaman berhasil diajukan! Tunggu konfirmasi dari admin.";
         } catch (Exception $e) {
             $error = $e->getMessage();
         }
@@ -141,6 +141,6 @@
                 </form>
             </div>
         </div>
-        <script src="peminjaman.js"></script>
+        <script src="js/peminjaman.js"></script>
     </body>
 </html>
