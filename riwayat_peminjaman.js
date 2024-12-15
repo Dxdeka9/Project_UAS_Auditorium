@@ -9,5 +9,5 @@ document.getElementById('search').addEventListener('input', function () {
         const url = new URL(window.location.href);
         url.searchParams.set('search', searchValue);
         window.location.href = url; // Redirect setelah penundaan
-    }, 1000); // Tunggu 500ms setelah pengguna berhenti mengetik
+    }, 1500); // Tunggu 1500ms setelah pengguna berhenti mengetik
 });
