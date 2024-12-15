@@ -25,18 +25,29 @@ if ($result->num_rows > 0) {
 
 // Ambil data riwayat peminjaman untuk mahasiswa yang sedang login
 $search = isset($_GET['search']) ? '%' . $conn->real_escape_string($_GET['search']) . '%' : '%';
-$sql = "SELECT p.id_peminjaman, p.id_user, a.nama_auditorium, p.peminjam, p.tanggal_pinjam, p.waktu_mulai, p.waktu_selesai, p.foto_surat, p.status
-        FROM peminjaman p
-        INNER JOIN auditorium a ON p.id_auditorium = a.id_auditorium
-        WHERE a.nama_auditorium LIKE ? 
-        OR p.peminjam LIKE ?
-        OR p.tanggal_pinjam LIKE ?
-        ORDER BY p.tanggal_pinjam DESC, p.waktu_mulai DESC";
+$sql = "SELECT 
+           r.id_riwayat, 
+           r.id_peminjaman, 
+           r.id_user, 
+           a.nama_auditorium, 
+           r.peminjam, 
+           r.tanggal_pinjam, 
+           r.waktu_mulai, 
+           r.waktu_selesai, 
+           r.foto_surat, 
+           r.status
+       FROM riwayat_peminjaman r
+       INNER JOIN auditorium a ON r.id_auditorium = a.id_auditorium
+       WHERE r.id_user = ?
+       AND (a.nama_auditorium LIKE ? 
+            OR r.peminjam LIKE ? 
+            OR r.tanggal_pinjam LIKE ?)
+       ORDER BY r.tanggal_pinjam DESC, r.waktu_mulai DESC";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $search, $search, $search);
+$stmt->bind_param("ssss", $user_id, $search, $search, $search);
 $stmt->execute();
 $result = $stmt->get_result();
-date_default_timezone_set("Asia/Bangkok")
+date_default_timezone_set("Asia/Bangkok");
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +156,7 @@ date_default_timezone_set("Asia/Bangkok")
                     </tbody>
                 </table>
                 <?php if ($result->num_rows == 0): ?>
-                    <div class="alert alert-info mt-3">Tidak ada hasil pencarian untuk kata kunci tersebut.</div>
+                    <div class="alert alert-info mt-3">Hasil peminjaman akan ditampilkan setelah diverifikasi oleh admin.</div>
                 <?php endif; ?>
             </div>
         </div>
