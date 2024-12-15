@@ -6,17 +6,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Ambil input dari form
     $nama_lengkap = $conn->real_escape_string($_POST['nama_lengkap']);
     $email = $conn->real_escape_string($_POST['email']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $role = 'mahasiswa'; // Set role default sebagai 'user'
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // enkripsi password
+    $role = 'mahasiswa'; // Set role default sebagai 'user = mahasiswa'
 
     // Query untuk menyimpan data
     $sql = "INSERT INTO pengguna (nama_lengkap, email, password, role) 
             VALUES ('$nama_lengkap', '$email', '$password', '$role')";
-    if ($conn->query($sql) === TRUE) {
-        $_SESSION['message'] = "Registrasi berhasil!";
+    if ($conn->query($sql) === TRUE) { // eksekusi query dan memeriksa apakah berhasil
+        $_SESSION['message'] = "Registrasi berhasil!"; // pesan sukses dalam sesi
         $_SESSION['message_type'] = "success"; 
     } else {
-        $_SESSION['message'] = "Error: " . $conn->error;
+        $_SESSION['message'] = "Error: " . $conn->error; // pesan error dalam sesi
         $_SESSION['message_type'] = "danger"; 
     }
     header("Location: register.php");
