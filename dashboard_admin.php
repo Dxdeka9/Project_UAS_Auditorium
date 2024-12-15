@@ -1,10 +1,10 @@
 <?php
-    include 'includes/db.php'; /// menghubungkan ke database lewat file db.php
-    session_start(); /// memulai session
+    include 'includes/db.php'; // menghubungkan ke database lewat file db.php
+    session_start(); // memulai session
 
     // Cek apakah user sudah login dan memiliki peran admin
-    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') { 
-        header("Location: index.php");
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') { // jika user belum login atau bukan admin
+        header("Location: index.php"); // maka kembali ke index.php
         exit();
     }
 
@@ -143,6 +143,9 @@
                                         ?>
                                     </td>
                                     <td>
+                                        <!-- tombol di klik, href akan di proses ke verifikasi. 
+                                            rowd id, mengirim id peminjaman ke halaman tsb lewat URL.
+                                            action itu tindakan lewat url. -->
                                         <a href="verifikasi_peminjaman.php?id=<?= $row['id_peminjaman']; ?>&action=approved" class="btn btn-success">Approve</a>
                                         <a href="verifikasi_peminjaman.php?id=<?= $row['id_peminjaman']; ?>&action=rejected" class="btn btn-danger">Reject</a>
                                     </td>
