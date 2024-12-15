@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 $user_id = $_SESSION['user_id'];
 $query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = $user_id";
 $result_user = $conn->query($query_user);
-$nama_admin = $result_user->num_rows > 0 ? htmlspecialchars($result_user->fetch_assoc()['nama_lengkap']) : "Admin Tidak Ditemukan"; // Ganti "nama" dengan "nama_lengkap"
+$nama_admin = $result_user->num_rows > 0 ? $result_user->fetch_assoc()['nama_lengkap'] : "Admin Tidak Ditemukan"; // Ganti "nama" dengan "nama_lengkap"
 
 // Tangkap filter yang dipilih (jika ada)
 $filter_lokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : '';
@@ -123,9 +123,9 @@ date_default_timezone_set("Asia/Bangkok");
                     <?php
                     if ($result_auditorium->num_rows > 0) {
                         while ($auditorium = $result_auditorium->fetch_assoc()) {
-                            $id_audit = htmlspecialchars($auditorium['id_auditorium']);
-                            $nama_auditorium = htmlspecialchars($auditorium['nama_auditorium']);
-                            $lokasi_kampus = htmlspecialchars($auditorium['lokasi_kampus']);
+                            $id_audit = $auditorium['id_auditorium'];
+                            $nama_auditorium = $auditorium['nama_auditorium'];
+                            $lokasi_kampus = $auditorium['lokasi_kampus'];
                             echo "
                             <div class='col-md-4 mb-3'>
                                 <div class='card shadow-sm'>
