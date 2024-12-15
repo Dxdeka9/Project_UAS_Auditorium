@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <!-- Slideshow Background -->
-    <div class="slideshow-container">
+    <div class="slideshow-container"> <!-- Container untuk slideshow -->
         <div class="mySlides active">
             <img src="asset\page1.jpg" alt="Page 1">
         </div>
@@ -53,42 +53,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1><b>Registrasi</b></h1>
 
         <!-- Tampilkan pesan sukses atau error -->
-        <?php if (isset($_SESSION['message'])): ?>
+        <?php if (isset($_SESSION['message'])): ?> <!-- Memeriksa apakah ada pesan dalam sesi -->
             <div class="alert alert-<?php echo $_SESSION['message_type']; ?> alert-dismissible fade show" role="alert">
-                <?php echo $_SESSION['message']; ?>
+                <?php echo $_SESSION['message']; ?> <!-- Menampilkan pesan dari sesi -->
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <?php
             //notif pesan
-            $message_type = $_SESSION['message_type'];
+            $message_type = $_SESSION['message_type']; // Menyimpan tipe pesan ke variabel dan menghapus pesan dari sesi
             unset($_SESSION['message'], $_SESSION['message_type']);
             ?>
             <!-- Redirect ke index.php setelah 3 detik jika registrasi berhasil -->
-            <?php if ($message_type == "success"): ?>
+            <?php if ($message_type == "success"): ?> <!-- Jika tipe pesan adalah "success" -->
                 <script>
                     setTimeout(() => {
                         window.location.href = 'index.php';
-                    }, 3000);
+                    }, 3000); // Waktu tunggu 3 detik sebelum redirect
                 </script>
             <?php endif; ?>
         <?php endif; ?>
-
+        
+        <!-- form register -->
         <form method="POST">
             <div class="mb-3">
-                <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control" placeholder="Masukkan nama lengkap Anda" required>
+                <label for="nama_lengkap" class="form-label">Nama Lengkap</label> <!-- Label untuk input nama lengkap -->
+                <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control" placeholder="Masukkan nama lengkap Anda" required> <!-- Input nama lengkap -->
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan email Anda" required>
+                <label for="email" class="form-label">Email</label> <!-- Label untuk input email -->
+                <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan email Anda" required> <!-- Input email -->
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan password" required>
+                <label for="password" class="form-label">Password</label> <!-- Label untuk input password -->
+                <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan password" required> <!-- Input password -->
             </div>
-            <button type="submit" class="btn btn-primary w-100">Daftar</button>
+            <button type="submit" class="btn btn-primary w-100">Daftar</button> <!-- Tombol submit -->
+            </form>
         </form>
-        <a href="index.php">Sudah punya akun? Login di sini</a>
+        <a href="index.php">Sudah punya akun? Login di sini</a> <!-- Link untuk login -->
     </div>
 
     <script src="slideshow.js"></script>
