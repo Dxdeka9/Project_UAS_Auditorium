@@ -38,13 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Slideshow Background -->
     <div class="slideshow-container">
         <div class="mySlides active">
-            <img src="page1.jpg" alt="Page 1">
+            <img src="asset\page1.jpg" alt="Page 1">
         </div>
         <div class="mySlides">
-            <img src="page2.jpg" alt="Page 2">
+            <img src="asset\page2.jpg" alt="Page 2">
         </div>
         <div class="mySlides">
-            <img src="page3.jpg" alt="Page 3">
+            <img src="asset\page3.jpg" alt="Page 3">
         </div>
     </div>
 
