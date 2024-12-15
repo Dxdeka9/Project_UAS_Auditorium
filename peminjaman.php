@@ -44,12 +44,12 @@
                 throw new Exception("File lampiran wajib diunggah!");
             }
 
-            $allowed_extensions = ['pdf', 'doc', 'docx', 'jpg', 'png'];
+            $allowed_extensions = ['pdf', 'jpg', 'png'];
             $file_info = pathinfo($_FILES['file']['name']);
             $file_extension = strtolower($file_info['extension']);
 
             if (!in_array($file_extension, $allowed_extensions)) {
-                throw new Exception("Format file tidak diizinkan! (Hanya: pdf, doc, docx, jpg, png)");
+                throw new Exception("Format file tidak diizinkan! (Hanya: pdf, jpg, png)");
             }
 
             $upload_dir = 'surat/';
