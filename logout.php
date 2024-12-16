@@ -15,7 +15,7 @@
     <script>
         deleteCookie('user_email'); //untuk menghapus cookie dengan nama user_email
         deleteCookie('user_id'); //untuk menghapus cookie dengan nama user_id
-        window.location = 'index.php';
+        window.location = 'index.php'; // redirect ke halaman index
     </script>
 </body>
 </html>
