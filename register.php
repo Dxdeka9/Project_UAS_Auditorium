@@ -2,7 +2,10 @@
 include 'includes/db.php';
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+    // request method untuk menentukan aksi apakah get, post, put, delete
+    // untuk cek request method, jika request method = post maka if dijalankan
+    
     // Ambil input dari form
     $nama_lengkap = $conn->real_escape_string($_POST['nama_lengkap']); // Mengambil data form 'nama_lengkap' dan membersihkannya menggunakan real_escape_string untuk mencegah SQL Injection
     $email = $conn->real_escape_string($_POST['email']); // Mengambil data dari form 'email' dan membersihkannya menggunakan metode real_escape_string untuk mencegah SQL Injection
@@ -12,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Query untuk menyimpan data
     $sql = "INSERT INTO pengguna (nama_lengkap, email, password, role) 
             VALUES ('$nama_lengkap', '$email', '$password', '$role')";
-    if ($conn->query($sql) === TRUE) { // eksekusi query dan memeriksa apakah berhasil
+    if ($conn->query($sql) === TRUE) { // eksekusi query dan memeriksa apakah berhasil & conn digunakan untuk menyimpan koneksi ke databse (query)
         $_SESSION['message'] = "Registrasi berhasil!"; // pesan sukses dalam sesi
         $_SESSION['message_type'] = "success"; 
     } else {
@@ -53,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1><b>Registrasi</b></h1>
 
         <!-- Tampilkan pesan sukses atau error -->
-        <?php if (isset($_SESSION['message'])): ?> <!-- Memeriksa apakah ada pesan dalam sesi -->
+        <?php if (isset($_SESSION['message'])): ?> <!-- Memeriksa apakah ada pesan dalam sesi (tidak null)-->
             <div class="alert alert-<?php echo $_SESSION['message_type']; ?> alert-dismissible fade show" role="alert">
                 <?php echo $_SESSION['message']; ?> <!-- Menampilkan pesan dari sesi -->
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
