@@ -1,29 +1,35 @@
 <?php
-include 'includes/db.php';
+include 'includes/db.php'; 
+
 session_start();
 
-// Cek apakah user sudah login
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit();
+    header("Location: index.php"); // Redirect ke index.php
+    exit(); // Hentikan eksekusi kode lebih lanjut
 }
 
-// Ambil informasi pengguna dari database
+// Mengambil ID pengguna yang sedang login dari session
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM pengguna WHERE id_user = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
 
+// Query untuk mengambil informasi pengguna dari database berdasarkan ID
+$sql = "SELECT * FROM pengguna WHERE id_user = ?";
+$stmt = $conn->prepare($sql); // Mempersiapkan statement untuk mencegah SQL Injection
+$stmt->bind_param("i", $user_id); // Mengikat parameter ID pengguna
+$stmt->execute(); // Menjalankan query
+$result = $stmt->get_result(); // Mengambil hasil query
+
+// Mengecek apakah data pengguna ditemukan di database
 if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
+    $user = $result->fetch_assoc(); // Menyimpan data pengguna dalam array asosiatif
 } else {
-    $error = "Data pengguna tidak ditemukan.";
-    $user = null;
+    $error = "Data pengguna tidak ditemukan."; // Pesan error jika data tidak ditemukan
+    $user = null; // Mengatur data pengguna ke null
 }
-date_default_timezone_set("Asia/Bangkok")
+
+// Mengatur zona waktu menjadi Asia/Bangkok
+date_default_timezone_set("Asia/Bangkok");
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

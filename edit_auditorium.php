@@ -1,35 +1,42 @@
 <?php
 include 'includes/db.php';
+
 session_start();
 
 // Cek apakah user sudah login dan memiliki peran admin
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    // Jika tidak login atau bukan admin, redirect ke halaman utama
     header("Location: index.php");
-    exit();
+    exit(); // Menghentikan eksekusi kode
 }
 
-// Ambil nama admin dari tabel pengguna
+// Mendapatkan ID user dari sesi
 $user_id = $_SESSION['user_id'];
-$query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = ?";
-$stmt_user = $conn->prepare($query_user);
-$stmt_user->bind_param("i", $user_id);
-$stmt_user->execute();
-$result_user = $stmt_user->get_result();
-$nama_admin = $result_user->num_rows > 0 ? htmlspecialchars($result_user->fetch_assoc()['nama_lengkap']) : "Admin Tidak Ditemukan";
-$stmt_user->close();
 
-// Tangkap ID auditorium yang akan diedit
+// Query untuk mengambil nama lengkap admin dari tabel pengguna
+$query_user = "SELECT nama_lengkap FROM pengguna WHERE id_user = ?";
+$stmt_user = $conn->prepare($query_user); // Mem-prepare query untuk menghindari SQL Injection
+$stmt_user->bind_param("i", $user_id); // Mengikat parameter ID user
+$stmt_user->execute(); // Menjalankan query
+$result_user = $stmt_user->get_result(); // Mendapatkan hasil query
+
+// Memastikan data ditemukan, jika tidak, tampilkan pesan "Admin Tidak Ditemukan"
+$nama_admin = $result_user->num_rows > 0 ? htmlspecialchars($result_user->fetch_assoc()['nama_lengkap']) : "Admin Tidak Ditemukan";
+$stmt_user->close(); // Menutup statement
+
+// Mengecek apakah ID auditorium dikirim melalui parameter GET
 if (isset($_GET['id'])) {
-    $id_auditorium = $_GET['id'];
+    $id_auditorium = $_GET['id']; // Mendapatkan ID auditorium dari parameter URL
 
     // Query untuk mengambil data auditorium berdasarkan ID
     $query_auditorium = "SELECT nama_auditorium, lokasi_kampus, lokasi_gedung, kapasitas, operasional, deskripsi 
                          FROM auditorium WHERE id_auditorium = ?";
-    $stmt = $conn->prepare($query_auditorium);
-    $stmt->bind_param("i", $id_auditorium);
-    $stmt->execute();
-    $result_auditorium = $stmt->get_result();
+    $stmt = $conn->prepare($query_auditorium); // Mem-prepare query
+    $stmt->bind_param("i", $id_auditorium); // Mengikat parameter ID auditorium
+    $stmt->execute(); // Menjalankan query
+    $result_auditorium = $stmt->get_result(); // Mendapatkan hasil query
 
+    // Jika data auditorium ditemukan, simpan ke dalam variabel
     if ($result_auditorium->num_rows > 0) {
         $auditorium = $result_auditorium->fetch_assoc();
         $nama_auditorium = htmlspecialchars($auditorium['nama_auditorium']);
@@ -39,18 +46,21 @@ if (isset($_GET['id'])) {
         $operasional = htmlspecialchars($auditorium['operasional']);
         $deskripsi = htmlspecialchars($auditorium['deskripsi']);
     } else {
+        // Jika data tidak ditemukan, tampilkan pesan dan redirect
         echo "<script>alert('Auditorium tidak ditemukan.'); window.location.href='daftar_admin.php';</script>";
         exit();
     }
 
-    $stmt->close();
+    $stmt->close(); // Menutup statement
 } else {
+    // Jika ID auditorium tidak ada, tampilkan pesan dan redirect
     echo "<script>alert('ID auditorium tidak ditemukan.'); window.location.href='daftar_admin.php';</script>";
     exit();
 }
 
-// Proses update data jika form disubmit
+// Menangani proses update data auditorium jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Mendapatkan data dari form
     $nama_update = $_POST['nama'];
     $lokasi_kampus_update = $_POST['lokasi_kampus'];
     $lokasi_gedung_update = $_POST['lokasi_gedung'];
@@ -62,21 +72,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query_update = "UPDATE auditorium 
                      SET nama_auditorium = ?, lokasi_kampus = ?, lokasi_gedung = ?, kapasitas = ?, operasional = ?, deskripsi = ? 
                      WHERE id_auditorium = ?";
-    $stmt_update = $conn->prepare($query_update);
+    $stmt_update = $conn->prepare($query_update); // Mem-prepare query
     $stmt_update->bind_param("ssssssi", $nama_update, $lokasi_kampus_update, $lokasi_gedung_update, $kapasitas_update, $operasional_update, $deskripsi_update, $id_auditorium);
 
+    // Menjalankan query dan mengecek apakah berhasil
     if ($stmt_update->execute()) {
-        // Redirect setelah berhasil update
+        // Redirect ke halaman daftar admin jika berhasil
         header("Location: daftar_admin.php");
         exit();
     } else {
+        // Tampilkan pesan error jika gagal
         echo "<script>alert('Terjadi kesalahan saat mengupdate data.');</script>";
     }
 
-    $stmt_update->close();
-    date_default_timezone_set("Asia/Bangkok");
+    $stmt_update->close(); // Menutup statement
+    date_default_timezone_set("Asia/Bangkok"); // Mengatur zona waktu
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,6 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </nav>
 </header>
 
+<!-- Main Content -->
 <div class="container mt-5">
     <div class="card shadow p-4">
         <h3 class="text-center mb-4">Edit Data Auditorium</h3>
@@ -143,3 +157,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
