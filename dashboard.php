@@ -9,14 +9,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'mahasiswa') {
 }
 
 // Ambil informasi pengguna dari database
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM pengguna WHERE id_user = ?";
-$stmt = $conn->prepare($sql);
+$user_id = $_SESSION['user_id']; // Mengambil ID pengguna dari session
+$sql = "SELECT * FROM pengguna WHERE id_user = ?"; // Menyiapkan query SQL untuk mengambil informasi pengguna berdasarkan ID
+$stmt = $conn->prepare($sql); // Mengikat parameter ID pengguna ke prepared statement
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
+if ($result->num_rows > 0) { // Memeriksa apakah data pengguna ditemukan
     $user = $result->fetch_assoc();
 } else {
     $error = "Data pengguna tidak ditemukan.";
@@ -39,12 +39,13 @@ $sql = "SELECT
        FROM riwayat_peminjaman r
        INNER JOIN auditorium a ON r.id_auditorium = a.id_auditorium
        WHERE r.id_user = ?
+    --    Filter untuk hanya menampilkan riwayat peminjaman milik user yang sedang login
        AND (a.nama_auditorium LIKE ? 
             OR r.peminjam LIKE ? 
             OR r.tanggal_pinjam LIKE ?)
        ORDER BY r.tanggal_pinjam DESC, r.waktu_mulai DESC";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss", $user_id, $search, $search, $search);
+$stmt = $conn->prepare($sql); // Menyiapkan prepared statement untuk query
+$stmt->bind_param("ssss", $user_id, $search, $search, $search); // Mengikat parameter untuk query (user ID dan search terms)
 $stmt->execute();
 $result = $stmt->get_result();
 date_default_timezone_set("Asia/Bangkok");
